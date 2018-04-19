@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 fruit_salad:
-  order_id: spring
-  product_id: fruit
+  order_id: cart1
+  product_id: cherry
   quantity: 3
 
 watermelon_salad:
-  order_id: summer
+  order_id: cart2
   product_id: watermelon
+  quantity: 2
+
+citris_salad:
+  order_id: cart2
+  product_id: orange
   quantity: 2
