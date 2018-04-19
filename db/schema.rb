@@ -9,13 +9,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-<<<<<<< HEAD
-=======
 
-
->>>>>>> f6acb2b967aa1cb54faa0502b8924353039492a2
 ActiveRecord::Schema.define(version: 20180419035721) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
