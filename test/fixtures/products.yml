@@ -1,11 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# summer
+cherries:
+  name: cherries
+  price: 3.0
+  description: 1kg ranier cherries
 
-one:
-  name: MyString
-  price: 1.5
-  description: MyString
+#summer
+watermelon:
+  name: watermelon
+  price: 4.0
+  description: seedless
 
-two:
-  name: MyString
-  price: 1.5
-  description: MyString
+#fruit salad
+orange:
+  name: orange
+  price: 1.0
+  description: single orange

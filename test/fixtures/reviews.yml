@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  product_id: 1
+rating1:
+  product_id: cherries
   rating: 1
-  text_review: MyString
+  text_review: too sour
 
-two:
-  product_id: 1
-  rating: 1
-  text_review: MyString
+rating2:
+  product_id: watermelon
+  rating: 5
+  text_review: perfect
