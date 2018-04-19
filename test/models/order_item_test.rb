@@ -1,4 +1,5 @@
-require "test_helper"
+require 'test_helper'
+require 'pry'
 
 describe OrderItem do
   let(:order_item) { OrderItem.new }
@@ -7,4 +8,5 @@ describe OrderItem do
     salad = order_items(fruit_salad)
     value(salad).must_be :valid?
   end
+
 end

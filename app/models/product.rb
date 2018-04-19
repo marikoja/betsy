@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many_and_belongs_to :categories
+  has_and_belongs_to_many :categories
   belongs_to :user
   has_many :reviews
 
