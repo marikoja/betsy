@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "FruEtsy" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -12,6 +12,15 @@
   </head>
 
   <body>
+
+    <header>
+      <nav>
+        <%= link_to "FruEtsy", root_path %>
+        <%= link_to "All Produce", products_path, class: "button" %>
+        <%= link_to "All Categories", categories_path, class: "button" %>
+        <%= link_to "All merchants", users_path, class: "button" %>
+      </nav>
+    </header>
 
     <%= yield %>
 

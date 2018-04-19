@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20180419220917) do
     t.integer "order_id"
     t.integer "product_id"
     t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "status"
   end
 
