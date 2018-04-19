@@ -5,21 +5,18 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
 
 
-  # resources :sessions
-  #
-  # resources :products
-  #
-  # resources :categories
-  #
-  # resources :carts
-  #
-  # resources :reviews
+  resources :sessions
+
+  resources :products
+
+  resources :categories
+
+  # resources :orders
 
   resources :users do
-    resources :orders
-    resources :products
+    resources :products, except: [:delete]
+    resources :orders, only: [:index, :show]
+    resources :order_items, only: [:index]
   end
-
-  # resources :order_items
 
 end
