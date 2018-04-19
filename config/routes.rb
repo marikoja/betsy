@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   resources :products
 
   resources :categories
+  #
+  resources :orders
 
-  resources :carts
+  resources :users do
+    resources :products, except: [:delete]
+    resources :orders, only: [:index, :show]
+    resources :order_items, only: [:index]
+  end
 
-  resources :reviews
-
-  resources :users
-
-  resources :order_items
 end
