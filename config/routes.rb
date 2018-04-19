@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
 
-  root 'products#index'
+  get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
+  get '/auth/github', as: 'github_login'
 
-  resources :product
+  resources :sessions
 
-  resources :category
+  resources :products
 
-  resources :cart
+  resources :categories
 
-  resources :review
+  resources :carts
 
-  resources :user
+  resources :reviews
 
-  resources :order_item
+  resources :users
+
+  resources :order_items
 end
