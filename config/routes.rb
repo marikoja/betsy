@@ -1,33 +1,14 @@
 Rails.application.routes.draw do
-  get 'categories/index'
 
-  get 'categories/new'
+  resources :product
 
-  get 'categories/create'
+  resources :category
 
-  get 'categories/edit'
+  resources :cart
 
-  get 'categories/update'
+  resources :review
 
-  get 'categories/show'
-
-  get 'categories/destroy'
-
-  get 'products/index'
-
-  get 'products/new'
-
-  get 'products/create'
-
-  get 'products/edit'
-
-  get 'products/update'
-
-  get 'products/show'
-
-  get 'products/destroy'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :user 
 
   resources :order_item
 end
