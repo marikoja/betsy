@@ -9,9 +9,13 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> f6acb2b967aa1cb54faa0502b8924353039492a2
 ActiveRecord::Schema.define(version: 20180419035721) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +54,14 @@ ActiveRecord::Schema.define(version: 20180419035721) do
     t.string "email"
     t.integer "uid"
     t.string "provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "rating"
+    t.string "text_review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
