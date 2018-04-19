@@ -1,9 +1,9 @@
 require "test_helper"
 
 describe Cart do
-  let(:cart) { Cart.new }
+  let(:cart) { carts(:cart1)}
 
   it "must be valid" do
-    value(cart).must_be :valid?
+    cart.valid?.must_equal true
   end
 end
