@@ -3,7 +3,7 @@ class Review < ApplicationRecord
   belongs_to :products
 
   validates :rating, {
-    pressence: true,
+    presence: true,
     numericality: { only_integer: true },
     inclusion: { in: 1..5}
   }
