@@ -10,52 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180419010419) do
-=======
-ActiveRecord::Schema.define(version: 20180419010200) do
->>>>>>> 4a08633f57493b69b07df1c4c546b63a9d6f9f8a
-=======
-ActiveRecord::Schema.define(version: 20180419035721) do
->>>>>>> f2036e4c7a0235667f1ca1b94cb4964e3c388de4
+ActiveRecord::Schema.define(version: 20180419155031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-=======
-=======
-  create_table "order_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
-    t.integer "quantity"
-  end
-
->>>>>>> f2036e4c7a0235667f1ca1b94cb4964e3c388de4
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
     t.string "status"
->>>>>>> 4a08633f57493b69b07df1c4c546b63a9d6f9f8a
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.string "description"
-=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products_categories", force: :cascade do |t|
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "rating"
+    t.string "text_review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.integer "uid"
     t.string "provider"
->>>>>>> 4a08633f57493b69b07df1c4c546b63a9d6f9f8a
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
