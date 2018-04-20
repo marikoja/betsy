@@ -19,7 +19,12 @@
  */
 header {
   background: lightgreen;
-  text-align: center
+  text-align: center;
+  padding-top: 5%;
+}
+
+header .tagline {
+  padding-left: 29%;
 }
 
 nav {
