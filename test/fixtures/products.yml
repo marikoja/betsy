@@ -12,10 +12,26 @@ watermelon:
   description: seedless
   user_id: hermonie
 
-
-
 orange:
   name: orange
   price: 1.0
   description: single orange
   user_id: hermonie
+
+blood_orange:
+  name: blood orange
+  price: 1.0
+  description: single blood orange with magical properties
+  user_id: mcgonagall
+
+gillyweed:
+  name: gillyweed
+  price: 1.0
+  description: not a fruit, allows for increased aquaability
+  user_id: snape
+
+veritberry:
+  name: verit berry
+  price: 1.0
+  description: bitter berry used for veritaserum
+  user_id: snape

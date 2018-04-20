@@ -11,3 +11,15 @@ cart2:
 cart3:
   user_id: hermonie
   status: paid
+
+cart4:
+  user_id: mcgonagall
+  status: paid
+
+cart4:
+  user_id: snape
+  status: paid
+
+cart4:
+  user_id: snape
+  status: paid

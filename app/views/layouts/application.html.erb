@@ -18,9 +18,17 @@
       <p class='tagline'>for all your syrup-less fruit salad needs</p>
       <nav>
         <%= link_to "FruEtsy", root_path, class: "button large" %>
+        <%if @merchant %>
+          <li>
+            <%= link_to "Logout", logout_path, method: :delete %>
+            <% else %>
+            <%= link_to "Login with Github", "/auth/github", class: "button right" %>
+          </li>
+          <%end%>
         <%= link_to "All Produce", products_path, class: "button right" %>
         <%= link_to "All Categories", categories_path, class: "button right" %>
         <%= link_to "All merchants", users_path, class: "button right" %>
+
       </nav>
     </header>
 
