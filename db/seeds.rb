@@ -97,6 +97,17 @@ order_failures = []
 CSV.foreach(ORDER_FILE, :headers => true) do |row|
   order = Order.new
   order.user_id = row['user_id']
+  order.name = row['name']
+  order.card_number = row['card_number']
+  order.email = row['email']
+  order.street = row['street']
+  order.city = row['city']
+  order.state = row['state']
+  order.zip = row['zip']
+  order.date_year = row['date_year']
+  order.date_month = row['date_month']
+  order.date_day = row['date_day']
+  order.cvv = row['cvv']
   order.status = row['status']
 
   successful = order.save
