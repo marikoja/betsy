@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   has_many :reviews
 
   validates :name, presence: true
-  validates :name, length:{ minimum: 1 }
+  validates :name, length: { minimum: 1 }
   validates :price, numericality: true
 
 end

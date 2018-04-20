@@ -5,6 +5,11 @@ rating1:
   rating: 1
   text_review: too sour
 
+rating3:
+  product_id: cherries
+  rating: 1
+  text_review: rotten
+
 rating2:
   product_id: watermelon
   rating: 5
