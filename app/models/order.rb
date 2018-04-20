@@ -10,7 +10,6 @@ class Order < ApplicationRecord
   validates :cvv, length: { is: 3 }
   validates :zip, length: { is: 5 }
 
-  validates :email, uniquness: true
   validates_email_format_of :email
 
 

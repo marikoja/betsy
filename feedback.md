@@ -14,7 +14,7 @@ oAuth used for User authentication |
 Functionality restricted based on user roles |
 Products can be added and removed from cart |
 Users can view past orders |
-Merchants can add, edit and view their products |
+users can add, edit and view their products |
 Errors are reported to the user |
 **Order Functionality** |
 Reduces products' inventory |
