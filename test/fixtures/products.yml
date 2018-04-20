@@ -10,9 +10,12 @@ watermelon:
   name: watermelon
   price: 4.0
   description: seedless
+  user_id: hermonie
+
 
 
 orange:
   name: orange
   price: 1.0
   description: single orange
+  user_id: hermonie

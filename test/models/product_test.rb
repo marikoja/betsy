@@ -1,17 +1,54 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new }
+
+  let(:product) { Product.new name: "green apple", price: 2, description: "granny smith organic apple"}
 
   it "must be valid" do
-    cherries = products(:cherries)
-  
-    value(cherries).must_be :valid?
+    product.save
+    value(product).must_be :valid?
+  end
+
+  it "is invalid when missing a name" do
+    product.name = nil
+    product.save
+    product.valid?.must_equal false
+  end
+
+  it "is invalid when a name is less than 1 characters" do
+    product.name = ""
+    product.save
+    product.valid?.must_equal false
+  end
+
+  it "is invalid when a price is not a number" do
+    product.price = "blah"
+    product.save
+    product.valid?.must_equal false
+  end
+
+
+  describe "relations" do
+    it "can have multiple categories" do
+
+    end
+
+    it "can belong to multiple categories" do
+
+    end
+
+    it "belongs to user" do
+
+    end
+
+    it "can have multiple reviews" do
+      product1 = users(:cherries)
+      product1.save
+      product1.reviews.count.must_equal 2
+    end
+
 
   end
 
-  it "must have an array of categories" do
-    products(:cherries).categories.must_equal []
-  end
 
 end
