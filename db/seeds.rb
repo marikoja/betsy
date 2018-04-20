@@ -8,7 +8,7 @@
 
 require 'csv'
 
-USER_FILE = Rails.root.join('db', 'user_seeds.csv')
+USER_FILE = Rails.root.join('db', 'MerchantSeed.csv')
 puts "Loading user data from #{USER_FILE}"
 
 user_failures = []
@@ -16,7 +16,7 @@ CSV.foreach(USER_FILE, :headers => true) do |row|
   user = User.new
   user.name = row['name']
   user.email = row['email']
-  user.uid = row['uid']
+  user.uid = row['UID']
   user.provider = row['provider']
 
   successful = user.save
@@ -47,18 +47,18 @@ end
 #   end
 # end
 
-PRODUCT_FILE = Rails.root.join('db', 'product_seeds.csv')
+PRODUCT_FILE = Rails.root.join('db', 'ProductSeed.csv')
 puts "Loading product data from #{PRODUCT_FILE}"
 
 product_failures = []
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product = Product.new
-  product.name = row['name']
+  product.name = row['Product']
   product.price = row['price']
   product.description = row['description']
-  product.category_id = row['category_id']
+  # product.category_id = row['category_id']
   product.image = row['image']
-  product.user_id = row['user_id']
+  product.user_id = row['merchant_id']
   product.quantity = row['quantity']
 
   successful = product.save
@@ -70,13 +70,13 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   end
 end
 
-CATEGORY_FILE = Rails.root.join('db', 'category_seeds.csv')
+CATEGORY_FILE = Rails.root.join('db', 'Categoryseed.csv')
 puts "Loading category data from #{CATEGORY_FILE}"
 
 category_failures = []
 CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
   category = Category.new
-  category.name = row['name']
+  category.name = row['Category']
 
   successful = category.save
   if !successful
