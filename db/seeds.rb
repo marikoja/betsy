@@ -8,7 +8,7 @@
 
 require 'csv'
 
-USER_FILE = Rails.root.join('db', 'userSeed.csv')
+USER_FILE = Rails.root.join('db', 'MerchantSeed.csv')
 puts "Loading user data from #{USER_FILE}"
 
 user_failures = []
