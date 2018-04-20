@@ -8,7 +8,7 @@
 
 require 'csv'
 
-USER_FILE = Rails.root.join('db', 'MerchantSeed.csv')
+USER_FILE = Rails.root.join('db', 'userSeed.csv')
 puts "Loading user data from #{USER_FILE}"
 
 user_failures = []
@@ -39,7 +39,7 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.description = row['description']
   # product.category_id = row['category_id']
   product.image = row['image']
-  product.user_id = row['merchant_id']
+  product.user_id = row['user_id']
   product.quantity = row['quantity']
 
   successful = product.save
