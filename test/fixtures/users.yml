@@ -11,3 +11,21 @@ hermonie:
   email: hermonie@github.com
   uid: 100
   provider: github
+
+ron:
+  name: ron
+  email: ron@github.com
+  uid: 107
+  provider: github
+
+mcgonagall:
+  name: professor mcgonagall
+  email: p_mcgonagall@github.com
+  uid: 899
+  provider: github
+
+snape:
+  name: professor snape
+  email: p_snape@github.com
+  uid: 899
+  provider: github
