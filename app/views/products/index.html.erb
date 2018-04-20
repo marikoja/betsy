@@ -1,8 +1,14 @@
-<h1>FruEtsy Goodies</h1>
+<% if @user.nil? %>
+  <h1>FruEtsy Goodies</h1>
+  <% products = @products.sample(12) %>
+<% else %>
+  <h1><%= @user.name %> Goodies</h1>
+  <% products = @products %>
+<% end %>
 
 <section>
   <ul>
-    <% @products.sample(12).each do |product|%>
+    <% products.each do |product|%>
     <li>
     <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
 
@@ -11,8 +17,8 @@
     <%= product.price %>
 
     <%= product.description %>
-  </li>
+    </li>
 
-  <% end %>
+    <% end %>
   </ul>
 </section>

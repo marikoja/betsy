@@ -28,26 +28,6 @@ CSV.foreach(USER_FILE, :headers => true) do |row|
   end
 end
 
-REVIEW_FILE = Rails.root.join('db', 'ReviewsSeed.csv')
-puts "Loading review data from #{REVIEW_FILE}"
-
-review_failures = []
-CSV.foreach(REVIEW_FILE, :headers => true) do |row|
-  review = Review.new
-  review.product_id = row['product_id']
-  review.rating = row['rating']
-  review.text_review = row['text_review']
-
-  successful = review.save
-  puts successful
-  if !successful
-    review_failures << review
-    puts "Failed to save review: #{review.inspect}"
-  else
-    puts "Created review: #{review.inspect}"
-  end
-end
-
 PRODUCT_FILE = Rails.root.join('db', 'ProductSeed.csv')
 puts "Loading product data from #{PRODUCT_FILE}"
 
@@ -70,6 +50,28 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
     puts "Created product: #{product.inspect}"
   end
 end
+
+REVIEW_FILE = Rails.root.join('db', 'ReviewsSeed.csv')
+puts "Loading review data from #{REVIEW_FILE}"
+
+review_failures = []
+CSV.foreach(REVIEW_FILE, :headers => true) do |row|
+  review = Review.new
+  review.product_id = row['product_id']
+  review.rating = row['rating']
+  review.text_review = row['text_review']
+
+  successful = review.save
+  puts successful
+  if !successful
+    review_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
+
 
 CATEGORY_FILE = Rails.root.join('db', 'Categoryseed.csv')
 puts "Loading category data from #{CATEGORY_FILE}"

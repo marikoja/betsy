@@ -1,8 +1,11 @@
 require "test_helper"
 
 describe Product do
+  user = User.create name: "Bey", email: "bey@yonce.com", uid: 2231, provider: "yonce"
 
-  let(:product) { Product.new name: "green apple", price: 2, description: "granny smith organic apple"}
+  category = Category.create name: "summer fruit"
+  
+  let(:product) { Product.new name: "green apple", price: 2, description: "granny smith organic apple", user_id: user.id, catgegory_id: category.id}
 
   it "must be valid" do
     product.save
