@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-category1:
+summer:
   name: summer fruit
 
-category2:
+fruit:
   name: fruit salad
