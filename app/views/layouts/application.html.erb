@@ -18,10 +18,12 @@
       <p class='tagline'>for all your syrup-less fruit salad needs</p>
       <nav>
         <%= link_to "FruEtsy", root_path, class: "button large" %>
+        <% if session[:user_id] %>
+          <%= link_to "Logout", logout_path, method: :delete %>
+        <% else %>
+            <%= link_to "user Login", github_login_path, class: "button right" %>
+        <% end %>
 
-            <%= link_to "user Login", "/auth/github", class: "button right" %>
-
-        
         <%= link_to "All Produce", products_path, class: "button right" %>
         <%= link_to "All Categories", categories_path, class: "button right" %>
         <%= link_to "All users", users_path, class: "button right" %>
