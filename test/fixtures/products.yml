@@ -3,16 +3,16 @@ cherries:
   name: cherries
   price: 3.0
   description: 1kg ranier cherries
-  category: summer
+  user_id: beyonce.id
+
 
 watermelon:
   name: watermelon
   price: 4.0
   description: seedless
-  category: summer
+
 
 orange:
   name: orange
   price: 1.0
   description: single orange
-  category: fruit
