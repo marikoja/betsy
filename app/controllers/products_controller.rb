@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @user = User.find_by(id: params[:user_id])
+    if @user.nil? # if the user does not exist
+      @products = Product.all
+    else # the user exists
+      @products = @user.products
+    end
   end
 
   def new
