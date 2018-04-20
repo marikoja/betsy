@@ -3,8 +3,15 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :reviews
 
-  validates :name, presence: true
-  validates :name, length: { minimum: 1 }
-  validates :price, numericality: true
+  validates :name, {
+    presence: true,
+    uniqueness: true,
+    length: { minimum: 1 }
+  }
+
+  validates :price, {
+    presence: true,
+    numericality: { greater_than: 0 }
+  }
 
 end

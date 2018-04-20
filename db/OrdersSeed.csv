@@ -1,0 +1,8 @@
+user_id,status
+1,"pending"
+2,"paid"
+3,"complete"
+1,"paid"
+2,"complete"
+3,"pending"
+3,"complete"

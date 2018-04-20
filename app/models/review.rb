@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
 
-  belongs_to :products
+  belongs_to :product
 
   validates :rating, {
     presence: true,
