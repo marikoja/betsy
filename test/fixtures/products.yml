@@ -3,6 +3,7 @@ cherries:
   name: cherries
   price: 3.0
   description: 1kg ranier cherries
+  user_id: beyonce.id
 
 
 watermelon:
@@ -15,4 +16,3 @@ orange:
   name: orange
   price: 1.0
   description: single orange
-  
