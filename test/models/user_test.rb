@@ -22,4 +22,24 @@ describe User do
     dup_user_name.save
     dup_user_name.valid?.must_equal false
   end
+
+  describe "relations" do
+    it "can have multiple orders" do
+      user1 = users(:beyonce)
+      user1.save
+      user1.orders.count.must_equal 2
+    end
+
+    it "can have multiple products" do
+      user1 = users(:hermonie)
+      user1.save
+      user1.products.count.must_equal 2
+    end
+
+    it "can have no products and no orders" do
+      user
+      user.orders.count.must_equal 0
+      user.products.count.must_equal 0
+    end
+  end
 end
