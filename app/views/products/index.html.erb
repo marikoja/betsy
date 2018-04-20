@@ -1,13 +1,18 @@
 <h1>FruEtsy Goodies</h1>
 
 <section>
-<% @products.sample(12).each do |product|%>
-  <p>
-  <img src="<%= product.image %>" alt="fruit!">
-  <%= link_to product.name, product_path(product[:id]) %>
-  <%= product.price %>
-  <%= product.description %>
+  <ul>
+    <% @products.sample(12).each do |product|%>
+    <li>
+    <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
 
-  </p>
-<% end %>
+    <%= link_to product.name, product_path(product[:id]) %>
+
+    <%= product.price %>
+
+    <%= product.description %>
+  </li>
+
+  <% end %>
+  </ul>
 </section>
