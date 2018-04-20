@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420011411) do
+ActiveRecord::Schema.define(version: 20180420012158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 20180420011411) do
     t.integer "quantity"
   end
 
-  create_table "products_categories_joins", force: :cascade do |t|
+  create_table "products_categories", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "category_id"
-    t.index ["category_id"], name: "index_products_categories_joins_on_category_id"
-    t.index ["product_id"], name: "index_products_categories_joins_on_product_id"
+    t.index ["category_id"], name: "index_products_categories_on_category_id"
+    t.index ["product_id"], name: "index_products_categories_on_product_id"
   end
 
   create_table "reviews", force: :cascade do |t|
