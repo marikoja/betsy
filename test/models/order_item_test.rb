@@ -2,12 +2,11 @@ require 'test_helper'
 require 'pry'
 
 describe OrderItem do
-  # # let(:order_item) {order_items(:fruit_salad) }
-  # before do
-  #   binding.pry
-  #   @order_item = order_items(:fruit_salad)
-  # end
-  # it "must be valid" do
-  #   @order_item.valid?.must_equal true
-  # end
+  let(:order_item) { OrderItem.new }
+
+  it "must be valid" do
+    salad = order_items(fruit_salad)
+    value(salad).must_be :valid?
+  end
+
 end
