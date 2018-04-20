@@ -14,11 +14,13 @@
   <body>
 
     <header>
+      <h1>Welcome to FruEtsy</h1>
+      <p class='tagline'>for all your syrup-less fruit salad needs</p>
       <nav>
         <%= link_to "FruEtsy", root_path, class: "button large" %>
-        <%= link_to "All Produce", products_path, class: "button" %>
-        <%= link_to "All Categories", categories_path, class: "button" %>
-        <%= link_to "All merchants", users_path, class: "button" %>
+        <%= link_to "All Produce", products_path, class: "button right" %>
+        <%= link_to "All Categories", categories_path, class: "button right" %>
+        <%= link_to "All merchants", users_path, class: "button right" %>
       </nav>
     </header>
 

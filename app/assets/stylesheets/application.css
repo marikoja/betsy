@@ -17,3 +17,22 @@
  *= require foundation_and_overrides
 
  */
+header {
+  background: lightgreen;
+  text-align: center;
+  padding-top: 5%;
+}
+
+header .tagline {
+  padding-left: 29%;
+}
+
+nav {
+  text-align: left;
+  padding-left: 2em;
+}
+
+nav .button.right {
+  float: right;
+  margin: 1em;
+}
