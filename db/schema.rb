@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20180419224513) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.string "image"
+    t.integer "quantity"
   end
 
   create_table "products_categories", force: :cascade do |t|
