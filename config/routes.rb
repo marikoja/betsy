@@ -2,14 +2,17 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  get '/order', to: 'orders#index', as: 'order'
+  # get '/order', to: 'orders#index', as: 'order'
+  # post '/order', to: 'orders#create', as: 'add_to_order'
 
   get "/auth/:provider/callback", to: "users#create", as: "auth_callback"
   get '/auth/github', as: 'github_login'
   delete '/logout', to: "users#destroy", as: "logout"
 
 
-  resources :sessions
+  # resources :sessions
+  get '/order', to: 'sessions#index', as: 'order'
+  post '/order', to: 'sessions#create', as: 'add_to_order'
 
   resources :products
 
