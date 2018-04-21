@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Review do
-  let(:review) { Review.new rating: 4, text_review: "very fresh!" }
+  let(:review) { Review.create rating: 4, text_review: "very fresh!" }
 
   it "must be valid" do
     product = Product.create(name: "green apple", price: 2)
