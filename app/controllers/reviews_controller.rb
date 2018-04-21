@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @product = Product.find_by(review_params :product_id)
+    @product = Product.find_by(review_params[:product_id])
     if @review.save
       flash[:status] = :success
       flash[:result_text] = "Successfully reviewed #{@product.name}"
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not review #{@product.name}"
-      flash[:messages] = @work.errors.messages
+      flash[:messages] = @review.errors.messages
       render :new, status: :bad_request
     end
   end
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:rating, :text_review, :product_id)
+    params.require(:review).permit(:product_id, :text_review, :rating)
   end
 
 end
