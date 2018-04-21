@@ -1,5 +1,7 @@
 <h2><%= @product.name %></h2>
-
+<section>
+  <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
+</section>
 
 <section>
 <img src="<%= @product.image %>" alt="fruit!">
@@ -9,5 +11,10 @@
 </section>
 
 <section>
-
+  <h3>Reviews</h3>
+  <ul>
+    <% @product.reviews.each do |review| %>
+      <li> <%= review.text_review %> </li>
+    <% end %>
+  </ul>
 </section>

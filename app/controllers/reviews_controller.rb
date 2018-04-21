@@ -1,4 +1,30 @@
 class ReviewsController < ApplicationController
-  def create
+
+  def new
+    @review = Review.new
   end
+
+  def create
+    @review = Review.new(review_params)
+    @product = Product.find(@review.product_id)
+    if @product.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully reviewed #{@product.name}"
+      redirect_to new_product_review_path(@product.id)
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not review #{@product.name}"
+      flash[:messages] = @work.errors.messages
+      render :new, status: :bad_request
+    end
+  end
+
+  def index
+  end
+
+  private
+  def review_params
+    params.require(:review).permit(:rating, :text_review, :product_id)
+  end
+
 end

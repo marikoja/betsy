@@ -8,9 +8,12 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  resources :products
+  resources :products do
+    resources :reviews
+  end
 
   resources :categories
+
 
   # resources :orders
 

@@ -14,4 +14,5 @@ class Product < ApplicationRecord
     numericality: { greater_than: 0 }
   }
 
+
 end

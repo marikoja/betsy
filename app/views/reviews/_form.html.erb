@@ -1,8 +1,9 @@
-<%= form review do |f| %>
+<%= form_for @review, url: {action: "create"}  do |f| %>
   <%= f.label :rating %>
   <%= f.select :rating, 1..5, :prompt => "Select One" %>
 
   <%= f.label :text_review %>
   <%= f.text_field :text_review %>
+
   <%= f.submit %>
 <% end %>
