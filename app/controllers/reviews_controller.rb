@@ -6,8 +6,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @product = Product.find(@review.product_id)
-    if @product.save
+    @product = Product.find_by(review_params :product_id)
+    if @review.save
       flash[:status] = :success
       flash[:result_text] = "Successfully reviewed #{@product.name}"
       redirect_to new_product_review_path(@product.id)
