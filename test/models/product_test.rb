@@ -32,10 +32,8 @@ describe Product do
     end
 
     it "can have multiple categories" do
-
       product.categories << categories(:summer)
       product.categories << categories(:fruit)
-
 
       product.categories.must_include categories(:summer)
       product.categories.count.must_equal 2
@@ -50,8 +48,11 @@ describe Product do
     end
 
     it "can have multiple reviews" do
-
       products(:cherries).reviews.count.must_equal 2
+    end
+
+    it "can have zero reviews" do
+      product.reviews.must_equal []
     end
 
   end
