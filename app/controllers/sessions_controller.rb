@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
     @product = Product.find_by(id: product_id)
     if @product.quantity >= quantity.to_i
       # decrement product.quantity in db
+      
+      new_quantity = @product.quantity - quantity.to_i
+      @product.update(quantity: new_quantity)
       # add to sessions
       # binding.pry
       # session[:order]
@@ -22,7 +25,8 @@ class SessionsController < ApplicationController
       redirect_to order_path
     else
       # flash message that the quantity is too high
-      flash[:error] = "The quantity entered is too high"
+      flash.now[:alert] = "The quantity entered is too high"
+      # binding.pry
       render 'products/show'
     end
     # binding.pry
