@@ -1,2 +1,24 @@
-<h1>Sessions#index</h1>
-<p>Find me in app/views/sessions/index.html.erb</p>
+<h1>Current Order</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% session[:order].each do |key, val| %>
+    <% product = Product.find_by(id: key.to_i) %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.description %></td>
+      <td>$<%= product.price %></td>
+      <td><%= val %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Total: <%= calculate_total %></p>
