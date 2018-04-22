@@ -10,6 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # add logic for adding an item that is already in the order
+
     quantity = params[:quantity]
     product_id = params[:product_id]
     @product = Product.find_by(id: product_id)
