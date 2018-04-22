@@ -1,4 +1,10 @@
-<h1>User Info</h1>
-<p>Name: <%= @user.name %></p>
-<p>Email: <%= @user.email %></p>
-<p><%= link_to "Edit Profile", edit_user_path(@user.id) %></p>
+<h1>Merchant Profile</h1>
+
+<section>
+  <span>Name: <%= @user.name %></span>
+  <span>Email: <%= @user.email %></span>
+  <%= link_to "Edit Profile", edit_user_path(@user.id) %>
+</section>
+
+<section>
+  
