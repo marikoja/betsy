@@ -1,6 +1,9 @@
 <h2><%= @product.name %></h2>
 
 <section>
+  <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
+
+<section>
   <img src="<%= @product.image %>" alt="fruit!">
   <br>
   <span>Price: <%= @product.price %></span>
@@ -10,8 +13,23 @@
   <span>Description: <%= @product.description %></span>
 </section>
 
-<!-- FORM FOR ADDING PRODUCT TO CART -->
 <section>
+  <img src="<%= @product.image %>" alt="fruit!">
+  <span><%= @product.price %></span>
+  <span><%= @product.quantity %></span>
+  <span><%= @product.description %></span>
+</section>
+
+<section>
+  <h3>Reviews</h3>
+  <ul>
+    <% @product.reviews.each do |review| %>
+        <li> Review: <%= review.text_review %>
+        </li>
+        <li> Rating: <%= review.rating %>
+        </li>
+    <% end %>
+  </ul>
   <br>
   <%= form_with url: add_to_order_path do |form| %>
     <%= form.label 'quantity' %>
