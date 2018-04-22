@@ -18,8 +18,9 @@
 
  */
 header {
-  /* background-image: url('images/watermelon.jpg'); */
+
   background: lightgreen;
+  
   text-align: center;
   padding-top: 5%;
 }
