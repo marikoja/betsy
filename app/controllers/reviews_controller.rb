@@ -1,6 +1,9 @@
 class ReviewsController < ApplicationController
 
   def new
+    @product = Product.find(params[:product_id].to_i)
+
+    # why does this only work with @product is defined first?
     @review = Review.new
   end
 
@@ -13,7 +16,7 @@ class ReviewsController < ApplicationController
     if @review.save
       flash[:status] = :success
       flash[:result_text] = "Successfully reviewed #{@product.name}"
-      redirect_to new_product_review_path(@product.id)
+      redirect_to product_path(@product.id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not review #{@product.name}"

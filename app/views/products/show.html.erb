@@ -4,17 +4,20 @@
 </section>
 
 <section>
-<img src="<%= @product.image %>" alt="fruit!">
-<span><%= @product.price %></span>
-<span><%= @product.quantity %></span>
-<span><%= @product.description %></span>
+  <img src="<%= @product.image %>" alt="fruit!">
+  <span><%= @product.price %></span>
+  <span><%= @product.quantity %></span>
+  <span><%= @product.description %></span>
 </section>
 
 <section>
   <h3>Reviews</h3>
   <ul>
     <% @product.reviews.each do |review| %>
-      <li> <%= review.text_review %> </li>
+        <li> Review: <%= review.text_review %>
+        </li>
+        <li> Rating: <%= review.rating %>
+        </li>
     <% end %>
   </ul>
 </section>
