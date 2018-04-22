@@ -1,24 +1,34 @@
 <h1>Current Order</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% session[:order].each do |key, val| %>
-    <% product = Product.find_by(id: key.to_i) %>
-    <tr>
-      <td><%= product.name %></td>
-      <td><%= product.description %></td>
-      <td>$<%= product.price %></td>
-      <td><%= val %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<% if session[:order].nil? || session[:order] == {} %>
+  <p>No Items in the Order</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% session[:order].each do |key, val| %>
+        <% @product = Product.find_by(id: key.to_i) %>
+        <% params[:id] = key %>
+      <tr>
+        <td><%= @product.name %></td>
+        <td><%= @product.description %></td>
+        <td>$<%= @product.price %></td>
+          <%= form_tag('/order', method: :patch) do %>
+            <td><%= number_field_tag 'quantity', "#{val}" %></td>
+            <%= hidden_field_tag 'id', "#{key}" %>
+            <td><%= button_tag "Update" %></td>
+          <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <p>Total: $<%= calculate_total %></p>

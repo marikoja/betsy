@@ -36,11 +36,41 @@ class SessionsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
+    product_id = params[:id].to_i
+    old_quantity = session[:order][product_id.to_s]
+    new_quantity = params[:quantity].to_i
+    product = Product.find_by(id: product_id)
+    if new_quantity == 0
+      update_quantity = product.quantity + old_quantity
+      product.update(quantity: update_quantity)
+      session[:order].delete(product_id.to_s)
+      flash[:success] = "Item removed from Order"
+      redirect_to order_path
+    elsif new_quantity < 0
+      flash.now[:alert] = "Invalid number"
+      render :index
+    elsif (product.quantity - new_quantity) < 0
+      flash.now[:alert] = "Not enough in stock"
+      render :index
+    else
+      diff = old_quantity - new_quantity
+      update_quantity = product.quantity + diff
+      product.update(quantity: update_quantity)
+      session[:order][product_id.to_s] = new_quantity
+      flash[:success] = "Item quantity updated"
+      redirect_to order_path
+    end
   end
 
-  def destroy
-  end
+  # def destroy
+  #   product_id = params[:id]
+  #   session[:order].delete(product_id)
+  #   binding.pry
+  #   flash.now[:success] = "Item Removed from Order"
+  #   render :index
+  # end
 end
