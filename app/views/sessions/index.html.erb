@@ -1,6 +1,7 @@
 <h1>Current Order</h1>
 <% if session[:order].nil? || session[:order] == {} %>
   <p>No Items in the Order</p>
+  <p><%= link_to "Add to Order", products_path %></p>
 <% else %>
   <table>
     <thead>
@@ -32,5 +33,6 @@
   </table>
   <p>Total: $<%= calculate_total %></p>
   <p><%= link_to "Checkout" %></p>
-  <p><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" } %></p>  
+  <p><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" } %></p>
+  <p><%= link_to "Continue Shopping", products_path %></p>
 <% end %>
