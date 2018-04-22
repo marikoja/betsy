@@ -44,13 +44,11 @@
           </ul>
         </li>
         <li> <%= link_to "Merchants", users_path %> </li>
-
-<<<<<<< HEAD
       </ul>
     </nav>
   </header>
   <main>
-=======
+
       <!-- I added this to help with the review errors  -->
       <% if flash[:result_text] or flash[:messages] %>
       <section class="status <%= flash[:status] %>">
@@ -68,8 +66,6 @@
       <% end %>
       <!-- I added this to help with the review errors  -->
 
->>>>>>> f090fab2ade707d623ba396ca74d8d37fba8c32a
-
     <section class="flash">
       <% flash.each do |name, message| %>
       <p>
@@ -77,7 +73,6 @@
       </p>
       <% end %>
     </section>
-
 
     <%= yield %>
   </main>
