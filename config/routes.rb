@@ -18,9 +18,12 @@ Rails.application.routes.draw do
 
   post '/orderitem' , to: 'order_items#create', as: 'create_order'
 
-  resources :products
+  resources :products do
+    resources :reviews
+  end
 
   resources :categories
+
 
   # resources :orders
 

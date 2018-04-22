@@ -39,6 +39,10 @@ class ProductsController < ApplicationController
   def destroy
   end
 
+  # def review_rating
+  #   return Review.average_rating(product_reviews)
+  # end
+
   private
 
   def product_params
