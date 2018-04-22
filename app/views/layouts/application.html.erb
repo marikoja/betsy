@@ -19,9 +19,9 @@
       <nav>
         <%= link_to "FruEtsy", root_path, class: "button large" %>
         <% if session[:user_id] %>
-          <%= link_to "Logout", logout_path, method: :delete %>
+          <%= link_to "Logout", logout_path, method: :delete, class: "button" %>
         <% else %>
-            <%= link_to "user Login", github_login_path, class: "button right" %>
+            <%= link_to "user Login", github_login_path, class: "button" %>
         <% end %>
 
         <ul class="dropdown menu" data-dropdown-menu >
@@ -50,8 +50,18 @@
         </ul>
       </nav>
     </header>
+    <main>
 
-    <%= yield %>
+      <section class="flash">
+        <% flash.each do |name, message| %>
+            <p>
+              <%= message %>
+            </p>
+        <% end %>
+      </section>
 
+
+      <%= yield %>
+    </main>
   </body>
 </html>
