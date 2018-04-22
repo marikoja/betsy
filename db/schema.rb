@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20180422051721) do
     t.integer "quantity"
   end
 
+  create_table "products_categories", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_categories_on_category_id"
+    t.index ["product_id"], name: "index_products_categories_on_product_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "product_id"
     t.integer "rating"
