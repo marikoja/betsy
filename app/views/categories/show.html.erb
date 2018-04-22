@@ -2,7 +2,7 @@
 <ul>
   <% @category.products.each do |product| %>
     <li>
-      <%= link_to product.title, product_path(product.id) %>
+      <%= link_to product.name, product_path(product.id) %>
     </li>
   <% end %>
 </ul>
