@@ -19,11 +19,12 @@
       <nav>
         <%= link_to "FruEtsy", root_path, class: "button large" %>
         <% if session[:user_id] %>
-          <%= link_to "Logout", logout_path, method: :delete %>
+          <%= link_to "Logout", logout_path, method: :delete, class: "button" %>
         <% else %>
-            <%= link_to "user Login", github_login_path, class: "button right" %>
+            <%= link_to "user Login", github_login_path, class: "button" %>
         <% end %>
 
+        <%= link_to "Order", order_path, class: "button right" %>
         <%= link_to "All Produce", products_path, class: "button right" %>
         <%= link_to "All Categories", categories_path, class: "button right" %>
         <%= link_to "All users", users_path, class: "button right" %>
