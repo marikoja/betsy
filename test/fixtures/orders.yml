@@ -1,13 +1,91 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 cart1:
-  user_id: beyonce
+  user: beyonce
   status: shipped
+  name: bey
+  card_number: 1234123412341234
+  email: bey@github.com
+  street: malden
+  city: seattle
+  state: wa
+  zip: 12345
+  date_year: 18
+  date_month: 5
+  date_day: 3
+  cvv: 123
 
 cart2:
-  user_id: beyonce
+  user: beyonce
   status: shipped
+  name: bey
+  card_number: 1234123412341234
+  email: bey@github.com
+  street: malden
+  city: seattle
+  state: wa
+  zip: 12345
+  date_year: 18
+  date_month: 5
+  date_day: 3
+  cvv: 123
 
 cart3:
-  user_id: hermonie
+  user: hermonie
   status: paid
+  name: bey
+  card_number: 1234123412341234
+  email: bey@github.com
+  street: malden
+  city: seattle
+  state: wa
+  zip: 12345
+  date_year: 18
+  date_month: 5
+  date_day: 3
+  cvv: 123
+
+cart4:
+  user: mcgonagall
+  status: paid
+  name: beyyy
+  card_number: 1234123412341234
+  email: bey@github.com
+  street: malden
+  city: seattle
+  state: wa
+  zip: 12345
+  date_year: 18
+  date_month: 5
+  date_day: 3
+  cvv: 123
+
+cart5:
+  user: snape
+  status: paid
+  name: bey
+  card_number: 1234123412341234
+  email: bey@github.com
+  street: malden
+  city: seattle
+  state: wa
+  zip: 12345
+  date_year: 18
+  date_month: 5
+  date_day: 3
+  cvv: 123
+
+cart6:
+  user: snape
+  status: paid
+  name: bey
+  card_number: 1234123412341234
+  email: bey@github.com
+  street: malden
+  city: seattle
+  state: wa
+  zip: 12345
+  date_year: 18
+  date_month: 5
+  date_day: 3
+  cvv: 123

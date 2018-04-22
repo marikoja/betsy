@@ -1,4 +1,4 @@
-Product,price,description,merchant_id,quantity
+Product,price,description,user_id,quantity
 Honey Crisp Apple,1.00,"Their creamy white flesh is exceptionally crisp and aromatic. A balanced content of sugar and acid gives Honeycrisp apples a pleasant sweet-tart flavor that varies in strength depending upon the maturity of the apple.",1,30
 Banana,0.25,"Bananas are rich in potassium, riboflavin, niacin, and dietary fibre. They also have high energy value and are really good for growing children and athletes. They are also excellent for low-salt, low-fat, and cholesterol-free diets. Hundreds of different varieties of banana flourish in the tropics, from sweet yellow pygmy to large fibrous plantains and green bananas, which can only be used for cooking.",1,50
 Rainier Cherries,2.99,Sweet and juicy,1,30

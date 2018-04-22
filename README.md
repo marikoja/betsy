@@ -37,7 +37,7 @@ This is a [Stage 3](https://github.com/Ada-Developers-Academy/pedagogy/blob/mast
 1. Slack your team name, app name, and link to your Trello board to your Project Manager
 
 ## Expectations
-Build an online system for listing, selling, reviewing, and buying a wide variety of products listed by multiple merchants.
+Build an online system for listing, selling, reviewing, and buying a wide variety of products listed by multiple users.
 
 ### General Requirements
 - Unit tests and/or specs for
@@ -52,7 +52,7 @@ As a guest to the website (not signed in) I **can**:
 
 - Browse all products
 - Browse products by category
-- Browse products by merchant (users)
+- Browse products by user (users)
 - View any individual product with additional details
 - Leave a review for a product providing:
     - A text review
@@ -78,9 +78,9 @@ As a guest to the website (not signed in) I **can**:
     - Order total price
     - Date/time the order was placed
     - The current status of the order
-- Sign up to be a merchant using OAuth
-    - Every merchant must have a username
-- Sign in to my merchant account using OAuth
+- Sign up to be a user using OAuth
+    - Every user must have a username
+- Sign in to my user account using OAuth
 
 As a guest I **cannot**:
 
@@ -93,7 +93,7 @@ As a signed-in user, I **can**:
 
 - Do everything a guest user can do except for sign up and sign in
 - Sign out
-- Create new categories (categories are shared between all merchants)
+- Create new categories (categories are shared between all users)
 - Create a new product providing:
     - name
     - description
@@ -126,13 +126,13 @@ As a signed-in user, I **can**:
 As a signed-in user, I **cannot**:
 
 - Review my own products
-- View order items from a shared order that belong to another merchant
+- View order items from a shared order that belong to another user
 - View another user's private data (i.e. order fulfillment or product management)
 
 ### Validations
 Many of our models will have attributes that are required for our application to use and display data consistently. Each model will have attributes with requirements for a valid record. The requirements are summarized below:
 
-#### Merchant
+#### user
 - Username must be present
 - Username must be unique
 - Email Address must be present

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   root 'products#index'
-  get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
+  get "/auth/:provider/callback", to: "users#create", as: "auth_callback"
   get '/auth/github', as: 'github_login'
+  delete '/logout', to: "users#destroy", as: "logout"
 
 
   resources :sessions

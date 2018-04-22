@@ -74,3 +74,4 @@ end
 
 gem "omniauth"
 gem "omniauth-github"
+gem 'validates_email_format_of'

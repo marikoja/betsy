@@ -3,19 +3,35 @@ cherries:
   name: cherries
   price: 3.0
   description: 1kg ranier cherries
-  user_id: beyonce
+  user: beyonce
 
 
 watermelon:
   name: watermelon
   price: 4.0
   description: seedless
-  user_id: hermonie
-
-
+  user: hermonie
 
 orange:
   name: orange
   price: 1.0
   description: single orange
-  user_id: hermonie
+  user: hermonie
+
+blood_orange:
+  name: blood orange
+  price: 1.0
+  description: single blood orange with magical properties
+  user: mcgonagall
+
+gillyweed:
+  name: gillyweed
+  price: 1.0
+  description: not a fruit, allows for increased aquaability
+  user: beyonce
+
+veritberry:
+  name: verit berry
+  price: 1.0
+  description: bitter berry used for veritaserum
+  user: snape
