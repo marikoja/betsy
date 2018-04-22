@@ -25,7 +25,7 @@
           <%= form_tag('/order', method: :patch) do %>
             <td><%= number_field_tag 'quantity', "#{val}" %></td>
             <%= hidden_field_tag 'id', "#{key}" %>
-            <td><%= button_tag "Update", class: "button" %></td>
+            <td><%= button_tag "Update", method: :patch, class: "button" %></td>
           <% end %>
       </tr>
       <% end %>
