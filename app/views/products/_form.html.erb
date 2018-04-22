@@ -8,7 +8,8 @@
     <% end %>
   </ul>
 <% end %>
-<%= form_for @product do |f| %>
+<%= form_for @product, url: @action do |f| %>
+
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -16,13 +17,13 @@
   <%= f.text_area :description %>
 
   <%= f.label :price %>
-  <%= f.text_area :price %>
+  <%= f.number_field(:price, min: 0.05, step: 0.05) %>
 
   <%= f.label :image_url %>
   <%= f.text_area :image %>
 
   <%= f.label :quantity %>
-  <%= f.text_area :description %>
+  <%= number_field(:quantity, min: 0, step: 1) %>
 
 
   <div>

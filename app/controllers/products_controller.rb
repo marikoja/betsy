@@ -10,12 +10,13 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.user = User.find_by(id: params[:user_id])
+    @product.user = User.find_by(uid: session[:uid])
   end
 
   def create
     @product = Product.new(product_params)
-    @product.user = User.find_by(id: params[:user_id])
+    @product.user = User.find_by(uid: session[:uid])
+    @action = new_user_product_path(@product.user.id)
     if @product.save
       flash[:success] = "New product added"
       redirect_to root_path
