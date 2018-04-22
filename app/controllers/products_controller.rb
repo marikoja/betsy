@@ -9,10 +9,20 @@ class ProductsController < ApplicationController
   end
 
   def new
-
+    @product = Product.new
+    @product.user = User.find_by(uid: session[:uid])
   end
 
   def create
+    @product = Product.new(product_params)
+    @product.user = User.find_by(uid: session[:uid])
+    if @product.save
+      flash[:success] = "New product added"
+      redirect_to root_path
+    else
+      flash.now[:alert] = @product.errors
+      render :new
+    end
   end
 
   def edit
@@ -36,6 +46,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    return params.require(:product).permit(:name, :description, :image, :price)
+    return params.require(:product).permit(:name, :description, :image, :price, :quantity, category_ids: [])
   end
 end

@@ -1,0 +1,35 @@
+<h2>New Product</h2>
+<% if @product.errors.any? %>
+  <ul>
+    <% @product.errors.each do |field, message| %>
+      <li>
+        <strong><%= field.capitalize %>: </strong><%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_for @product, url: @action do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :price %>
+  <%= f.number_field(:price, min: 0.05, step: 0.05) %>
+
+  <%= f.label :image_url %>
+  <%= f.text_area :image %>
+
+  <%= f.label :quantity %>
+  <%= number_field(:quantity, min: 0, step: 1) %>
+
+
+  <div>
+    <%= f.label :categories %>
+    <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
