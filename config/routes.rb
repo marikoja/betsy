@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'
   patch '/order' , to: 'sessions#update', as: 'update_order_item'
-  delete '/order' , to: 'sessions#destroy', as: 'delete_order_item'
+  delete '/order' , to: 'sessions#destroy', as: 'delete_order'
 
   resources :products
 

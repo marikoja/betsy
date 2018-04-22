@@ -66,11 +66,15 @@ class SessionsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   product_id = params[:id]
-  #   session[:order].delete(product_id)
-  #   binding.pry
-  #   flash.now[:success] = "Item Removed from Order"
-  #   render :index
-  # end
+  def destroy
+    # restore stock on all items currently in the order
+    session[:order].each do |key, val|
+      product = Product.find_by(id: key.to_i)
+      product.update(quantity: product.quantity + val)
+    end
+    # clear session
+    session[:order] = {}
+    flash[:success] = "Order cleared successfully"
+    redirect_to order_path
+  end
 end

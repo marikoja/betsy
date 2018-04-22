@@ -31,5 +31,6 @@
     </tbody>
   </table>
   <p>Total: $<%= calculate_total %></p>
-  <%= link_to "Checkout" %>
+  <p><%= link_to "Checkout" %></p>
+  <p><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" } %></p>  
 <% end %>
