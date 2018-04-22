@@ -32,7 +32,7 @@
     </tbody>
   </table>
   <p>Total: $<%= calculate_total %></p>
-  <p><%= link_to "Checkout", create_order_path, method: :post ,class: "button" %></p>
-  <p><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" }, class: "button" %></p>
-  <p><%= link_to "Continue Shopping", products_path, class: "button" %></p>
+  <span><%= link_to "Checkout", create_order_path, method: :post ,class: "button" %></span>
+  <span><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" }, class: "button" %></span>
+  <span><%= link_to "Continue Shopping", products_path, class: "button" %></span>
 <% end %>
