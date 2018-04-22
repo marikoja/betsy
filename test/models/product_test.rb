@@ -1,16 +1,11 @@
 require "test_helper"
 
 describe Product do
-  user = User.create name: "Bey", email: "bey@yonce.com", uid: 2231, provider: "yonce"
+  let(:user) {User.create name: "Bey", email: "bey@yonce.com", uid: 2231, provider: "yonce"}
 
   category = Category.create name: "summer fruit"
-  
-  let(:product) { Product.new name: "green apple", price: 2, description: "granny smith organic apple", user_id: user.id, catgegory_id: category.id}
 
-  it "must be valid" do
-    product.save
-    value(product).must_be :valid?
-  end
+  let(:product) { Product.create name: "green apple", price: 2, description: "granny smith organic apple", user_id: user.id}
 
   it "is invalid when missing a name" do
     product.name = nil
@@ -30,28 +25,36 @@ describe Product do
     product.valid?.must_equal false
   end
 
-
   describe "relations" do
+    it "can have zero categories" do
+      product.categories.must_equal []
+
+    end
+
     it "can have multiple categories" do
+      product.categories << categories(:summer)
+      product.categories << categories(:fruit)
 
+      product.categories.must_include categories(:summer)
+      product.categories.count.must_equal 2
     end
 
-    it "can belong to multiple categories" do
+    it "must have a user" do
+      product.user_id.must_equal user.id
 
-    end
+      product.user_id = nil
 
-    it "belongs to user" do
-
+      product.valid?.must_equal false
     end
 
     it "can have multiple reviews" do
-      product1 = users(:cherries)
-      product1.save
-      product1.reviews.count.must_equal 2
+      products(:cherries).reviews.count.must_equal 2
     end
 
+    it "can have zero reviews" do
+      product.reviews.must_equal []
+    end
 
   end
-
 
 end

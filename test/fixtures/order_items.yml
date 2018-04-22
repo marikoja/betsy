@@ -2,19 +2,19 @@
 
 # I am unsure of what to call the status
 fruit_salad:
-  order_id: cart1
-  product_id: cherry
+  order: cart1
+  product: cherry
   quantity: 3
   status: paid
 
 watermelon_salad:
-  order_id: cart2
-  product_id: watermelon
+  order: cart2
+  product: watermelon
   quantity: 2
   status: paid
 
 citris_salad:
-  order_id: cart2
-  product_id: orange
+  order: cart2
+  product: orange
   quantity: 2
   status: paid

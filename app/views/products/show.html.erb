@@ -1,6 +1,16 @@
 <h2><%= @product.name %></h2>
+
 <section>
   <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
+
+<section>
+  <img src="<%= @product.image %>" alt="fruit!">
+  <br>
+  <span>Price: <%= @product.price %></span>
+  <br>
+  <span>Quantity: <%= @product.quantity %></span>
+  <br>
+  <span>Description: <%= @product.description %></span>
 </section>
 
 <section>
@@ -20,4 +30,11 @@
         </li>
     <% end %>
   </ul>
+  <br>
+  <%= form_with url: add_to_order_path do |form| %>
+    <%= form.label 'quantity' %>
+    <%= form.number_field 'quantity' %>
+    <%= form.hidden_field :product_id, value: @product.id %>
+    <%= form.submit "Add to Order", class: "button" %>
+  <% end %>
 </section>

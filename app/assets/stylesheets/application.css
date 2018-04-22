@@ -18,6 +18,7 @@
 
  */
 header {
+  /* background-image: url('images/watermelon.jpg'); */
   background: lightgreen;
   text-align: center;
   padding-top: 5%;
@@ -35,4 +36,8 @@ nav {
 nav .button.right {
   float: right;
   margin: 1em;
+}
+
+ul li {
+  list-style-type: none;
 }
