@@ -71,8 +71,6 @@ CSV.foreach(REVIEW_FILE, :headers => true) do |row|
   end
 end
 
-
-
 CATEGORY_FILE = Rails.root.join('db', 'Categoryseed.csv')
 puts "Loading category data from #{CATEGORY_FILE}"
 

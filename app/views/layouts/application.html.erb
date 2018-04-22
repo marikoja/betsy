@@ -24,10 +24,30 @@
             <%= link_to "user Login", github_login_path, class: "button right" %>
         <% end %>
 
-        <%= link_to "All Produce", products_path, class: "button right" %>
-        <%= link_to "All Categories", categories_path, class: "button right" %>
-        <%= link_to "All users", users_path, class: "button right" %>
-
+        <ul class="dropdown menu" data-dropdown-menu >
+          <li>
+            <p class="button"> Browse</p>
+            <ul>
+              <li>
+                <%= link_to "All Produce", products_path %>
+                <ul class="vertical menu nested">
+                  <% Product.all.each do |product| %>
+                    <li><%= link_to product.name, product_path(product[:id]) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li>
+                <%= link_to "All Categories", categories_path %>
+                <ul class="vertical menu nested">
+                  <% Category.all.each do |category| %>
+                    <li><%= link_to category.name, category_path(category[:id]) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li> <%= link_to "Merchants", users_path %> </li>
+            </ul>
+          </li>
+        </ul>
       </nav>
     </header>
 
