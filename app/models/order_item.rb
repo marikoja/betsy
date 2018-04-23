@@ -11,10 +11,4 @@ class OrderItem < ApplicationRecord
 
   # validates_uniqueness_of :order_item, :scope => [:order_id, :product_id]
 
-  def self.make_many (hash, order_id)
-    hash.each do |key, value|
-      OrderItem.create(order_id, key, value)
-    end
-  end
-
 end
