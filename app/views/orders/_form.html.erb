@@ -8,6 +8,9 @@
   <%= f.label :card_number %>
   <%= f.text_field :card_number %>
 
+  <%= f.label :cvv %>
+  <%= f.text_field :cvv %>
+
 <%# maybe refactor with method to use a single date field and separate with logic %>
   <%= f.label :date_year %>
   <%= f.text_field :date_year %>
@@ -17,9 +20,6 @@
 
   <%= f.label :date_day %>
   <%= f.text_field :date_day %>
-
-  <%= f.label :cvv %>
-  <%= f.text_field :cvv %>
 
   <%= f.label :street %>
   <%= f.text_field :street %>
