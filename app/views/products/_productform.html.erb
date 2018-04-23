@@ -29,6 +29,7 @@
   <div>
     <%= f.label :categories %>
     <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
+    <%= link_to "Add New Category", new_category_path(@user.id) %>
   </div>
 
   <%= f.submit %>

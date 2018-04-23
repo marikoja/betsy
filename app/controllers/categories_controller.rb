@@ -8,9 +8,19 @@ class CategoriesController < ApplicationController
   end
 
   def new
+    @category = Category.new
   end
 
   def create
+    @category = Category.new(category_params)
+
+    if @category.save
+      flash[:success] = "New category added"
+      redirect_to :back
+    else
+      flash.now[:alert] = @category.errors
+      render :new
+    end
   end
 
   def edit
@@ -20,5 +30,9 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def category_params
+    return params.require(:category).permit(:name)
   end
 end
