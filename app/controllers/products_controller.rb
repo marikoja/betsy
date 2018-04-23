@@ -40,9 +40,13 @@ class ProductsController < ApplicationController
   def destroy
   end
 
+  # def review_rating
+  #   return Review.average_rating(product_reviews)
+  # end
+
   private
 
   def product_params
-    return params.require(:product).permit(:name, :description, :image, :price, :quantity)
+    return params.require(:product).permit(:name, :description, :image, :price, :quantity, category_ids: [])
   end
 end

@@ -25,13 +25,13 @@
           <%= form_tag('/order', method: :patch) do %>
             <td><%= number_field_tag 'quantity', "#{val}" %></td>
             <%= hidden_field_tag 'id', "#{key}" %>
-            <td><%= button_tag "Update", class: "button" %></td>
+            <td><%= button_tag "Update", method: :patch, class: "button" %></td>
           <% end %>
       </tr>
       <% end %>
     </tbody>
   </table>
-  <p>Total: $<%= calculate_total %></p>
+  <p>Total: $<%= calculate_total.round(2) %></p>
   <span><%= link_to "Checkout", create_order_path, method: :post ,class: "button" %></span>
   <span><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" }, class: "button" %></span>
   <span><%= link_to "Continue Shopping", products_path, class: "button" %></span>

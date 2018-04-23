@@ -15,11 +15,12 @@
 
     <%= link_to product.name, product_path(product[:id]) %>
 
-    <%= product.price %>
+    $<%= product.price.round(2) %>
 
     <%= product.description %>
     </li>
 
     <% end %>
   </ul>
+
 </section>
