@@ -27,13 +27,14 @@ class SessionsController < ApplicationController
       end
       # flash and redirect
       flash[:success] = "Product added to order"
-      redirect_to '/order'
+      redirect_to order_path
+
     else
       # flash message that the quantity is too high
       flash.now[:alert] = "The quantity entered is too high"
-      render 'products/show'
+      redirect_to product_path(@product.id)
     end
-    # redirect_to root_path
+
   end
 
   def edit
