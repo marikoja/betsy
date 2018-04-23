@@ -25,7 +25,7 @@
 
            <%= link_to "Add Product",  new_user_product_path(session[:user_id]), class: "button right" %>
         <% else %>
-            <%= link_to "user Login", github_login_path, class: "button" %>
+            <%= link_to "user Login", github_login_path, class: "button right" %>
         <% end %>
         <%= link_to "Order", order_path, class: "button" %>
 

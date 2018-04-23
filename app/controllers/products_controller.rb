@@ -1,4 +1,9 @@
 class ProductsController < ApplicationController
+
+  def root
+    @products = Product.all
+  end
+
   def index
     @user = User.find_by(id: params[:user_id])
     if @user.nil? # if the user does not exist
