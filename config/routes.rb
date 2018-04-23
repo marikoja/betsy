@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   resources :categories
 
 
-  # resources :orders
+  # resources :orders, only: [:new, :create]
+  get '/orders/new', to: 'orders#new', as: 'new_order'
+
 
   resources :users do
     resources :products, except: [:delete]
