@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     end
 
     @order = Order.new(user_id: @user.id)
+    
   end
 
   def show
