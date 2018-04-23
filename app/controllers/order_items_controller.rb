@@ -8,6 +8,18 @@ class OrderItemsController < ApplicationController
   end
 
   def create
+    OrderItem.make_many (order_item_params[:order], order_item_params[:user_id].order.id)
+    @order.user_id = @user.id
+    if @order.save
+      flash[:status] = :success
+      flash[:result_text] = "Successful order"
+      # redirect_to where????
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Could not make order"
+      flash[:messages] = @order.errors.messages
+      render :new, status: :bad_request
+    end
   end
 
   def edit
@@ -23,7 +35,8 @@ class OrderItemsController < ApplicationController
   end
 
   private
-
-  #params
-
+  def order_item_params
+    # How to make the session hash be passed on?
+    params.require().permit(:order, :user_id)
+  end
 end
