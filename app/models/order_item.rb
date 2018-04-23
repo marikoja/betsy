@@ -9,10 +9,12 @@ class OrderItem < ApplicationRecord
     numericality: true
   }
 
-
-  # I am not sure if this is correct
-  # haven't written the model tests yet
-  # I am h  oping to to validate for unique combos of order_id and item_id to prevent repeat orders
-
   # validates_uniqueness_of :order_item, :scope => [:order_id, :product_id]
+
+  def self.make_many (hash, order_id)
+    hash.each do |key, value|
+      OrderItem.create(order_id, key, value)
+    end
+  end
+
 end
