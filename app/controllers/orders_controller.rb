@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(order_params)
+
     @user = User.find_by(id: session[:user_id])
 
     if @user
@@ -21,13 +23,15 @@ class OrdersController < ApplicationController
 
     @order.user_id = @user.id
 
-    @order = Order.new(order_params)
     if @order.save
 
       session[:order_id] = @order.id
 
       flash[:status] = :success
       flash[:result_text] = "Successful order"
+
+      @order_items = Order.make_order_items(@order.id, session[:order])
+
       redirect_to order_details_path(@order.id)
     else
       flash[:status] = :failure

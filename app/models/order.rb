@@ -18,4 +18,25 @@ class Order < ApplicationRecord
   # validates_email_format_of :email
   #
 
+
+  # loop through hash of orders to add to order
+  def self.make_order_items(id, hash)
+    order_items = []
+
+    hash.each do |key, value|
+
+      order_item = OrderItem.new
+
+      order_item.product_id = key.to_i
+      order_item.order_id = session[:order_id].to_i
+      order_item.status = "paid"
+      order_item.quantity = value.to_i
+
+      order_item.save
+
+      order_items << order_item
+    end
+    return order_items
+  end
+
 end
