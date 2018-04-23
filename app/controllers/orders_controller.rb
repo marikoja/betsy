@@ -1,17 +1,16 @@
 class OrdersController < ApplicationController
   def index
-    orders = Order.all
+    @orders = Order.all
   end
 
   def new
-    # fix this logic should refer to the user_id for finding if a user exists
-    if User.find(session[user_id].find(1)
-    else
-      @user = User.find(session[:user_id].to_i)
+    @user = User.find_by(id: session[:user_id])
+
+    if @user.nil?
+      @user = User.find(1)
     end
 
-    @order = Order.new
-    @order.user_id = @user.id
+    @new_order = Order.new(user_id: @user.id)
   end
 
   def create

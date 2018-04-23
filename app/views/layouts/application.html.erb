@@ -25,11 +25,9 @@
 
            <%= link_to "Add Product",  new_user_product_path(session[:user_id]), class: "button right" %>
         <% else %>
-            <%= link_to "user Login", github_login_path, class: "button" %>
+            <%= link_to "user Login", github_login_path, class: "button right" %>
         <% end %>
         <%= link_to "Order", order_path, class: "button" %>
-
-
 
       <ul class="dropdown menu" data-dropdown-menu >
 
@@ -49,8 +47,17 @@
             <% end %>
           </ul>
         </li>
-        <li> <%= link_to "Merchants", users_path %> </li>
+        <li> <%= link_to "Merchants", users_path %>
+          <ul class="vertical menu nested">
+            <% User.all.each do |user| %>
+              <% if !user.uid.nil? %>
+                <li><%= link_to user.name, category_path(user[:id]) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
       </ul>
+
     </nav>
   </header>
   <main>

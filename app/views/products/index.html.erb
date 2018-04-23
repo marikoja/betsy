@@ -1,7 +1,7 @@
 
 <% if @user.nil? %>
-  <h1>FruEtsy Goodies</h1>
-  <% products = @products.sample(12) %>
+  <h1>All FruEtsy Goodies</h1>
+  <% products = @products %>
 <% else %>
   <h1><%= @user.name %> Goodies</h1>
   <% products = @products %>

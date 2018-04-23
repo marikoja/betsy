@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
 
-  # we should make another root homepage with fewer items to show
-  root 'products#index'
-
-  # get '/order', to: 'orders#index', as: 'order'
-  # post '/order', to: 'orders#create', as: 'add_to_order'
+  root 'products#root'
 
   get "/auth/:provider/callback", to: "users#create", as: "auth_callback"
   get '/auth/github', as: 'github_login'
   delete '/logout', to: "users#destroy", as: "logout"
 
   # Orders
-    get '/orders' , to: 'orders#index', as: 'orders'
-  # resources :sessions
+  get '/orders' , to: 'orders#index', as: 'orders'
+  get '/orders/new', to: 'orders#new', as: 'new_order'
+
+
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'
   patch '/order' , to: 'sessions#update', as: 'update_order'
@@ -27,9 +25,6 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :order_items
-
-
-  # resources :orders
 
   resources :users do
     resources :products, except: [:delete]
