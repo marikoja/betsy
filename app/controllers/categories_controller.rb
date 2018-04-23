@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:success] = "New category added"
-      redirect_to :back
+      render :new
     else
       flash.now[:alert] = @category.errors
       render :new
