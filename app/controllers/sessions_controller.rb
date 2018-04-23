@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
 
   def create
     # add logic for adding an item that is already in the order
-
     quantity = params[:quantity]
     product_id = params[:product_id]
     @product = Product.find_by(id: product_id)
@@ -22,13 +21,14 @@ class SessionsController < ApplicationController
       @product.update(quantity: new_quantity)
       # add to sessions
       # check if session[:order] is empty
-        if session[:order].nil?
-          session[:order] = { @product.id => quantity.to_i }
-        else
-          session[:order].merge!(@product.id => quantity.to_i)
-          # session[:order][@product.id] = quantity.to_i
-        end
+      if session[:order].nil?
+        session[:order] = { @product.id => quantity.to_i }
+      else
+        session[:order].merge!(@product.id => quantity.to_i)
+        # session[:order][@product.id] = quantity.to_i
+      end
       # redirect
+      flash[:success] = "Product added to order"
       redirect_to order_path
     else
       # flash message that the quantity is too high

@@ -15,12 +15,17 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.user = User.find_by(uid: session[:uid])
+    @user = User.find_by(id: session[:user_id])
+    # @product.user = User.find_by(uid: session[:uid])
+    @product.user = @user
   end
 
   def create
     @product = Product.new(product_params)
-    @product.user = User.find_by(uid: session[:uid])
+    @user = User.find_by(id: session[:user_id])
+    @product.user = @user
+
+    #@product.user = User.find_by(uid: session[:uid])
     @action = new_user_product_path(@product.user.id)
     if @product.save
       flash[:success] = "New product added"
