@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       @user = User.find(1)
     end
 
-    @new_order = Order.new(user_id: @user.id)
+    @order = Order.new(user_id: @user.id)
   end
 
   def create
