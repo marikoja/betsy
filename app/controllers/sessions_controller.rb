@@ -20,21 +20,21 @@ class SessionsController < ApplicationController
       new_quantity = @product.quantity - quantity.to_i
       @product.update(quantity: new_quantity)
       # add to sessions
-      # check if session[:order] is empty
       if session[:order].nil?
         session[:order] = { @product.id => quantity.to_i }
       else
         session[:order].merge!(@product.id => quantity.to_i)
-        # session[:order][@product.id] = quantity.to_i
       end
-      # redirect
+      # flash and redirect
       flash[:success] = "Product added to order"
       redirect_to order_path
+
     else
       # flash message that the quantity is too high
       flash.now[:alert] = "The quantity entered is too high"
-      render 'products/show'
+      redirect_to product_path(@product.id)
     end
+
   end
 
   def edit
