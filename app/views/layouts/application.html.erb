@@ -47,7 +47,15 @@
             <% end %>
           </ul>
         </li>
-        <li> <%= link_to "Merchants", users_path %> </li>
+        <li> <%= link_to "Merchants", users_path %>
+          <ul class="vertical menu nested">
+            <% User.all.each do |user| %>
+              <% if !user.uid.nil? %>
+                <li><%= link_to user.name, category_path(user[:id]) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
       </ul>
 
     </nav>
