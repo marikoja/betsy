@@ -22,12 +22,12 @@ class SessionsController < ApplicationController
       @product.update(quantity: new_quantity)
       # add to sessions
       # check if session[:order] is empty
-        if session[:order].nil?
-          session[:order] = { @product.id => quantity.to_i }
-        else
-          session[:order].merge!(@product.id => quantity.to_i)
-          # session[:order][@product.id] = quantity.to_i
-        end
+      if session[:order].nil?
+        session[:order] = { @product.id => quantity.to_i }
+      else
+        session[:order].merge!(@product.id => quantity.to_i)
+        # session[:order][@product.id] = quantity.to_i
+      end
       # redirect
       redirect_to order_path
     else
