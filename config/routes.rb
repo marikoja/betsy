@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   # we should make another root homepage with fewer items to show
-  root 'products#index'
+  # root 'products#index'
+  root 'products#root'
 
   # get '/order', to: 'orders#index', as: 'order'
   # post '/order', to: 'orders#create', as: 'add_to_order'

@@ -1,0 +1,17 @@
+<section>
+  <h1>Product Highlights</h1>
+  <ul>
+    <% @products.sample(3).each do |product|%>
+    <li>
+      <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
+
+      <%= link_to product.name, product_path(product[:id]) %>
+
+      $<%= product.price.round(2) %>
+
+      <%= product.description %>
+    </li>
+
+    <% end %>
+  </ul>
+</section>
