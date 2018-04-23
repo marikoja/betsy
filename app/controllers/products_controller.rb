@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
+  @product = Product.find_by(id: params[:id])
     # redirect_to order_path
   end
 
