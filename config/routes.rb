@@ -21,6 +21,10 @@ Rails.application.routes.draw do
 
   post '/orderitem' , to: 'order_items#create', as: 'create_order'
 
+  # Orders
+  get '/orders' , to: 'orders#index', as: 'orders'
+  get '/orders/new', to: 'orders#new', as: 'new_order'
+
   resources :products do
     resources :reviews
   end
