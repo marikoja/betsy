@@ -55,6 +55,9 @@ nav .button {
   /* color: rgb(136, 33, 128); */
 }
 
+.button:hover{
+  background-color: purple;
+}
 
 .button, .dropdown_top {
   font-family: 'Alegreya Sans SC', sans-serif;
