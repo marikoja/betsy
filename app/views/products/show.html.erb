@@ -1,7 +1,12 @@
 <h2><%= @product.name %></h2>
 
 <section>
-  <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
+  <% if @product.user_id == session[:user_id] %>
+    <p>You cannot review your own product</p>
+  <% else %>
+    <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
+  <% end %>
+</section>
 
 <section>
   <img src="<%= @product.image %>" alt="fruit!">

@@ -10,16 +10,36 @@ class OrdersController < ApplicationController
       @user = User.find(1)
     end
 
-    @new_order = Order.new(user_id: @user.id)
+    @order = Order.new(user_id: @user.id)
+    
+  end
+
+  def show
+    @order = Order.find_by(id: params[:id])
   end
 
   def create
+    @user = User.find_by(id: session[:user_id])
+
     @order = Order.new(order_params)
+
+    if @user
+    else
+      @user = User.find(1)
+    end
+
+    @order.user_id = @user.id
+
     if @order.save
+
       session[:order_id] = @order.id
+
       flash[:status] = :success
       flash[:result_text] = "Successful order"
-      # redirect_to where????
+
+      @order_items = Order.make_order_items(@order.id, session[:order])
+
+      redirect_to order_details_path(@order.id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not make order"
