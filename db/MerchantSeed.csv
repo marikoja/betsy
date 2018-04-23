@@ -1,4 +1,5 @@
 name,email,UID,provider
+Guest,guest@gmail.com
 Joe Schmo,Joe@Schmo.com,234134,github
 Margo Tenenbaum,margot@tenenbaum.com,34363838,github
 Tabitha Baker,tabitha@baker.com,24354325,github
