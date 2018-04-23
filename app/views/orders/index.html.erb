@@ -1,4 +1,12 @@
 <!-- CART SHOW -->
 
 <h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<p>
+<ul>
+  <% @orders.each do |order| %>
+    <li>
+      <%= order %>
+    </li>
+  <% end %>
+</ul>
+</p>

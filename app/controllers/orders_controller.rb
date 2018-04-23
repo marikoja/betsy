@@ -4,21 +4,20 @@ class OrdersController < ApplicationController
   end
 
   def new
-    order = Order.new
+    # fix this logic should refer to the user_id for finding if a user exists
+    if User.find(session[user_id].find(1)
+    else
+      @user = User.find(session[:user_id].to_i)
+    end
+
+    @order = Order.new
+    @order.user_id = @user.id
   end
 
   def create
     @order = Order.new(order_params)
-
-    # is this right?
-    if User.find(order_params[:user_id].to_i).nil?
-      @user = User.find(1)
-    else
-      @user = User.find(order_params[:user_id].to_i)
-    end
-
-    @order.user_id = @user.id
     if @order.save
+      session[:order_id] = @order.id
       flash[:status] = :success
       flash[:result_text] = "Successful order"
       # redirect_to where????

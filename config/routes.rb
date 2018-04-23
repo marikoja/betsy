@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # we should make another root homepage with fewer items to show
   root 'products#index'
 
   # get '/order', to: 'orders#index', as: 'order'
@@ -9,7 +10,8 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
   delete '/logout', to: "users#destroy", as: "logout"
 
-
+  # Orders
+    get '/orders' , to: 'orders#index', as: 'orders'
   # resources :sessions
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'

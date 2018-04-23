@@ -13,7 +13,6 @@ class OrderItem < ApplicationRecord
 
   def self.make_many (hash, order_id)
     hash.each do |key, value|
-      # help me :0
       OrderItem.create(order_id, key, value)
     end
   end
