@@ -35,14 +35,32 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(id: params[:id])
   end
 
   def update
+    if @user
+      if @user.update(user_params)
+        flash[:success] = "#{@user.Name} updated"
+        redirect_to user_path(@user.id)
+      else
+        flash.now[:alert] = "Failed to update"
+        render :edit
+      end
+    else
+      redirect_to user_path(@user.id)
+    end
   end
 
   def destroy
     session[:user_id] = nil
     session[:order] = nil
     redirect_to root_path
+  end
+
+  private
+
+  def user_params
+    return params.require(:user).permit(:name, :email)
   end
 end

@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   has_many :order_items
   belongs_to :user
 
+
   validates :name, :card_number, :email, :street, :city, :state, :zip, :date_year, :date_month, :date_day, :cvv, presence: true
 
   validates :name, length: { minimum: 1 }

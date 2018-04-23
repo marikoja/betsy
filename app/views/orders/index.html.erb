@@ -1,3 +1,12 @@
 <!-- CART SHOW -->
 
 <h1>Shopping Cart</h1>
+<p>
+<ul>
+  <% @orders.each do |order| %>
+    <li>
+      <%= order %>
+    </li>
+  <% end %>
+</ul>
+</p>
