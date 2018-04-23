@@ -50,7 +50,7 @@
           <ul class="vertical menu nested">
             <% User.all.each do |user| %>
               <% if !user.uid.nil? %>
-                <li><%= link_to user.name, category_path(user[:id]) %></li>
+                <li><%= link_to user.name, user_products_path(user[:id]) %></li>
               <% end %>
             <% end %>
           </ul>
