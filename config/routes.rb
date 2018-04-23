@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   get '/order/:id' , to: 'orders#show', as: 'order_details'
 
-
   post '/orderitem' , to: 'order_items#create', as: 'create_order'
 
   # Orders
@@ -22,12 +21,12 @@ Rails.application.routes.draw do
   get '/orders/new', to: 'orders#new', as: 'new_order'
 
   resources :products do
-    resources :reviews
+    resources :reviews, only: [:index, :create, :new, :show]
   end
 
-  resources :categories
+  resources :categories, only: [:index, :create, :new, :show]
 
-  resources :order_items
+  resources :order_items, only: [:index, :show, :create, :edit, :update]
 
   resources :users do
     resources :products, except: [:delete]
