@@ -35,20 +35,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(uid: session[:uid])
   end
 
   def update
+    @user = User.find_by(uid: session[:uid])
     if @user
-      if @user.update(user_params)
-        flash[:success] = "#{@user.Name} updated"
-        redirect_to user_path(@user.id)
-      else
-        flash.now[:alert] = "Failed to update"
-        render :edit
-      end
-    else
+      @user.update(user_params)
+      flash[:success] = "#{@user.name} updated"
       redirect_to user_path(@user.id)
+    else
+      flash.now[:alert] = "Failed to update"
+      render :edit
     end
   end
 
