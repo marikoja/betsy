@@ -6,10 +6,6 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
   delete '/logout', to: "users#destroy", as: "logout"
 
-  # Orders
-  get '/orders' , to: 'orders#index', as: 'orders'
-  get '/orders/new', to: 'orders#new', as: 'new_order'
-
   # resources :sessions
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'
