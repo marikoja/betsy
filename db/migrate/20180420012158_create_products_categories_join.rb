@@ -8,3 +8,6 @@ class CreateProductsCategoriesJoin < ActiveRecord::Migration[5.1]
     end
   end
 end
+
+
+ hidden_field_tag :url, params[:url].to_s
