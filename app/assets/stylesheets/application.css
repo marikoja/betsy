@@ -19,7 +19,9 @@
  */
 header {
 
-  background: lightgreen;
+  /* background: lightgreen; */
+  background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg");
+  background-size: cover;
 
   text-align: center;
   padding-top: 5%;
