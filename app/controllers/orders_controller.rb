@@ -1,26 +1,34 @@
 class OrdersController < ApplicationController
   def index
-    orders = Order.all
+    @orders = Order.all
   end
 
   def new
-    # fix this logic should refer to the user_id for finding if a user exists
-    if User.find(session[user_id].find(1)
-    else
-      @user = User.find(session[:user_id].to_i)
-    end
-
     @order = Order.new
-    @order.user_id = @user.id
+  end
+
+  def show
+    @order = Order.find_by(id: params[:id])
   end
 
   def create
+    @user = User.find_by(id: session[:user_id])
+
+    if @user
+    else
+      @user = User.find(1)
+    end
+
+    @order.user_id = @user.id
+
     @order = Order.new(order_params)
     if @order.save
+
       session[:order_id] = @order.id
+
       flash[:status] = :success
       flash[:result_text] = "Successful order"
-      # redirect_to where????
+      redirect_to order_details_path(@order.id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not make order"

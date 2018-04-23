@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Orders
     get '/orders' , to: 'orders#index', as: 'orders'
+    get '/order/:id' , to: 'orders#show', as: 'order_details'
   # resources :sessions
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'
