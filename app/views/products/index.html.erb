@@ -15,7 +15,7 @@
 
     <%= link_to product.name, product_path(product[:id]) %>
 
-    $<%= product.price.round(2) %>
+    $<%= sprintf('%.2f', product.price) %>
 
     <%= product.description %>
     <% if @user && @user.id == session[:user_id]%>

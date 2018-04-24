@@ -9,7 +9,7 @@ module SessionsHelper
         subtotal = product.price * val
         total += subtotal
       end
-      return total
+      return sprintf('%.2f', total.to_f)
     end
   end
 end
