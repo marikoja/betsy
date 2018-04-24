@@ -26,7 +26,7 @@ class UsersController < ApplicationController
           session[:uid] = @user.uid
           session[:user_id] = @user.id
           session[:uid] = @user.uid
-          binding.pry
+
           redirect_to root_path
         else
           flash[:error] = "Something happened at user creation"
