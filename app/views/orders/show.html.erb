@@ -16,9 +16,6 @@
     <% subtotal = (order_item.quantity.to_i * product.price) %>
     <% total += subtotal %>
     
-
-
-
     <% if order_item.status == nil || order_item.status == "pending" %>
       <% status = order_item.status %>
     <% end %>
