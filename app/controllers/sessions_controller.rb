@@ -12,8 +12,14 @@ class SessionsController < ApplicationController
   def create
     quantity = params[:quantity]
     product_id = params[:product_id]
-
     @product = Product.find_by(id: product_id)
+
+    if quantity.to_i == 0
+      flash[:status] = :alert
+      flash[:result_text] = "Please add at least one product to the order"
+      redirect_to product_path(@product.id)
+      return
+    end
 
     if session[:order] == nil || session[:order] == {}
       add_products_to_session(@product, params[:quantity])
