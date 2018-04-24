@@ -20,8 +20,8 @@
     <%= product.description %>
     <% if @user && @user.id == session[:user_id]%>
 
-      <%= link_to "Edit Product", edit_product_path(product.id) %>
-      <%= link_to 'Delete Product', product_path(product.id), method: :delete %>
+      <%= link_to "Edit Product", edit_product_path(product.id), class: "button" %>
+      <%= link_to 'Delete Product', product_path(product.id), method: :delete, class: "button" %>
 
     <% end %>
     </li>
