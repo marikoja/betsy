@@ -9,6 +9,13 @@
     <span>Quantity: <%= @product.quantity %></span>
     <br>
     <span>Description: <%= @product.description %></span>
+
+    <%= form_tag('/order', method: 'post') do %>
+      <%= label_tag 'quantity' %>
+      <%= number_field_tag 'quantity' %>
+      <%= hidden_field_tag 'product_id', @product.id %>
+      <%= submit_tag "Add to Order", class: "button" %>
+    <% end %>
   </section>
 
   <section class="product_show_item">
@@ -34,14 +41,6 @@
         </tr>
         <% end %>
       </tbody>
-    </table>
-
-    <br>
-    <%= form_tag('/order', method: 'post') do %>
-      <%= label_tag 'quantity' %>
-      <%= number_field_tag 'quantity' %>
-      <%= hidden_field_tag 'product_id', @product.id %>
-      <%= submit_tag "Add to Order", class: "button" %>
-    <% end %>
+    </table>    
   </section>
 </section>
