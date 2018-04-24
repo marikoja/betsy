@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
       render :new, status: :bad_request
     end
   end
-
+  
   def index
   end
 

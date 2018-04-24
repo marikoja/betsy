@@ -9,50 +9,44 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400|Monoton" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-      <h1>Welcome to FruEtsy</h1>
-      <p class='tagline'>for all your syrup-less fruit salad needs</p>
-      <nav>
-        <%= link_to "FruEtsy", root_path, class: "button large" %>
-        <% if session[:user_id] %>
+  <header>
+    <h1>Welcome to FruEtsy</h1>
+    <p class='tagline'>for all your syrup-less fruit salad needs</p>
+    <nav>
+      <%= link_to "FruEtsy", root_path, class: "button large" %>
+      <% if session[:user_id] %>
 
-          <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
-          <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
+      <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
+      <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
 
-           <%= link_to "Add Product",  new_user_product_path(session[:user_id]), class: "button right" %>
-        <% else %>
-            <%= link_to "user Login", github_login_path, class: "button right" %>
-        <% end %>
-        <%= link_to "Order", order_path, class: "button" %>
+      <%= link_to "Add Product",  new_user_product_path(session[:user_id]), class: "button right" %>
+      <% else %>
+      <%= link_to "user Login", github_login_path, class: "button right" %>
+      <% end %>
+      <%= link_to "Order", order_path, class: "button" %>
 
       <ul class="dropdown menu" data-dropdown-menu >
 
         <li>
-          <%= link_to "All Produce", products_path, class: "dropdown_top" %>
-          <ul class="vertical menu nested">
-            <% Product.all.each do |product| %>
-            <li><%= link_to product.name, product_path(product[:id]) %></li>
-            <% end %>
-          </ul>
+          <%= link_to "All Produce", products_path %>
         </li>
         <li>
-          <%= link_to "All Categories", categories_path, class: "dropdown_top" %>
+          <%= link_to "All Categories", categories_path %>
           <ul class="vertical menu nested">
             <% Category.all.each do |category| %>
             <li><%= link_to category.name, category_path(category[:id]) %></li>
             <% end %>
           </ul>
         </li>
-        <li> <%= link_to "Merchants", users_path, class: "dropdown_top" %>
+        <li> <%= link_to "Merchants", users_path %>
           <ul class="vertical menu nested">
             <% User.all.each do |user| %>
-              <% if !user.uid.nil? %>
-                <li><%= link_to user.name, user_products_path(user[:id]) %></li>
-              <% end %>
+            <% if !user.uid.nil? %>
+            <li><%= link_to user.name, user_products_path(user[:id]) %></li>
+            <% end %>
             <% end %>
           </ul>
         </li>
@@ -62,30 +56,20 @@
   </header>
   <main>
 
-      <!-- I added this to help with the review errors  -->
-      <% if flash[:result_text] or flash[:messages] %>
-      <section class="status <%= flash[:status] %>">
-        <h3><%= flash[:status] == :failure ? "A problem occurred: " : "" %><%= flash[:result_text] %></h3>
-        <% if flash[:messages] %>
-        <ul>
-          <% flash[:messages].each do |name, problems| %>
-          <% problems.each do |problem| %>
-          <li><%= name %>: <%= problem %></li>
-          <% end %>
-          <% end %>
-        </ul>
+    <% if flash[:result_text] or flash[:messages] %>
+    <section class="callout <%= flash[:status] %>">
+      <p><%= flash[:status] == :failure ? "A problem occurred: " : "" %><%= flash[:result_text] %></>
+      <% if flash[:messages] %>
+      <ul>
+        <% flash[:messages].each do |name, problems| %>
+        <% problems.each do |problem| %>
+        <li><%= name %>: <%= problem %></li>
         <% end %>
-      </section>
-      <% end %>
-      <!-- I added this to help with the review errors  -->
-
-    <section class="flash">
-      <% flash.each do |name, message| %>
-      <p>
-        <%= message %>
-      </p>
+        <% end %>
+      </ul>
       <% end %>
     </section>
+    <% end %>
 
     <%= yield %>
   </main>

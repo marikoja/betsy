@@ -68,7 +68,7 @@ ul li {
   list-style-type: none;
 }
 
-.checkout_page {
+.checkout_page, .product_show {
   margin: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -76,8 +76,15 @@ ul li {
 
 }
 
-.checkout_form {
+.checkout_form, .product_show_item {
   display: grid;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+.frontpage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
 }
