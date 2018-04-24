@@ -18,7 +18,7 @@
 
     <% total += subtotal %>
 
-    <% if order_item.status == "pending" %>
+    <% if order_item.status == nil || order_item.status == "pending" %>
       <% status = order_item.status %>
     <% end %>
 

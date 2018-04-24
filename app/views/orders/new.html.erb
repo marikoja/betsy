@@ -18,19 +18,23 @@
         </tr>
       </thead>
       <tbody>
-        <% session[:order].each do |key, val| %>
-        <% @product = Product.find_by(id: key.to_i) %>
-        <% params[:id] = key %>
-        <tr>
-          <td><%= @product.name %></td>
-          <td><%= @product.description %></td>
-          <td>$<%= sprintf('%.2f', @product.price)%></td>
-          <%= form_tag('/order', method: :patch) do %>
-          <td><%="#{val}" %>
-          <%= hidden_field_tag 'id', "#{key}" %>
+
+        <% unless session[:order] == nil %>
+          <% session[:order].each do |key, val| %>
+          <% @product = Product.find_by(id: key.to_i) %>
+          <% params[:id] = key %>
+          <tr>
+            <td><%= @product.name %></td>
+            <td><%= @product.description %></td>
+            <td>$<%= sprintf('%.2f', @product.price) %></td>
+            <%= form_tag('/order', method: :patch) do %>
+            <td><%= number_field_tag 'quantity', "#{val}" %></td>
+            <%= hidden_field_tag 'id', "#{key}" %>
+            <% end %>
+          </tr>
+
           <% end %>
-        </tr>
-        <% end %>
+        <%end%>
       </tbody>
     </table>
     <p>Total: $<%= calculate_total %></p>

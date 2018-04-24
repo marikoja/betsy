@@ -6,11 +6,13 @@ class ProductsController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id])
+
     if @user.nil? # if the user does not exist
       @products = Product.all
     else # the user exists
       @products = @user.products
     end
+
   end
 
   def new
@@ -43,19 +45,24 @@ class ProductsController < ApplicationController
   end
 
   def show
-  @product = Product.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id])
     # redirect_to order_path
   end
 
   def destroy
+    @product = Product.find_by(id: params[:id])
+    @user = User.find_by(id: session[:user_id])
     if @product
-  @product.destroy
-  flash[:success] = "Product deleted"
-  redirect_to products_path
-else
-  flash[:alert] = "Product does not exist"
-end
-redirect_to product_path
+      @product.destroy
+      flash[:status] = :success
+      flash[:result_text] = "Product deleted"
+      redirect_to user_products_path(@user.id)
+    else
+      flash[:status] = :failure
+      flash[:result_text] = "Product does not exist"
+      redirect_to products_path
+    end
+
   end
 
   # def review_rating

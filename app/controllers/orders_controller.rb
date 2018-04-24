@@ -10,7 +10,13 @@ class OrdersController < ApplicationController
     @user = User.find_by(id: session[:user_id])
 
     if @user.nil?
-      @user = User.find(1)
+      if User.find_by(id: 1)
+        @user = User.find_by(id: 1)
+      else
+        @user = User.new
+        @user.name = "Guest"
+        @user.id = 1
+      end
     end
 
     # here we are making sure session updates its user_id in it

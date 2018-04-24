@@ -18,6 +18,7 @@ class OrderItemsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -63,6 +64,6 @@ class OrderItemsController < ApplicationController
 
   private
   def order_item_params
-    params.require(:order_item).permit(:order, :user_id)
+    params.require(:order_item).permit(:order, :user_id, )
   end
 end
