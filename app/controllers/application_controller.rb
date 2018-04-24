@@ -2,18 +2,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def account_views
-    if @login_user.id != params[:id]
-      flash[:status] = :error
-      flash[:result_text] = "You can only view your personal account info"
+    @login_user = current_user
+    if @login_user.id != params[:id].to_i
+
+      flash[:status] = :failure
+      flash[:result_text] = "Nice try, but you can't go there!"
       redirect_to root_path
     end
   end
 
-  private
+
   def current_user
-    if session[:user_id] != 1
-      @login_user = User.find_by(id: session[:user_id])
+    login_user = User.find_by(id: session[:user_id])
+    if login_user.nil?
+      login_user = User.first
     end
+    return login_user
   end
 
 end

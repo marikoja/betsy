@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  before_action :current_user
   before_action :account_views, only: [:show, :edit]
 
   def index
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
         if successful_save
           flash[:success] = "Logged in successfully"
           session[:user_id] = @user.id
+          session[:uid] = @user.uid
           binding.pry
           redirect_to root_path
         else
