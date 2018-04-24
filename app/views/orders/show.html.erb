@@ -1,14 +1,38 @@
-<h2>Order: <%= @order.id %> </h2>
-<h3>order_items</h3>
+<h1>Thank you for shopping on Fruetsy!</h1>
+<h3>Order Confirmation #: <%= @order.id %> </h3>
+
+<table>
+  <caption>Order Confirmation page</caption>
+  <tr>
+    <th scope="column">Product</th>
+    <th scope="column">Quantity</th>
+    <th scope="column">Subtotal</th>
+  </tr>
+  <% total = 0 %>
+  <% @order_items.each do |order_item| %>
+    <% @status = "paid" %>
+
+    <% product = Product.find_by(id: order_item.product_id) %>
+
+    <% subtotal = (order_item.quantity.to_i * product.price).round(2) %>
+
+    <% total += subtotal %>
+
+    <% if order_item.status == "pending" %>
+      <% status = order_item.status %>
+    <% end %>
+
+    <tr>
+      <td><%= link_to product.name, product_path(product.id) %></td>
+      <td><%= order_item.quantity %></td>
+      <td>$<%= subtotal %></td>
+    </tr>
+
+  <% end %>
+</table>
 
 <ul>
-  <% @order_items.each do |order_item| %>
-      <li> <%= Product.find_by(id: order_item.product_id) %>
-      </li>
-      <li> Quantity <%=  order_item.quantity %>
-      </li>
-      <li>
-        <%= Product.find_by(id: order_item.product_id).user %>
-      </li>
-  <% end %>
+  <li>Order Total: $<%= total %></li>
+  <li>Purchased On: <%= @order.created_at %></li>
+  <li>Order Status: <%= @status.upcase %></li>
 </ul>

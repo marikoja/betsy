@@ -23,6 +23,7 @@ class UsersController < ApplicationController
         successful_save = @user.save
         if successful_save
           flash[:success] = "Logged in successfully"
+          session[:uid] = @user.uid
           session[:user_id] = @user.id
           session[:uid] = @user.uid
           binding.pry
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
         end
       else
         flash[:success] = "Logged in successfully"
+        session[:uid] = @user.uid
         session[:user_id] = @user.id
         redirect_to root_path
       end

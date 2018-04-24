@@ -17,13 +17,13 @@
   <%= f.text_area :description %>
 
   <%= f.label :price %>
-  <%= f.number_field(:price, min: 0.05, step: 0.05) %>
+  <%= f.number_field(:price, min: 0, step: 0.01) %>
 
   <%= f.label :image_url %>
   <%= f.text_area :image %>
 
-  <%= f.label :quantity %>
-  <%= number_field(:quantity, min: 0, step: 1) %>
+  <%= f.label 'Quantity'%>
+  <%= f.number_field(:quantity, min: 0, step: 1) %>
 
 
   <div>
