@@ -22,25 +22,29 @@
     <!-- <h3>Reviews</h3> -->
     <% if @product.user_id == session[:user_id] %>
       <p>You cannot review your own product</p>
+    <% elsif @product.reviews.count > 0 %>
+      <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Rating</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product.reviews.each do |review| %>
+          <tr>
+            <td><%= review.rating %></td>
+            <td><%= review.text_review %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% else %>
       <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
+      <p>There are no reviews</p>
     <% end %>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Rating</th>
-          <th>Review</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @product.reviews.each do |review| %>
-        <tr>
-          <td><%= review.rating %></td>
-          <td><%= review.text_review %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>    
+
   </section>
 </section>
