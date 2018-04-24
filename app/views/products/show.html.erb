@@ -1,38 +1,47 @@
 <h2><%= @product.name %></h2>
+<section class="product_show">
 
-<section>
-  <% if @product.user_id == session[:user_id] %>
-    <p>You cannot review your own product</p>
-  <% else %>
-    <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
-  <% end %>
-</section>
+  <section class="product_show_item">
+    <img src="<%= @product.image %>" alt="fruit!">
+    <br>
+    <span>Price: $<%= @product.price.round(2) %></span>
+    <br>
+    <span>Quantity: <%= @product.quantity %></span>
+    <br>
+    <span>Description: <%= @product.description %></span>
+  </section>
 
-<section>
-  <img src="<%= @product.image %>" alt="fruit!">
-  <br>
-  <span>Price: $<%= @product.price.round(2) %></span>
-  <br>
-  <span>Quantity: <%= @product.quantity %></span>
-  <br>
-  <span>Description: <%= @product.description %></span>
-</section>
-
-<section>
-  <h3>Reviews</h3>
-  <ul>
-    <% @product.reviews.each do |review| %>
-        <li> Review: <%= review.text_review %>
-        </li>
-        <li> Rating: <%= review.rating %>
-        </li>
+  <section class="product_show_item">
+    <!-- <h3>Reviews</h3> -->
+    <% if @product.user_id == session[:user_id] %>
+      <p>You cannot review your own product</p>
+    <% else %>
+      <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
     <% end %>
-  </ul>
-  <br>
-  <%= form_tag('/order', method: 'post') do %>
-    <%= label_tag 'quantity' %>
-    <%= number_field_tag 'quantity' %>
-    <%= hidden_field_tag 'product_id', @product.id %>
-    <%= submit_tag "Add to Order", class: "button" %>
-  <% end %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.reviews.each do |review| %>
+        <tr>
+          <td><%= review.rating %></td>
+          <td><%= review.text_review %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+    <%= form_tag('/order', method: 'post') do %>
+      <%= label_tag 'quantity' %>
+      <%= number_field_tag 'quantity' %>
+      <%= hidden_field_tag 'product_id', @product.id %>
+      <%= submit_tag "Add to Order", class: "button" %>
+    <% end %>
+  </section>
 </section>
