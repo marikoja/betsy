@@ -13,10 +13,12 @@
     <% @status = "paid" %>
 
     <% product = Product.find_by(id: order_item.product_id) %>
+    <% subtotal = (order_item.quantity.to_i * product.price) %>
+    <% total += subtotal %>
+
 
     <% subtotal = sprintf('%.2f', (order_item.quantity.to_i * product.price)).to_f %>
 
-    <% total += subtotal %>
 
     <% if order_item.status == nil || order_item.status == "pending" %>
       <% status = order_item.status %>
@@ -25,14 +27,14 @@
     <tr>
       <td><%= link_to product.name, product_path(product.id) %></td>
       <td><%= order_item.quantity %></td>
-      <td>$<%= subtotal %></td>
+      <td>$<%= sprintf('%.2f', subtotal) %></td>
     </tr>
 
   <% end %>
 </table>
 
 <ul>
-  <li>Order Total: $<%= total %></li>
+  <li>Order Total: $<%= sprintf('%.2f', total) %></li>
   <li>Purchased On: <%= @order.created_at %></li>
   <li>Order Status: <%= @status.upcase %></li>
 </ul>
