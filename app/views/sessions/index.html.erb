@@ -20,7 +20,7 @@
         <% @product = Product.find_by(id: key.to_i) %>
         <% params[:id] = key %>
       <tr>
-        <td><%= @product.name %></td>
+        <td><%= link_to @product.name, product_path(@product.id) %></td>
         <td><%= @product.description %></td>
         <td>$<%= @product.price %></td>
           <%= form_tag('/order', method: :patch) do %>

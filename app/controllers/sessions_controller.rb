@@ -46,25 +46,38 @@ class SessionsController < ApplicationController
     product_id = params[:id].to_i
     old_quantity = session[:order][product_id.to_s]
     new_quantity = params[:quantity].to_i
+    diff = old_quantity - new_quantity
     product = Product.find_by(id: product_id)
-    if new_quantity == 0
+
+    if new_quantity == 0 # remove item from order
       update_quantity = product.quantity + old_quantity
       product.update(quantity: update_quantity)
       session[:order].delete(product_id.to_s)
       flash[:status] = :success
       flash[:result_text] = "Item removed from Order"
       redirect_to order_path
-    elsif new_quantity < 0
+    elsif new_quantity < 0 # invalid entry
       flash[:status] = :alert
-      flash.now[:result_text] = "Invalid number"
+      flash.now[:result_text] = "Invalid input. Only positive integers."
       render :index
-    elsif (product.quantity - new_quantity) < 0
+    elsif new_quantity > (product.quantity + old_quantity)
       flash[:status] = :alert
       flash.now[:result_text] = "Not enough in stock"
       render :index
+    # elsif product.quantity == 0 && diff > 0 #current stock is 0
+    #   product.update(quantity: diff)
+    #   session[:order][product_id.to_s] = new_quantity
+    #   flash[:status] = :success
+    #   flash[:result_text] = "Item quantity updated"
+    #   redirect_to order_path
+    # elsif (product.quantity + new_quantity) > (product.quantity + old_quantity)
+    #   flash[:status] = :alert
+    #   flash.now[:result_text] = "Not enough in stock"
+    #   render :index
+
     else
-      diff = old_quantity - new_quantity
-      update_quantity = product.quantity + diff
+      # diff = old_quantity - new_quantity
+      update_quantity = (product.quantity + old_quantity) - new_quantity
       product.update(quantity: update_quantity)
       session[:order][product_id.to_s] = new_quantity
       flash[:status] = :success
