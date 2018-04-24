@@ -16,8 +16,7 @@
     <% subtotal = (order_item.quantity.to_i * product.price) %>
     <% total += subtotal %>
 
-
-
+    <% subtotal = sprintf('%.2f', (order_item.quantity.to_i * product.price)).to_f %>
 
     <% if order_item.status == nil || order_item.status == "pending" %>
       <% @status = order_item.status %>
