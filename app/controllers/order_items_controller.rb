@@ -10,6 +10,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
+
     @order_item = OrderItem.new
     # @order.user_id = @user.id
     # if @order.save
@@ -34,11 +35,12 @@ class OrderItemsController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id: params[:user_id])
   end
 
   private
   def order_item_params
-    # How to make the session hash be passed on?
-    params.require().permit(:order, :user_id)
+
+    params.require(:order_item).permit(:order, :user_id)
   end
 end
