@@ -1,6 +1,12 @@
 class OrderItemsController < ApplicationController
   def index
-    @order_items = OrderItem.all
+    @user = User.find_by(uid: session[:uid])
+    if @user == nil
+      #flash message
+      redirect_to root_path
+    else
+      @order_items = OrderItem.user_order_items(@user.id)
+    end
   end
 
   def create
