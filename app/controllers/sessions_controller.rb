@@ -26,12 +26,13 @@ class SessionsController < ApplicationController
         session[:order].merge!(@product.id => quantity.to_i)
       end
       # flash and redirect
-      flash[:success] = "Product added to order"
+      flash[:status] = :success
+      flash[:result_text] = "Product added to order"
       redirect_to order_path
-
     else
       # flash message that the quantity is too high
-      flash.now[:alert] = "The quantity entered is too high"
+      flash[:status] = :alert
+      flash[:result_text] = "The quantity entered is too high"
       redirect_to product_path(@product.id)
     end
 
@@ -50,20 +51,24 @@ class SessionsController < ApplicationController
       update_quantity = product.quantity + old_quantity
       product.update(quantity: update_quantity)
       session[:order].delete(product_id.to_s)
-      flash[:success] = "Item removed from Order"
+      flash[:status] = :success
+      flash[:result_text] = "Item removed from Order"
       redirect_to order_path
     elsif new_quantity < 0
-      flash.now[:alert] = "Invalid number"
+      flash[:status] = :alert
+      flash.now[:result_text] = "Invalid number"
       render :index
     elsif (product.quantity - new_quantity) < 0
-      flash.now[:alert] = "Not enough in stock"
+      flash[:status] = :alert
+      flash.now[:result_text] = "Not enough in stock"
       render :index
     else
       diff = old_quantity - new_quantity
       update_quantity = product.quantity + diff
       product.update(quantity: update_quantity)
       session[:order][product_id.to_s] = new_quantity
-      flash[:success] = "Item quantity updated"
+      flash[:status] = :success
+      flash[:result_text] = "Item quantity updated"
       redirect_to order_path
     end
   end
@@ -76,7 +81,8 @@ class SessionsController < ApplicationController
     end
     # clear session
     session[:order] = {}
-    flash[:success] = "Order cleared successfully"
+    flash[:status] = :success
+    flash[:result_text] = "Order cleared successfully"
     redirect_to order_path
   end
 end

@@ -14,17 +14,17 @@ class ReviewsController < ApplicationController
 
     @review.product_id = @product.id
     if @review.save
-      # flash[:status] = :success
+      flash[:status] = :success
       flash[:result_text] = "Successfully reviewed #{@product.name}"
       redirect_to product_path(@product.id)
     else
-      # flash[:status] = :failure
+      flash[:status] = :failure
       flash[:result_text] = "Could not review #{@product.name}"
       flash[:messages] = @review.errors.messages
       render :new, status: :bad_request
     end
   end
-
+  
   def index
   end
 
