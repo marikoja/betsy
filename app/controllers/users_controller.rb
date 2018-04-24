@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :account_views, only: [:show, :edit]
+
   def index
     @users = User.all
   end
@@ -22,6 +25,8 @@ class UsersController < ApplicationController
           flash[:success] = "Logged in successfully"
           session[:uid] = @user.uid
           session[:user_id] = @user.id
+          session[:uid] = @user.uid
+          binding.pry
           redirect_to root_path
         else
           flash[:error] = "Something happened at user creation"
