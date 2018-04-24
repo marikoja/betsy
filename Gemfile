@@ -72,6 +72,8 @@ group :test do
   gem 'minitest-reporters'
 end
 
+gem 'simplecov', '~> 0.12.0'
+
 gem "omniauth"
 gem "omniauth-github"
 gem 'validates_email_format_of'
