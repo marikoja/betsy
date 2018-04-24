@@ -15,17 +15,12 @@
     <% product = Product.find_by(id: order_item.product_id) %>
     <% subtotal = (order_item.quantity.to_i * product.price) %>
     <% total += subtotal %>
-<<<<<<< HEAD
-    
-=======
-
 
     <% subtotal = sprintf('%.2f', (order_item.quantity.to_i * product.price)).to_f %>
 
 
->>>>>>> c9ef4c0c37024e543e0d5979945ea3c0ecce04bf
     <% if order_item.status == nil || order_item.status == "pending" %>
-      <% status = order_item.status %>
+      <% @status = order_item.status %>
     <% end %>
 
     <tr>
