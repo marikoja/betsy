@@ -8,9 +8,7 @@ describe OrdersController do
 
   describe "creating new order" do
     before do
-      test_user = User.new
-      test_user.name = users(:beyonce).name
-      test_user.save
+      test_user = users(:beyonce)
     end
     it "should get new" do
       test_user = User.new
@@ -20,7 +18,7 @@ describe OrdersController do
       value(response).must_be :success?
     end
     it "should create an order with valid inputs" do
-      test = Order.create(orders :cart1)
+      test = orders(:cart1)
       test.valid?.must_be true
     end
   end

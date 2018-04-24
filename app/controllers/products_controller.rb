@@ -27,26 +27,44 @@ class ProductsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @product.user = @user
 
-    #@product.user = User.find_by(uid: session[:uid])
     @action = new_user_product_path(@product.user.id)
     if @product.save
-      flash[:success] = "New product added"
+      flash[:status] = :success
+      flash[:result_text] = "New Product Added"
       redirect_to root_path
     else
-      flash.now[:alert] = @product.errors
+      fflash[:status] = :failure
+      flash[:result_text] = @product.errors
       render :new
     end
   end
 
   def edit
+    @product = Product.find_by(id: params[:id])
   end
 
   def update
+    @product = Product.find_by(id: params[:id])
+    if @product
+
+      if @product.update(product_params)
+
+        flash[:status] = :success
+        flash[:result_text] = "#{@product.name} Updated"
+        redirect_to product_path(@product.id)
+      else
+        flash[:status] = :failure
+        flash[:result_text] = "Not updated"
+        render :edit
+      end
+    else
+      redirect_to products_path
+    end
   end
 
   def show
     @product = Product.find_by(id: params[:id])
-    # redirect_to order_path
+
   end
 
   def destroy
