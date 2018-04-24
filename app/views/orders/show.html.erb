@@ -1,5 +1,4 @@
-<h2>Order: <%= @order.id %> </h2>
-<h3>order_items</h3>
+<h2>Order Confirmation #: <%= @order.id %> </h2>
 
 <ul>
   <!-- The order_items created in order controller/model called here. -->
@@ -11,5 +10,6 @@
       <li>
         Quantity <%=  order_item.quantity %>
       </li>
+
   <% end %>
 </ul>
