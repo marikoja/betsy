@@ -32,4 +32,15 @@ class OrderItem < ApplicationRecord
     end
   end
 
+  def self.user_order_items(id)
+    order_items = []
+    OrderItem.all.each do |item|
+      if item.product.user.id == id
+        order_items << item
+      end
+    end
+    return order_items
+  end
+
+
 end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
 
   resources :products do
-    resources :reviews, only: [:index, :create, :new, :show]
+    resources :reviews, only: [:create, :new]
   end
 
   resources :categories, only: [:index, :create, :new, :show]
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :products, except: [:delete]
-    resources :order_items, only: [:index]
+    resources :order_items, only: [:index, :show]
   end
 
 end
