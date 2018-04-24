@@ -38,6 +38,35 @@ class OrderItemsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
   end
 
+  def order_item_paid(order_items)
+    @paid_items = []
+    @order_items.each do |item|
+      if item.status == 'paid'
+        paid_items << item
+      end
+    return @paid_items
+
+  end
+
+  def order_item_complete(order_items)
+    @complete_items = []
+    @order_items.each do |item|
+      if item.status == 'complete'
+        @complete_items << item
+      end
+    return @complete_items
+  end
+
+  def order_item_cancelled(order_items)
+    @cancelled_items = []
+    @order_items.each do |item|
+      if item.status == 'cancelled'
+        @cancelled_items << item
+      end
+    return @cancelled_items
+  end
+end
+
   private
   def order_item_params
 

@@ -6,17 +6,4 @@
   <%= link_to "Edit Profile", edit_user_path(@user.id) %>
 </section>
 
-  <%= link_to "My Orders", edit_user_path(@user.id) %>
-<section>
-  <h3>Orders</h3>
-    <span>Total Unshipped Orders: <%= @order_items. %></span>
-    <span>Total Completed Orders: <%= %></span>
-    <span>Total Cancelled Orders: <%= %></span>
-</section>
-
-<section>
-  <h3>Revenue</h3>
-    <span>Total Revenue (Unshipped): <%=  %></span>
-    <span>Total Revenue (Completed): <%=  %></span>
-    <span>Total Revenue: <%=  %></span>
-</section>
+  <%= link_to "My Orders", user_order_items_path(@user.id) %>
