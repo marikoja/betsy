@@ -42,4 +42,5 @@ class OrderItem < ApplicationRecord
     return order_items
   end
 
+
 end

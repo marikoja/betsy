@@ -48,6 +48,14 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    if @product
+  @product.destroy
+  flash[:success] = "Product deleted"
+  redirect_to products_path
+else
+  flash[:alert] = "Product does not exist"
+end
+redirect_to product_path
   end
 
   # def review_rating
