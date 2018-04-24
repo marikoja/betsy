@@ -4,7 +4,7 @@
   <section class="product_show_item">
     <img src="<%= @product.image %>" alt="fruit!">
     <br>
-    <span>Price: $<%= @product.price.round(2) %></span>
+    <span>Price: $<%= sprintf('%.2f', @product.price) %></span>
     <br>
     <span>Quantity: <%= @product.quantity %></span>
     <br>

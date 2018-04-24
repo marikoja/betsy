@@ -7,7 +7,7 @@
 
       <%= link_to product.name, product_path(product[:id]) %>
 
-      $<%= product.price.round(2) %>
+      $<%= sprintf('%.2f', product.price) %>
 
       <p><%= product.description %></p>
     </li>
@@ -15,4 +15,3 @@
     <% end %>
   </ul>
 </section>
- 
