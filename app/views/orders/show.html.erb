@@ -14,7 +14,7 @@
 
     <% product = Product.find_by(id: order_item.product_id) %>
 
-    <% subtotal = (order_item.quantity.to_i * product.price).round(2) %>
+    <% subtotal = sprintf('%.2f', (order_item.quantity.to_i * product.price)) %>
 
     <% total += subtotal %>
 

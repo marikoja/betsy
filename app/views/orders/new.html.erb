@@ -24,16 +24,16 @@
         <tr>
           <td><%= @product.name %></td>
           <td><%= @product.description %></td>
-          <td>$<%= @product.price %></td>
+          <td>$<%= sprintf('%.2f', @product.price)%></td>
           <%= form_tag('/order', method: :patch) do %>
-          <td><%= number_field_tag 'quantity', "#{val}" %></td>
+          <td><%="#{val}" %>
           <%= hidden_field_tag 'id', "#{key}" %>
           <% end %>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <p>Total: $<%= calculate_total.round(2) %></p>
+    <p>Total: $<%= calculate_total %></p>
   </article>
 
 </div>
