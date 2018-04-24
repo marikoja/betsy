@@ -2,15 +2,13 @@ class ReviewsController < ApplicationController
 
   def new
     @product = Product.find(params[:product_id].to_i)
-
     # why does this only work with @product is defined first?
     @review = Review.new
   end
 
   def create
-    @review = Review.new(review_params)
-
     @product = Product.find(params[:product_id].to_i)
+    @review = Review.new(review_params)
 
     @review.product_id = @product.id
     if @review.save
@@ -23,9 +21,6 @@ class ReviewsController < ApplicationController
       flash[:messages] = @review.errors.messages
       render :new, status: :bad_request
     end
-  end
-  
-  def index
   end
 
   private
