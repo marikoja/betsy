@@ -2,13 +2,14 @@
 <h3>order_items</h3>
 
 <ul>
+  <!-- The order_items created in order controller/model called here. -->
   <% @order_items.each do |order_item| %>
-      <li> <%= Product.find_by(id: order_item.product_id) %>
-      </li>
-      <li> Quantity <%=  order_item.quantity %>
+      <% product = Product.find_by(id: order_item.product_id) %>
+      <li>
+        <%= link_to product.name, product_path(product.id) %>
       </li>
       <li>
-        <%= Product.find_by(id: order_item.product_id).user %>
+        Quantity <%=  order_item.quantity %>
       </li>
   <% end %>
 </ul>
