@@ -14,24 +14,23 @@ Rails.application.routes.draw do
 
   get '/order/:id' , to: 'orders#show', as: 'order_details'
 
-
   post '/orderitem' , to: 'order_items#create', as: 'create_order'
 
   # Orders
-  get '/orders' , to: 'orders#index', as: 'orders'
-  get '/orders/new', to: 'orders#new', as: 'new_order'
+
+  resources :orders, only: [:index, :show, :new, :create]
+
 
   resources :products do
-    resources :reviews
+    resources :reviews, only: [:create, :new]
   end
 
-  resources :categories
+  resources :categories, only: [:index, :create, :new, :show]
 
-  resources :order_items
+  resources :order_items, only: [:index, :show, :create, :edit, :update]
 
   resources :users do
     resources :products, except: [:delete]
-    resources :orders, only: [:index, :show]
     resources :order_items, only: [:index]
   end
 

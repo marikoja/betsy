@@ -1,8 +1,9 @@
 require "test_helper"
 
 describe CategoriesController do
-  describe "index" do
+  let(:cherries) { products(:cherries) }
 
+  describe "index" do
     it "succeeds with multiple categories" do
       get categories_path
       must_respond_with :success
@@ -15,7 +16,6 @@ describe CategoriesController do
       end
       get categories_path
       must_respond_with :success
-
     end
 
     it "succeeds with some categories " do
@@ -25,49 +25,16 @@ describe CategoriesController do
       end
       get categories_path
       must_respond_with :success
-
     end
   end
 
-  
-  #   it "should get index" do
-  #     get categories_index_url
-  #     value(response).must_be :success?
+  # describe "show" do
+  #   it "succeeds for an existing product id" do
+  #     # product = cherries
+  #     binding.pry
+  #     get category_path(cherries)
+  #     must_respond_with :success
   #   end
-  #
-  #   it "should get show" do
-  #     get categories_show_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should get new" do
-  #     get categories_new_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should get create" do
-  #     get categories_create_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should get edit" do
-  #     get categories_edit_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should get update" do
-  #     get categories_update_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should get show" do
-  #     get categories_show_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should get destroy" do
-  #     get categories_destroy_url
-  #     value(response).must_be :success?
-  #   end
-  #
-  end
+  # end
+
+end

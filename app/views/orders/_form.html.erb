@@ -1,4 +1,4 @@
-<%= form_for @order, url: '/orders/new' do |f| %>
+<%= form_for @order, url: '/orders' do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -11,15 +11,10 @@
   <%= f.label :cvv %>
   <%= f.text_field :cvv %>
 
-<%# maybe refactor with method to use a single date field and separate with logic %>
-  <%= f.label :date_year %>
-  <%= f.text_field :date_year %>
-
-  <%= f.label :date_month %>
-  <%= f.text_field :date_month %>
-
-  <%= f.label :date_day %>
-  <%= f.text_field :date_day %>
+<%#maybe refactor with method to use a single date field and separate with logic %>
+  <%= f.label :expiration_date %>
+  <%= f.month_field :date_month,
+      min: Date.today.beginning_of_month %>
 
   <%= f.label :street %>
   <%= f.text_field :street %>

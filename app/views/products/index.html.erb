@@ -8,16 +8,23 @@
 <% end %>
 
 <section>
-  <ul>
+  <ul class="frontpage">
     <% products.each do |product|%>
     <li>
     <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
 
     <%= link_to product.name, product_path(product[:id]) %>
 
-    $<%= product.price.round(2) %>
+    $<%= sprintf('%.2f', product.price) %>
 
-    <%= product.description %>
+    <section><%= product.description %></section>
+
+    <% if @user && @user.id == session[:user_id]%>
+
+      <section><%= link_to "Edit Product", edit_product_path(product.id), class: "button" %>
+      <%= link_to 'Delete Product', product_path(product.id), method: :delete, class: "button" %></section>
+
+    <% end %>
     </li>
 
 

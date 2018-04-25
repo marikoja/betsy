@@ -1,21 +1,12 @@
 <h1>Merchant Profile</h1>
 
 <section>
-  <span>Name: <%= @user.name %></span>
-  <span>Email: <%= @user.email %></span>
-  <%= link_to "Edit Profile", edit_user_path(@user.id) %>
+  <p>Name: <%= @user.name %></p>
+  <p>Email: <%= @user.email %></p>
 </section>
+  <%= link_to "Edit Profile", edit_user_path(@user.id), class: "button" %>
 
-<section>
-  <h3>Orders</h3>
-    <span>Total Unshipped Orders: <%=  %></span>
-    <span>Total Completed Orders: <%= %></span>
-    <span>Total Cancelled Orders: <%= %></span>
-</section>
 
-<section>
-  <h3>Revenue</h3>
-    <span>Total Revenue (Unshipped): <%=  %></span>
-    <span>Total Revenue (Completed): <%=  %></span>
-    <span>Total Revenue: <%=  %></span>
-</section>
+  <%= link_to "My Orders", user_order_items_path(@user.id), class: "button" %>
+
+  <%= link_to "My Products", user_products_path(@user.id), class: "button" %>

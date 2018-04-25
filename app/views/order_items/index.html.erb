@@ -1,0 +1,89 @@
+<section>
+  <h3>Orders</h3>
+    <p>Unshipped Orders:
+      <%= @paid_items.count %>
+      </p>
+    <p>Completed Orders:
+      <%= @complete_items.count %>
+      </p>
+    <p>Cancelled Orders:
+      <%= @cancelled_items.count %></p>
+</section>
+
+
+<section>
+  <h4>Status: Paid</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Order</th>
+          <th>Revenue</th>
+
+        </tr>
+      </thead>
+      <% if @paid_items.nil? %>
+      <% else %>
+        <% @paid_items.each do |item| %>
+          <tbody>
+            <td><%= item.product.name %></td>
+            <td><%= item.quantity %></td>
+            <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
+            <td><%= (item.product.price) * item.quantity %>
+            <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button'%></td>
+          </tbody>
+      <% end %>
+    <% end %>
+    </table>
+</section>
+
+<section>
+  <h4>Status: Completed</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Order</th>
+          <th>Revenue</th>
+
+        </tr>
+      </thead>
+      <% if @completed_items.nil? %>
+      <% else %>
+        <% @completed_items.each do |item| %>
+        <tbody>
+          <td><%= item.product.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
+          <td><%= (item.product.price) * item.quantity %></td>
+          <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button' %></td>
+        </tbody>
+        <% end %>
+      <% end %>
+    </table>
+</section>
+
+<section>
+  <h4>Status: Cancelled</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Order</th>
+        </tr>
+      </thead>
+      <% if @cancelled_items.nil? %>
+      <% else %>
+        <% @cancelled_items.each do |item| %>
+        <tbody>
+          <td><%= item.product.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
+        </tbody>
+        <% end %>
+      <% end %>
+    </table>
+</section>

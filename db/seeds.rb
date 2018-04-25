@@ -37,10 +37,10 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.name = row['Product']
   product.price = row['price']
   product.description = row['description']
-  # product.category_id = row['category_id']
   product.image = row['image']
   product.user_id = row['user_id']
-  product.quantity = row['quantity']
+  # product.quantity = row['quantity']
+  product.quantity = rand(1..50)
 
   successful = product.save
   if !successful

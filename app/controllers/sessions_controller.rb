@@ -10,30 +10,29 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # add logic for adding an item that is already in the order
     quantity = params[:quantity]
     product_id = params[:product_id]
     @product = Product.find_by(id: product_id)
 
-    if @product.quantity >= quantity.to_i
-      # decrement product.quantity in db
-      new_quantity = @product.quantity - quantity.to_i
-      @product.update(quantity: new_quantity)
-      # add to sessions
-      # check if session[:order] is empty
-      if session[:order].nil?
-        session[:order] = { @product.id => quantity.to_i }
-      else
-        session[:order].merge!(@product.id => quantity.to_i)
-        # session[:order][@product.id] = quantity.to_i
-      end
-      # redirect
-      flash[:success] = "Product added to order"
-      redirect_to order_path
+    if quantity.to_i <= 0
+      flash[:status] = :alert
+      flash[:result_text] = "Please add at least one product to the order"
+      redirect_to product_path(@product.id)
+      return
+    end
+
+    if session[:order] == nil || session[:order] == {}
+      add_products_to_session(@product, params[:quantity])
     else
-      # flash message that the quantity is too high
-      flash.now[:alert] = "The quantity entered is too high"
-      render 'products/show'
+      order_product_ids = session[:order].keys
+
+      if order_product_ids.include? product_id
+        flash[:status] = :alert
+        flash[:result_text] = "That product is already in your Order"
+        redirect_to order_path
+      else
+        add_products_to_session(@product, params[:quantity])
+      end
     end
   end
 
@@ -45,25 +44,29 @@ class SessionsController < ApplicationController
     product_id = params[:id].to_i
     old_quantity = session[:order][product_id.to_s]
     new_quantity = params[:quantity].to_i
+    diff = old_quantity - new_quantity
     product = Product.find_by(id: product_id)
-    if new_quantity == 0
+    if new_quantity == 0 # remove item from order
       update_quantity = product.quantity + old_quantity
       product.update(quantity: update_quantity)
       session[:order].delete(product_id.to_s)
-      flash[:success] = "Item removed from Order"
+      flash[:status] = :success
+      flash[:result_text] = "Item removed from Order"
       redirect_to order_path
-    elsif new_quantity < 0
-      flash.now[:alert] = "Invalid number"
+    elsif new_quantity < 0 # invalid entry
+      flash[:status] = :alert
+      flash.now[:result_text] = "Invalid input. Only positive integers."
       render :index
-    elsif (product.quantity - new_quantity) < 0
-      flash.now[:alert] = "Not enough in stock"
+    elsif new_quantity > (product.quantity + old_quantity)
+      flash[:status] = :alert
+      flash.now[:result_text] = "Not enough in stock"
       render :index
     else
-      diff = old_quantity - new_quantity
-      update_quantity = product.quantity + diff
+      update_quantity = (product.quantity + old_quantity) - new_quantity
       product.update(quantity: update_quantity)
       session[:order][product_id.to_s] = new_quantity
-      flash[:success] = "Item quantity updated"
+      flash[:status] = :success
+      flash[:result_text] = "Item quantity updated"
       redirect_to order_path
     end
   end
@@ -76,7 +79,33 @@ class SessionsController < ApplicationController
     end
     # clear session
     session[:order] = {}
-    flash[:success] = "Order cleared successfully"
+    flash[:status] = :success
+    flash[:result_text] = "Order cleared successfully"
     redirect_to order_path
+  end
+
+  private
+
+  def add_products_to_session (product, quantity)
+    if product.quantity >= quantity.to_i
+      # decrement product.quantity in db
+      new_quantity = product.quantity - quantity.to_i
+      product.update(quantity: new_quantity)
+      # add to sessions
+      if session[:order].nil?
+        session[:order] = { product.id => quantity.to_i }
+      else
+        session[:order].merge!(product.id => quantity.to_i)
+      end
+      # flash and redirect
+      flash[:status] = :success
+      flash[:result_text] = "Product added to order"
+      redirect_to order_path
+    else
+      # flash message that the quantity is too high
+      flash[:status] = :alert
+      flash[:result_text] = "The quantity entered is too high"
+      redirect_to product_path(product.id)
+    end
   end
 end

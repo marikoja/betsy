@@ -1,0 +1,13 @@
+<h2>Order Item Status</h2>
+
+<%= form_for @order_item, url: order_item_path(@order_item.id) do |f| %>
+
+  <%= f.radio_button(:status, "paid") %>
+  <%= f.label(:status, "Paid") %>
+  <%= f.radio_button(:status, "completed") %>
+  <%= f.label(:status, "Completed") %>
+  <%= f.radio_button(:status, "cancelled") %>
+  <%= f.label(:status, "Cancel") %>
+
+  <%= f.submit %>
+<% end %>

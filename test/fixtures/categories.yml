@@ -5,3 +5,9 @@ summer:
 
 fruit:
   name: fruit salad
+
+pits:
+  name: pits
+
+edible:
+  name: edible fruit

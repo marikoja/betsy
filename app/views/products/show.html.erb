@@ -1,38 +1,50 @@
 <h2><%= @product.name %></h2>
+<section class="product_show">
 
-<section>
-  <% if @product.user_id == session[:user_id] %>
-    <p>You cannot review your own product</p>
-  <% else %>
-    <%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %>
-  <% end %>
-</section>
+  <section class="product_show_item">
+    <img src="<%= @product.image %>" alt="fruit!">
+    <br>
+    <span>Price: $<%= sprintf('%.2f', @product.price) %></span>
+    <br>
+    <span>Quantity: <%= @product.quantity %></span>
+    <br>
+    <span>Description: <%= @product.description %></span>
 
-<section>
-  <img src="<%= @product.image %>" alt="fruit!">
-  <br>
-  <span>Price: $<%= @product.price.round(2) %></span>
-  <br>
-  <span>Quantity: <%= @product.quantity %></span>
-  <br>
-  <span>Description: <%= @product.description %></span>
-</section>
-
-<section>
-  <h3>Reviews</h3>
-  <ul>
-    <% @product.reviews.each do |review| %>
-        <li> Review: <%= review.text_review %>
-        </li>
-        <li> Rating: <%= review.rating %>
-        </li>
+    <%= form_tag('/order', method: 'post') do %>
+      <%= label_tag 'quantity' %>
+      <%= number_field_tag 'quantity' %>
+      <%= hidden_field_tag 'product_id', @product.id %>
+      <%= submit_tag "Add to Order", class: "button" %>
     <% end %>
-  </ul>
-  <br>
-  <%= form_with url: add_to_order_path do |form| %>
-    <%= form.label 'quantity' %>
-    <%= form.number_field 'quantity' %>
-    <%= form.hidden_field :product_id, value: @product.id %>
-    <%= form.submit "Add to Order", class: "button" %>
-  <% end %>
+  </section>
+
+  <section class="product_show_item">
+    <!-- <h3>Reviews</h3> -->
+    <% if @product.user_id == session[:user_id] %>
+      <p>You cannot review your own product</p>
+    <% elsif @product.reviews.count > 0 %>
+      <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Rating</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product.reviews.each do |review| %>
+          <tr>
+            <td><%= review.rating %></td>
+            <td><%= review.text_review %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
+      <p>There are no reviews. Please add one!</p>
+    <% end %>
+
+
+  </section>
 </section>

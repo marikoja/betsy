@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :account_views, only: [:show, :edit]
+
   def index
     @users = User.all
   end
@@ -19,15 +22,20 @@ class UsersController < ApplicationController
         @user = User.build_from_github(auth_hash)
         successful_save = @user.save
         if successful_save
-          flash[:success] = "Logged in successfully"
+          flash[:status] = :success
+          flash[:result_text] = "Logged in successfully"
+          session[:uid] = @user.uid
           session[:user_id] = @user.id
           redirect_to root_path
         else
-          flash[:error] = "Something happened at user creation"
+          flash[:status] = :alert
+          flash[:result_text] = "Something happened at user creation"
           redirect_to root_path
         end
       else
-        flash[:success] = "Logged in successfully"
+        flash[:status] = :success
+        flash[:result_text] = "Logged in successfully"
+        session[:uid] = @user.uid
         session[:user_id] = @user.id
         redirect_to root_path
       end
@@ -42,15 +50,19 @@ class UsersController < ApplicationController
     @user = User.find_by(uid: session[:uid])
     if @user
       @user.update(user_params)
-      flash[:success] = "#{@user.name} updated"
+      flash[:status] = :success
+      flash[:result_text] = "#{@user.name} updated"
       redirect_to user_path(@user.id)
     else
-      flash.now[:alert] = "Failed to update"
+      flash[:status] = :alert
+      flash.now[:result_text] = "Failed to update"
       render :edit
     end
   end
 
   def destroy
+    flash[:status] = :success
+    flash[:result_text] = "Logged out successfully"
     session[:user_id] = nil
     session[:order] = nil
     redirect_to root_path
