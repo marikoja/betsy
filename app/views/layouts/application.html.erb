@@ -17,14 +17,14 @@
     <p class='tagline'>for all your syrup-less fruit salad needs</p>
     <nav>
       <%= link_to "FruEtsy", root_path, class: "button large" %>
-      <% if session[:user_id] %>
+      <% if session[:user_id] != 1 %>
 
-      <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
+      <%= link_to "Logout #{User.find_by(id: session[:user_id]).name}", logout_path, method: :delete, class: "button right" %>
       <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
 
 
       <% else %>
-      <%= link_to "user Login", github_login_path, class: "button right" %>
+      <%= link_to "user Login ", github_login_path, class: "button right" %>
       <% end %>
       <%= link_to "Order", order_path, class: "button" %>
 
@@ -73,7 +73,7 @@
   </main>
 
   <footer>
-    <p> © A Bunch of Banadies </p>
+    <p> © Bunch of Banadies </p>
   </footer>
 </body>
 </html>
