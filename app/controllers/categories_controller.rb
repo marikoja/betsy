@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(id: params[:id])
+    render_404 unless @category
   end
 
   def new
@@ -17,22 +18,12 @@ class CategoriesController < ApplicationController
     if @category.save
       flash[:status] = :success
       flash[:result_text] = "New category added"
-      # render 'product/new'
       redirect_to new_product_path
     else
       flash[:status] = :alert
       flash.now[:messages] = @category.errors.messages
-      render :new
+      render :new, status: :bad_request
     end
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   def category_params

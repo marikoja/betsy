@@ -27,7 +27,7 @@
     <% if order_item.status == nil || order_item.status == "pending" %>
       <% @status = order_item.status %>
     <% end %>
-    
+
     <tbody>
       <tr>
         <td><%= link_to product.name, product_path(product.id) %></td>
@@ -45,5 +45,5 @@
 <ul>
   <li>Order Total: $<%= sprintf('%.2f', total) %></li>
   <li>Purchased On: <%= @order.created_at %></li>
-  <li>Order Status: <%= @status.upcase %></li>
+  <li>Order Status: <%= @status %></li>
 </ul>
