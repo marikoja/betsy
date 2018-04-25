@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :products, except: [:delete]
-    resources :order_items, only: [:index, :show]
+    resources :order_items, only: [:index]
   end
 
 end

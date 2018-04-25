@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     product_id = params[:product_id]
     @product = Product.find_by(id: product_id)
 
-    if quantity.to_i == 0
+    if quantity.to_i <= 0
       flash[:status] = :alert
       flash[:result_text] = "Please add at least one product to the order"
       redirect_to product_path(@product.id)

@@ -1,6 +1,14 @@
 require "test_helper"
 
 describe SessionsController do
+  describe "create" do
+
+    it "should get index" do
+      get sessions_index_url
+      value(response).must_be :success?
+    end
+
+  end
   it "should get index" do
     get sessions_index_url
     value(response).must_be :success?
