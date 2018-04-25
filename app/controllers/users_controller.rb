@@ -65,6 +65,7 @@ class UsersController < ApplicationController
     flash[:result_text] = "Logged out successfully"
     session[:user_id] = nil
     session[:order] = nil
+    session[:uid] = nil
     redirect_to root_path
   end
 
