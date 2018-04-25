@@ -36,7 +36,7 @@
 </section>
 
 <section>
-  <% if @user != nil %>
+  <% if @user != nil && (session[:user_id] == params[:user_id].to_i) %>
     <%= link_to "Back to Profile", user_path(@user.id), class: "button" %>
   <% end %>
 </section>
