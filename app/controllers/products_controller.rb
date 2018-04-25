@@ -35,7 +35,8 @@ class ProductsController < ApplicationController
       redirect_to user_products_url(@user.id)
     else
       flash[:status] = :failure
-      flash[:result_text] = @product.errors
+      flash[:result_text] = "Failed to add new product"
+      flash[:messages] = @product.errors
       render :new
     end
   end
