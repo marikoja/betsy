@@ -10,9 +10,12 @@
     <br>
     <span>Description: <%= @product.description %></span>
     <br>
-    <span>Categories: <% @product.categories.each do |category| %>
-      <%= category.name %>
-   <% end %></span>
+    <span>
+      Categories:
+      <% @product.categories.each do |category| %>
+        <%= category.name %>
+      <% end %>
+    </span>
    <br>
 
     <%= form_tag('/order', method: 'post') do %>
@@ -24,11 +27,13 @@
   </section>
 
   <section class="product_show_item">
-    <!-- <h3>Reviews</h3> -->
     <% if @product.user_id == session[:user_id] %>
       <p>You cannot review your own product</p>
-    <% elsif @product.reviews.count > 0 %>
+    <% else %>
       <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
+    <% end %>
+
+    <% if @product.reviews.count > 0 %>
       <table>
         <thead>
           <tr>
@@ -38,18 +43,18 @@
         </thead>
         <tbody>
           <% @product.reviews.each do |review| %>
-          <tr>
-            <td><%= review.rating %></td>
-            <td><%= review.text_review %></td>
-          </tr>
+            <tr>
+              <td>
+      
+              </td>
+              <td><%= review.text_review %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
     <% else %>
-      <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
       <p>There are no reviews. Please add one!</p>
     <% end %>
-
-
   </section>
+
 </section>

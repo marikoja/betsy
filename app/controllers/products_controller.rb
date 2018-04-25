@@ -18,15 +18,19 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @user = User.find_by(id: session[:user_id])
-    # @product.user = User.find_by(uid: session[:uid])
-    @product.user = @user
+    if @user
+      @product.user = @user
+    else
+      flash[:status] = :alert
+      flash[:result_text] = "You must be logged in"
+      redirect_to root_path
+    end
   end
 
   def create
     @product = Product.new(product_params)
     @user = User.find_by(id: session[:user_id])
     @product.user = @user
-
     @action = user_products_path(@product.user.id)
     if @product.save
       flash[:status] = :success
@@ -40,7 +44,22 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(id: session[:user_id])
     @product = Product.find_by(id: params[:id])
+    if @product.nil?
+      flash[:status] = :alert
+      flash[:result_text] = "Product does not exist"
+      redirect_to root_path
+    elsif @user.nil?
+      flash[:status] = :alert
+      flash[:result_text] = "You must be logged in to edit"
+      redirect_to root_path
+    # else @user.id != @product.user.id
+    #   flash[:status] = :alert
+    #   flash[:result_text] = "You can only edit your own product"
+    #   redirect_to root_path
+    end
+
   end
 
   def update
@@ -58,18 +77,29 @@ class ProductsController < ApplicationController
         render :edit
       end
     else
+      flash[:status] = :failure
+      flash[:result_text] = "Product does not exist"
       redirect_to products_path
     end
   end
 
   def show
     @product = Product.find_by(id: params[:id])
-
+    if @product.nil?
+      flash[:status] = :failure
+      flash[:result_text] = "Product does not exist"
+      redirect_to products_path
+    end
   end
 
   def destroy
     @product = Product.find_by(id: params[:id])
     @user = User.find_by(id: session[:user_id])
+    if @user.nil? || @user.id == 1
+      flash[:status] = :failure
+      flash[:result_text] = "Must be logged in!"
+      redirect_to products_path
+    end
     if @product
       @product.destroy
       flash[:status] = :success
@@ -83,9 +113,6 @@ class ProductsController < ApplicationController
 
   end
 
-  # def review_rating
-  #   return Review.average_rating(product_reviews)
-  # end
 
   private
 
