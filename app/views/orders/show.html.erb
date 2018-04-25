@@ -3,12 +3,15 @@
 
 <table>
   <caption>Order Confirmation page</caption>
-  <tr>
-    <th scope="column">Product</th>
-    <th scope="column">Quantity</th>
-    <th scope="column">Subtotal</th>
-    <th scope="column">Order Status</th>
-  </tr>
+  <thead>
+    <tr>
+      <th scope="column">Product</th>
+      <th scope="column">Quantity</th>
+      <th scope="column">Subtotal</th>
+      <th scope="column">Order Status</th>
+    </tr>
+  </thead>
+
   <% total = 0 %>
   <% @order_items.each do |order_item| %>
     <% @status = "paid" %>
@@ -23,13 +26,15 @@
     <% if order_item.status == nil || order_item.status == "pending" %>
       <% @status = order_item.status %>
     <% end %>
+    <tbody>
+      <tr>
+        <td><%= link_to product.name, product_path(product.id) %></td>
+        <td><%= order_item.quantity %></td>
+        <td>$<%= sprintf('%.2f', subtotal) %></td>
+        <td><%= order_item.status %></td>
+      </tr>
+    </tbody>
 
-    <tr>
-      <td><%= link_to product.name, product_path(product.id) %></td>
-      <td><%= order_item.quantity %></td>
-      <td>$<%= sprintf('%.2f', subtotal) %></td>
-      <td><%= order_item.status %></td>
-    </tr>
 
   <% end %>
 </table>
