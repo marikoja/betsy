@@ -7,6 +7,7 @@
     <th scope="column">Product</th>
     <th scope="column">Quantity</th>
     <th scope="column">Subtotal</th>
+    <th scope="column">Order Status</th>
   </tr>
   <% total = 0 %>
   <% @order_items.each do |order_item| %>
@@ -28,6 +29,7 @@
       <td><%= link_to product.name, product_path(product.id) %></td>
       <td><%= order_item.quantity %></td>
       <td>$<%= sprintf('%.2f', subtotal) %></td>
+      <td><%= order_item.status %></td>
     </tr>
 
   <% end %>

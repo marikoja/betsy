@@ -1,12 +1,12 @@
 <section>
   <h3>Orders</h3>
-    <p>Total Unshipped Orders:
+    <p>Unshipped Orders:
       <%= @paid_items.count %>
       </p>
-    <p>Total Completed Orders:
+    <p>Completed Orders:
       <%= @complete_items.count %>
       </p>
-    <p>Total Cancelled Orders:
+    <p>Cancelled Orders:
       <%= @cancelled_items.count %></p>
 </section>
 
@@ -20,6 +20,7 @@
           <th>Quantity</th>
           <th>Order</th>
           <th>Revenue</th>
+
         </tr>
       </thead>
       <% if @paid_items.nil? %>
@@ -30,6 +31,7 @@
             <td><%= item.quantity %></td>
             <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
             <td><%= (item.product.price) * item.quantity %>
+            <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button'%></td>
           </tbody>
       <% end %>
     <% end %>
@@ -45,6 +47,7 @@
           <th>Quantity</th>
           <th>Order</th>
           <th>Revenue</th>
+
         </tr>
       </thead>
       <% if @completed_items.nil? %>
@@ -54,7 +57,8 @@
           <td><%= item.product.name %></td>
           <td><%= item.quantity %></td>
           <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
-          <td><%= (item.product.price) * item.quantity %>
+          <td><%= (item.product.price) * item.quantity %></td>
+          <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button' %></td>
         </tbody>
         <% end %>
       <% end %>

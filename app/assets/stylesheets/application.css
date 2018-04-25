@@ -88,3 +88,8 @@ ul li {
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 1rem;
 }
+
+main {
+  padding-left: 3%;
+  padding-right: 3%;
+}

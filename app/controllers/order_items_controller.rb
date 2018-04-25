@@ -13,15 +13,30 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-
     @order_item = OrderItem.new
   end
 
   def edit
-
+    @order_item = OrderItem.find_by(id: params[:id])
   end
 
   def update
+    @order_item = OrderItem.find_by(id: params[:id])
+    @user = User.find_by(id: session[:user_id])
+    if @order_item
+      if @order_item.update(order_item_params)
+
+        flash[:status] = :success
+        flash[:result_text] = "Item Updated"
+        redirect_to user_order_items_path(@user.id)
+      else
+        flash[:status] = :failure
+        flash[:result_text] = "Not updated"
+        render :edit
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
@@ -64,6 +79,7 @@ class OrderItemsController < ApplicationController
 
   private
   def order_item_params
-    params.require(:order_item).permit(:order, :user_id, )
+    return
+    params.require(:order_item).permit(:order, :user_id, :status)
   end
 end
