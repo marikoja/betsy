@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
 
-
-
   def index
     @orders = Order.all
   end
@@ -31,8 +29,22 @@ class OrdersController < ApplicationController
     # session: has to be defined in the code directly?
     # order_params : pulled from params, but I think there is something wrong with my order params below. Is it pulled from order or or just params??
     @order = Order.find_by(id: params[:id])
+    @user = User.find_by(uid: session['uid'])
 
-    @order_items = OrderItem.where(order_id: @order.id)
+    if @user.name == "Guest"
+      @order_items = OrderItem.where(order_id: @order.id)
+
+    else
+      product_ids = @user.products.map{ |i| i.id }
+      @order_items = []
+      array = OrderItem.where(order_id: @order.id)
+      array.each do |item|
+        if product_ids.include?(item.product.id)
+          @order_items << item
+        end
+      end
+
+    end
 
     # what about if the order doesn't exist? or cant be found?
   end
@@ -63,7 +75,7 @@ class OrdersController < ApplicationController
       # defined in OrderItemModel
       # this array is not be called in this action page
       # OrderItems list is made and called in the order show
-     OrderItem.make_order_items(@order.id, session[:order])
+      OrderItem.make_order_items(@order.id, session[:order])
 
 
       # where do we want to redirect to?
