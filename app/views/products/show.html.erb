@@ -43,22 +43,18 @@
         </thead>
         <tbody>
           <% @product.reviews.each do |review| %>
-          <tr>
-
-            <td>
-              <% review.rating.times do %>
-              <% review.rating.times do %>
-              <% review.rating.times do %>
-            </td>
-            <td><%= review.text_review %></td>
-          </tr>
+            <tr>
+              <td>
+      
+              </td>
+              <td><%= review.text_review %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
     <% else %>
       <p>There are no reviews. Please add one!</p>
     <% end %>
-
   </section>
 
 </section>
