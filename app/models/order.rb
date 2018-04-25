@@ -17,5 +17,16 @@ class Order < ApplicationRecord
   validates_email_format_of :email
 
 
+  def self.order_status(order)
+    order_items = order.order_items
+    status = "complete"
 
+    order_items.each do |item|
+      if item.status == "paid"
+        status = "pending"
+      end
+    end
+
+    return status
+  end
 end

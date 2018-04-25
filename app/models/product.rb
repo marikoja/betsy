@@ -3,6 +3,8 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :reviews
 
+  accepts_nested_attributes_for :categories
+
   validates :name, {
     presence: true,
     length: { minimum: 1 }
@@ -13,5 +15,11 @@ class Product < ApplicationRecord
     numericality: { greater_than: 0 }
   }
 
+  def categories_attributes=(category_attributes)
+    category_attributes.values.each do |category_attribute|
+      category = Category.find_or_create_by(category_attribute)
+      self.categories << category
+    end
+  end
 
 end

@@ -82,6 +82,7 @@ ul li {
   display: grid;
   flex-wrap: wrap;
   flex-direction: column;
+  height: fit-content;
 }
 
 .frontpage {
