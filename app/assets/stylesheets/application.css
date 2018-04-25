@@ -101,14 +101,15 @@ footer {
   background-size: cover;
   transform: rotate(180deg);
   text-align: center;
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 10%;
+  height: 150px;
 }
 
 footer p {
   transform: rotate(180deg);
   color: purple;
+  padding-bottom: 75px;
 }
