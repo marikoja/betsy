@@ -37,13 +37,15 @@
         <td><%= order_item.status %></td>
       </tr>
     </tbody>
-
-
   <% end %>
 </table>
 
 <ul>
   <li>Order Total: $<%= sprintf('%.2f', total) %></li>
   <li>Purchased On: <%= render_date(@order.created_at) %></li>
-  <li>Order Status: <%= @status %></li>
+  <% order_status = Order.order_status(@order) %>
+  <% if order_status == "complete" %>
+    <% @order.status = "complete" %>
+  <% end %>
+  <li>Order Status: <%= order_status %></li>
 </ul>
