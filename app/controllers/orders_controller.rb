@@ -57,20 +57,8 @@ class OrdersController < ApplicationController
       flash[:status] = :success
       flash[:result_text] = "Successful order"
 
-      # creates many order_item instances
-      # returns an array of order_item instances
-      # requires order_id and hash of product_id:quantity
-      # defined in OrderItemModel
-      # this array is not be called in this action page
-      # OrderItems list is made and called in the order show
-     OrderItem.make_order_items(@order.id, session[:order])
+      OrderItem.make_order_items(@order.id, session[:order])
 
-
-      # where do we want to redirect to?
-      # confirmation page?
-      # makes order show page a confirmation page
-      # shows order_item, link to product details, status
-      # prices, total, etc.
       redirect_to order_details_path(@order.id)
     else
       flash[:status] = :failure
