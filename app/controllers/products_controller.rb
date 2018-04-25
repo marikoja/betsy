@@ -31,9 +31,10 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:status] = :success
       flash[:result_text] = "New Product Added"
-      redirect_to root_path
+      # redirect_to root_path
+      redirect_to user_products_url(@user.id)
     else
-      fflash[:status] = :failure
+      flash[:status] = :failure
       flash[:result_text] = @product.errors
       render :new
     end
