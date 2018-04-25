@@ -1,5 +1,6 @@
-<section>
-  <h3>Orders</h3>
+<section class='order-details'>
+  <div>
+  <h3>Details</h3>
     <p>Unshipped Orders:
       <%= @paid_items.count %>
       </p>
@@ -8,6 +9,14 @@
       </p>
     <p>Cancelled Orders:
       <%= @cancelled_items.count %></p>
+  </div>
+  <div>
+    <h3>Order Revenue</h3>
+    <p>Paid: $<%= sprintf('%.2f', @paid_items.map { |i| i.product.price * i.quantity }.sum) %></p>
+    <p>Complete: $<%= sprintf('%.2f', @complete_items.map { |i| i.product.price * i.quantity }.sum) %></p>
+    <p>Complete: $<%= sprintf('%.2f', @cancelled_items.map { |i| i.product.price * i.quantity }.sum) %></p>
+    <p>Total: $<%= sprintf('%.2f', @paid_items.map { |i| i.product.price * i.quantity }.sum + @complete_items.map { |i| i.product.price * i.quantity }.sum + @cancelled_items.map { |i| i.product.price * i.quantity }.sum) %></p>
+  </div>
 </section>
 
 
@@ -30,7 +39,7 @@
             <td><%= item.product.name %></td>
             <td><%= item.quantity %></td>
             <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
-            <td><%= (item.product.price) * item.quantity %>
+            <td>$<%= sprintf('%.2f', (item.product.price) * item.quantity) %></td>
             <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button'%></td>
           </tbody>
       <% end %>

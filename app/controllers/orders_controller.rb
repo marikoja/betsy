@@ -31,8 +31,21 @@ class OrdersController < ApplicationController
     # session: has to be defined in the code directly?
     # order_params : pulled from params, but I think there is something wrong with my order params below. Is it pulled from order or or just params??
     @order = Order.find_by(id: params[:id])
+    @user = User.find_by(uid: session[:uid])
 
-    @order_items = OrderItem.where(order_id: @order.id)
+    if @user
+      product_ids = @user.products.map{ |i| i.id }
+      @order_items = []
+      array = OrderItem.where(order_id: @order.id)
+      array.each do |item|
+        if product_ids.include?(item.product.id)
+          @order_items << item
+        end
+      end
+
+    else
+      @order_items = OrderItem.where(order_id: @order.id)
+    end
 
     # what about if the order doesn't exist? or cant be found?
   end
