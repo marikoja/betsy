@@ -160,7 +160,6 @@ describe OrdersController do
       Order.count.must_equal order_count
     end
 
-    it "should log user as guest if invalid login"
   end
 
   # describe "show" do

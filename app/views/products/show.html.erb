@@ -32,7 +32,7 @@
     <% else %>
       <h3><%= link_to "Review #{@product.name}", new_product_review_path(@product.id) %></h3>
     <% end %>
-    
+
     <% if @product.reviews.count > 0 %>
       <table>
         <thead>
@@ -44,7 +44,12 @@
         <tbody>
           <% @product.reviews.each do |review| %>
           <tr>
-            <td><%= review.rating %></td>
+
+            <td>
+              <% review.rating.times do %>
+              <% review.rating.times do %>
+              <% review.rating.times do %>
+            </td>
             <td><%= review.text_review %></td>
           </tr>
           <% end %>
