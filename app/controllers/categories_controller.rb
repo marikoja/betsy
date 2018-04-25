@@ -15,10 +15,13 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      flash[:success] = "New category added"
-      render :new
+      flash[:status] = :success
+      flash[:result_text] = "New category added"
+      # render 'product/new'
+      redirect_to new_product_path
     else
-      flash.now[:alert] = @category.errors
+      flash[:status] = :alert
+      flash.now[:result_text] = @category.errors
       render :new
     end
   end

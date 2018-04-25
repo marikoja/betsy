@@ -78,6 +78,8 @@ class OrdersController < ApplicationController
       flash[:messages] = @order.errors.messages
       render :new, status: :bad_request
     end
+
+    session[:order] = {}
   end
 
   private
