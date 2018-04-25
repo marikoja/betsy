@@ -27,15 +27,14 @@ class ProductsController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @product.user = @user
 
-    @action = new_user_product_path(@product.user.id)
+    @action = user_products_path(@product.user.id)
     if @product.save
       flash[:status] = :success
       flash[:result_text] = "New Product Added"
-      # redirect_to root_path
       redirect_to user_products_url(@user.id)
     else
-      flash[:status] = :failure
-      flash[:result_text] = @product.errors
+      flash[:status] = :alert
+      flash[:result_text] = "Failed to add new product"
       render :new
     end
   end

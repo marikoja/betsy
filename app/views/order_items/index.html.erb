@@ -96,3 +96,9 @@
       <% end %>
     </table>
 </section>
+
+<section>
+  <% if @user != nil %>
+    <%= link_to "Back to Profile", user_path(@user.id), class: "button" %>
+  <% end %>
+</section>
