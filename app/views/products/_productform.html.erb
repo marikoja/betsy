@@ -25,7 +25,6 @@
   <%= f.label 'Quantity'%>
   <%= f.number_field(:quantity, min: 0, step: 1) %>
 
-
   <div>
     <%= f.label :categories %>
     <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
