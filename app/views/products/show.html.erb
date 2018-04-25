@@ -6,9 +6,14 @@
     <br>
     <span>Price: $<%= sprintf('%.2f', @product.price) %></span>
     <br>
-    <span>Quantity: <%= @product.quantity %></span>
+    <span>Quantity Available: <%= @product.quantity %></span>
     <br>
     <span>Description: <%= @product.description %></span>
+    <br>
+    <span>Categories: <% @product.categories.each do |category| %>
+      <%= category.name %>
+   <% end %></span>
+   <br>
 
     <%= form_tag('/order', method: 'post') do %>
       <%= label_tag 'quantity' %>

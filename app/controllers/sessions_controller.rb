@@ -87,7 +87,7 @@ class SessionsController < ApplicationController
   private
 
   def add_products_to_session (product, quantity)
-    if product.quantity >= quantity.to_i
+    if !product.quantity.nil? && product.quantity >= quantity.to_i
       # decrement product.quantity in db
       new_quantity = product.quantity - quantity.to_i
       product.update(quantity: new_quantity)
