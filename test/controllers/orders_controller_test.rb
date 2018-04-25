@@ -31,6 +31,14 @@ describe OrdersController do
       get new_order_path(@test_user.id)
       value(response).must_be :success?
     end
+
+    it "valid data should create a new order for logged in user" do
+
+    end
+
+    it "valid data should create a new order for Guest user" do
+
+    end
   end
 
   describe "show" do
@@ -39,4 +47,5 @@ describe OrdersController do
       value(response).must_be :success?
     end
   end
+
 end
