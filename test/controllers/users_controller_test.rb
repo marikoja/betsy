@@ -127,7 +127,7 @@ describe UsersController do
 
      start_count = User.count
      user = User.new
-     
+
      user.name = "not bey"
      user.email = "not_beyonce@github.com"
      user.uid = 1101
@@ -147,6 +147,14 @@ describe UsersController do
    end
 
    it "redirects to the login route if given invalid user data" do
+     user = User.new
+     user.save
+
+     get auth_callback_path(:github)
+
+     must_redirect_to root_path
+
+     session[:user_id].must_equal nil
    end
  end
 
