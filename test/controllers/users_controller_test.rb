@@ -97,31 +97,6 @@ describe UsersController do
   ###### The above controller tests are great. I just added the OAuth tests below: #######
 
   describe "auth_callback" do
-  #   it "logs in an existing user and redirects to the root route" do
-  #     # Count the users, to make sure we're not (for example) creating
-  #     # a new user every time we get a login request
-  #     start_count = User.count
-  #
-  #     # Get a user from the fixtures
-  #     user = users(:beyonce)
-  #
-  #     # Tell OmniAuth to use this user's info when it sees
-  #     # an auth callback from github
-  #     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
-  #
-  #     # Send a login request for that user
-  #     # Note that we're using the named path for the callback, as defined
-  #     # in the `as:` clause in `config/routes.rb`
-  #     get auth_callback_path(:github)
-  #
-  #     must_redirect_to root_path
-  #
-  #     # Since we can read the session, check that the user ID was set as expected
-  #     session[:user_id].must_equal user.id
-  #
-  #     # Should *not* have created a new user
-  #     User.count.must_equal start_count
-  #   end
 
     # test/controllers/users_controller_test.rb
     it "logs in an existing user" do
@@ -175,12 +150,10 @@ describe UsersController do
       # why doesn't it have to redirect to github_login?
       must_redirect_to root_path
 
-      #why don't we also check that session user_id ?
+      # why don't we also check that session user_id ?
       # b/c it will be a nill value
       # Why don't we check/how do we check that session user_id is a nil value?
     end
   end
-
-
 
 end
