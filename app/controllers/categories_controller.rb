@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
       redirect_to new_product_path
     else
       flash[:status] = :alert
-      flash.now[:result_text] = @category.errors
+      flash.now[:messages] = @category.errors.messages
       render :new
     end
   end

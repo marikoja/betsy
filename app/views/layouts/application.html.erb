@@ -22,7 +22,7 @@
       <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
       <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
 
-      <%= link_to "Add Product",  new_user_product_path(session[:user_id]), class: "button right" %>
+  
       <% else %>
       <%= link_to "user Login", github_login_path, class: "button right" %>
       <% end %>
