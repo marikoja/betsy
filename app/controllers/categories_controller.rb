@@ -5,7 +5,11 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(id: params[:id])
-    render_404 unless @category
+    if @category.nil?
+      flash[:status] = :alert
+      flash[:result_text] = "That category does not exist"
+      redirect_to root_path
+    end
   end
 
   def new
