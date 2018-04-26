@@ -16,22 +16,14 @@ class OrdersController < ApplicationController
         @user.id = 1
       end
     end
-<<<<<<< HEAD
 
-
-=======
-    
->>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
     session[:user_id] = @user.id
 
     @order = Order.new(user_id: @user.id)
   end
 
   def show
-<<<<<<< HEAD
 
-=======
->>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
     @order = Order.find_by(id: params[:id])
     @user = User.find_by(uid: session['uid'])
 
@@ -64,10 +56,6 @@ class OrdersController < ApplicationController
     @order.user_id = @user.id
 
     if @order.save
-<<<<<<< HEAD
-
-=======
->>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
       session[:order_id] = @order.id
 
       flash[:status] = :success
