@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories, join_table: :categories_products
   belongs_to :user
   has_many :reviews
+  has_many :order_items
 
   accepts_nested_attributes_for :categories
 

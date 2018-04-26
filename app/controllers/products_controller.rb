@@ -101,6 +101,12 @@ class ProductsController < ApplicationController
       redirect_to products_path
     end
     if @product
+      @product.order_items.each do |i|
+        i.destroy
+      end
+      @product.reviews.each do |r|
+        r.destroy
+      end
       @product.destroy
       flash[:status] = :success
       flash[:result_text] = "Product deleted"
