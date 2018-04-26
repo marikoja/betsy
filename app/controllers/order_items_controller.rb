@@ -20,7 +20,7 @@ class OrderItemsController < ApplicationController
   def edit
     @order_item = OrderItem.find_by(id: params[:id])
     if @order_item.nil?
-      flash[:status] = :failure
+      flash[:status] = :alert
       flash[:result_text] = "That order_item does not exist"
       redirect_to root_path
     end
@@ -40,7 +40,7 @@ class OrderItemsController < ApplicationController
         flash[:result_text] = "Item Updated"
         redirect_to user_order_items_path(@user.id)
       else
-        flash[:status] = :failure
+        flash[:status] = :alert
         flash[:result_text] = "Not updated"
         render :edit
       end
