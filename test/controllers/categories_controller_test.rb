@@ -2,6 +2,7 @@ require "test_helper"
 
 describe CategoriesController do
   let(:cherries) { products(:cherries) }
+  let(:valid_category) { categories(:summer) }
 
   describe "index" do
     it "succeeds with multiple categories" do
@@ -28,13 +29,49 @@ describe CategoriesController do
     end
   end
 
-  # describe "show" do
-  #   it "succeeds for an existing product id" do
-  #     # product = cherries
-  #     binding.pry
-  #     get category_path(cherries)
-  #     must_respond_with :success
-  #   end
-  # end
+  describe "show" do
+    it "succeeds for a valid category" do
+      get category_path(valid_category.id)
+      must_respond_with :success
+    end
+
+    it "renders 404 for invalid id" do
+      get category_path(999)
+      must_respond_with :not_found
+    end
+  end
+
+  describe "new" do
+    it "succeeds" do
+      get new_category_path
+      must_respond_with :success
+    end
+  end
+
+  describe "create" do
+    it "succeeds with valid data" do
+      proc {
+        post categories_path, params: {
+          category: {
+            name: "new category"
+          }
+        }
+      }.must_change 'Category.count', 1
+
+      must_respond_with :found
+      must_redirect_to new_product_path
+    end
+
+    it "fails with invalid data" do
+      proc {
+        post categories_path, params: {
+          category: {
+            name: nil
+          }
+        }
+      }.must_change 'Category.count', 0
+      must_respond_with :bad_request
+    end
+  end
 
 end

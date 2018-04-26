@@ -1,3 +1,25 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.merchant-profile h2 {
+  margin-bottom: .8em;
+}
+.merchant-profile section p {
+  font-size: 1.4rem;
+}
+
+.user-form {
+  max-width: 30%;
+}
+
+.label {
+  background-color: white;
+  color: purple;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.label::after {
+  content: ":";
+}

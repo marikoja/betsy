@@ -5,6 +5,9 @@
 <% else %>
   <h1><%= @user.name %> Goodies</h1>
   <% products = @products %>
+  <% if @user && @user.id == session[:user_id]%>
+    <%= link_to "Add Product",  new_user_product_path(session[:user_id]), class: "button right" %>
+  <% end %>
 <% end %>
 
 <section>
@@ -30,5 +33,10 @@
 
     <% end %>
   </ul>
+</section>
 
+<section>
+  <% if @user != nil && (session[:user_id] == params[:user_id].to_i) %>
+    <%= link_to "Back to Profile", user_path(@user.id), class: "button" %>
+  <% end %>
 </section>

@@ -7,7 +7,7 @@ class OrderItemsController < ApplicationController
     else
       @order_items = OrderItem.user_order_items(@user.id)
       @paid_items = order_item_paid
-      @complete_items = order_item_complete
+      @completed_items = order_item_complete
       @cancelled_items = order_item_cancelled
     end
   end
@@ -39,9 +39,6 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def show
     @user = User.find_by(id: params[:user_id])
   end
@@ -59,7 +56,7 @@ class OrderItemsController < ApplicationController
   def order_item_complete
     complete_items = []
     @order_items.each do |item|
-      if item.status == 'complete'
+      if item.status == 'completed'
         complete_items << item
       end
     end
@@ -76,10 +73,8 @@ class OrderItemsController < ApplicationController
     return cancelled_items
   end
 
-
   private
   def order_item_params
-    return
-    params.require(:order_item).permit(:order, :user_id, :status)
+    return params.require(:order_item).permit(:order, :user_id, :status)
   end
 end
