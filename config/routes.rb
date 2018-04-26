@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   get '/order/:id' , to: 'orders#show', as: 'order_details'
 
-  post '/orderitem' , to: 'order_items#create', as: 'create_order'
+  # post '/orderitem' , to: 'order_items#create', as: 'create_order'
 
-  resources :orders, only: [:index, :show, :new, :create]
+  resources :orders, only: [:index, :new, :create]
 
   resources :products do
     resources :reviews, only: [:create, :new]
