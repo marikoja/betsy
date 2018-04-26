@@ -19,12 +19,28 @@
 */
 header{
 
-  /* background: lightgreen; */
-  background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg");
+  background: rgba(245,243,244,0.5);
+  /* background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg"); */
   background-size: cover;
 
   text-align: center;
-  padding-top: 5%;
+  padding-top: 2%;
+  margin: 5%;
+}
+
+body {
+  background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg");
+
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+main {
+  background: rgba(245,243,244,0.5);
+  margin: 5%;
 }
 
 header h1 {
@@ -36,32 +52,31 @@ header h1 {
 header .tagline {
   padding-left: 29%;
   font-family: 'Alegreya Sans SC', sans-serif;
-
-  color: white;
+  color: rgb(131,132,133);
 }
 
 nav {
   text-align: left;
   padding-left: 2em;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 
 }
-
-nav .button.right {
-  float: right;
-  margin: 1em;
-}
+/* .right { */
+  /* float: right; */
+  /* margin: 1em; */
+/* } */
 
 .button {
   border-radius: 2rem;
   background: none;
   border: solid 3px purple;
   color: rgb(136, 33, 128);
+  /* padding: 1%; */
 }
 
 .button:hover{
-  background-color: purple;
+  background-color: rgb(126, 15, 126, .5);
   /* background: rgba(0, 0, 0, 0); */
 }
 
@@ -102,10 +117,10 @@ main {
 }
 
 footer {
-  background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg");
-  background-size: cover;
-  transform: rotate(180deg);
-  text-align: center;
+  /* background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg"); */
+  /* background-size: cover; */
+  /* transform: rotate(180deg); */
+  /* text-align: center; */
   /* position: fixed; */
   left: 0;
   bottom: 0;
@@ -114,9 +129,13 @@ footer {
 }
 
 footer p {
-  transform: rotate(180deg);
+  background: rgba(245,243,244,0.5);
+  margin: 5%;
   color: purple;
-  padding-bottom: 75px;
+  padding: 1rem;
+  font-weight: bolder;
+  text-align: center;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 a {
