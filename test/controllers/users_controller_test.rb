@@ -2,99 +2,55 @@ require "test_helper"
 
 describe UsersController do
 
-  # describe "index" do
-  #   it "succeeds when there are users" do
-  #
-  #     get users_path
-  #     must_respond_with :success
-  #   end
-  #
-  #   it "succeeds when there are no users" do
-  #
-  #     users = User.all
-  #     users.each do |user|
-  #       user.products.destroy
-  #       user.destroy
-  #     end
-  #     get users_path
-  #     must_respond_with :success
-  #   end
-  #
-  # end
-  #
-  # describe "create" do
-  #   it "succeeds with an existing username and redirects to root_path" do
-  #
-  #
-  #     must_redirect_to root_path
-  #
-  #   end
-  #
-  #   it "succeeds with new valid username and redirects to root path" do
-  #     new_user = User.new(
-  #       provider: 'githib',
-  #       uid: 999,
-  #       username: 'test user',
-  #       email: 'test@test.com'
-  #     )
-  #
-  #     proc {
-  #       perform_login(new_user)
-  #     }.must_change 'User.count', 1
-  #
-  #
-  #     must_respond_with :redirect
-  #     must_redirect_to root_path
-  #   end
-  #
-  #   it "renders bad_request with invalid username" do
-  #     skip
-  #     new_user = User.new(
-  #       provider: 'githib',
-  #       uid: 999,
-  #       username:'',
-  #       email: 'test@test.com'
-  #     )
-  #
-  #     proc {
-  #       perform_login(new_user)
-  #     }.must_change 'User.count', 0
-  #
-  #
-  #     must_respond_with :bad_request
-  #   end
-  # end
-  # it "should get index" do
-  #   get users_index_url
-  #   value(response).must_be :success?
-  # end
-  #
-  # it "should get show" do
-  #   get users_show_url
-  #   value(response).must_be :success?
-  # end
-  #
-  # it "should get new" do
-  #   get users_new_url
-  #   value(response).must_be :success?
-  # end
-  #
-  # it "should get create" do
-  #   get users_create_url
-  #   value(response).must_be :success?
-  # end
-  #
-  # it "should get edit" do
-  #   get users_edit_url
-  #   value(response).must_be :success?
-  # end
-  #
-  # it "should get update" do
-  #   get users_update_url
-  #   value(response).must_be :success?
-  # end
+  describe "index" do
+    it "succeeds when there are users" do
+      get users_path
+      must_respond_with :success
+    end
 
-  ###### The above controller tests are great. I just added the OAuth tests below: #######
+    it "succeeds when there are no users" do
+      users = User.all
+      users.each do |user|
+        user.products.destroy
+        user.destroy
+      end
+      get users_path
+      must_respond_with :success
+    end
+  end
+
+  describe "show" do
+    it "succeeds with a valid id" do
+      user = users(:ron)
+      get users_path(user.id)
+      must_respond_with :success
+    end
+  end
+
+  describe "edit" do
+    it "succeeds with valid data" do
+      user = users(:ron)
+      login(user)
+      get edit_user_path(user.id)
+      must_respond_with :success
+    end
+  end
+
+  describe "update" do
+    it "successfully updates user information" do
+      user = users(:ron)
+      login(user)
+      proc {
+        patch user_path(user.id), params: {
+          user: {
+            name: 'ronnie',
+            email: 'new_email@gmail.com'
+          }
+        }
+      }.must_change 'User.count', 0
+      must_redirect_to user_path(user.id)
+    end
+  end
 
   describe "auth_callback" do
 
@@ -128,10 +84,6 @@ describe UsersController do
 
       must_redirect_to root_path
 
-      # I made other user below, that should not have saved.
-      # How come it saved below and returns as the last User.id?
-      # session[:user_id].must_equal User.last.id
-      # I changed it to a find_by method and confirmed that the username is the same.
       session_user = User.find(session[:user_id])
 
       user.name.must_equal session_user.name
@@ -146,13 +98,7 @@ describe UsersController do
 
       get auth_callback_path(:github)
 
-      # what is the proper login path then???
-      # why doesn't it have to redirect to github_login?
       must_redirect_to root_path
-
-      # why don't we also check that session user_id ?
-      # b/c it will be a nill value
-      # Why don't we check/how do we check that session user_id is a nil value?
     end
   end
 

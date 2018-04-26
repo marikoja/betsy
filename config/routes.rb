@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index, :create, :new, :show]
 
-  resources :order_items, only: [:index, :show, :create, :edit, :update]
+  resources :order_items, only: [:index, :create, :edit, :update]
 
   resources :users do
     resources :products, except: [:delete]

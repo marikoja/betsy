@@ -35,9 +35,9 @@ describe CategoriesController do
       must_respond_with :success
     end
 
-    it "renders 404 for invalid id" do
+    it "redirects to root path for invalid id" do
       get category_path(999)
-      must_respond_with :not_found
+      must_redirect_to root_path
     end
   end
 
