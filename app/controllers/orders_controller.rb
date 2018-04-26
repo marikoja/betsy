@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     @user = User.find_by(uid: session['uid'])
 
-    if @user.name == "Guest"
+    if @user
       @order_items = OrderItem.where(order_id: @order.id)
 
     else
