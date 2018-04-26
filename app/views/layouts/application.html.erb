@@ -63,7 +63,9 @@
         <% if flash[:messages] %>
         <ul>
           <% flash[:messages].each do |name, problems| %>
-          <li><%= name %>: <%= problems %></li>
+            <% problems.each do |problem| %>
+              <li><%= name %>: <%= problem %></li>
+            <% end %>
           <% end %>
         </ul>
         <% end %>

@@ -7,7 +7,6 @@ class Order < ApplicationRecord
 
   validates :name, length: { in: 1..50 }
 
-  # validates :card_number, :zip, :date_year, :date_day, :date_month, :cvv, numericality: { only_integer: true }
   validates :card_number, :zip, :cvv, numericality: { only_integer: true }
 
   validates :card_number, length: { is: 16 }
