@@ -152,11 +152,7 @@ describe ProductsController do
       must_respond_with :redirect
       must_redirect_to product_path(product.id)
     end
-    #
-    # it "renders bad_request for bogus data" do
-    #
-    #
-    # end
+
 
     it "redirects to the product index if product does not exist" do
       user = users(:beyonce)

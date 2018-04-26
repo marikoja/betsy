@@ -30,6 +30,7 @@ header{
 header h1 {
   font-family: 'Monoton', cursive;
   color: purple;
+   text-shadow: 2px 2px white;
 }
 
 header .tagline {
@@ -42,6 +43,9 @@ header .tagline {
 nav {
   text-align: left;
   padding-left: 2em;
+  display: flex;
+  justify-content: center;
+
 }
 
 nav .button.right {
@@ -113,4 +117,8 @@ footer p {
   transform: rotate(180deg);
   color: purple;
   padding-bottom: 75px;
+}
+
+a {
+  color: purple;
 }

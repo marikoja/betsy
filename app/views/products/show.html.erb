@@ -1,4 +1,4 @@
-<h2><%= @product.name %></h2>
+<h1><%= @product.name %></h1>
 <section class="product_show">
 
   <section class="product_show_item">
@@ -43,12 +43,15 @@
         </thead>
         <tbody>
           <% @product.reviews.each do |review| %>
-            <tr>
-              <td>
-      
-              </td>
-              <td><%= review.text_review %></td>
-            </tr>
+          <tr>
+
+            <td>
+              <% review.rating.times do %>
+                <img src="https://4.bp.blogspot.com/-xMWFXKu-oRE/WThKE4gVoWI/AAAAAAAACg4/1V6fMZoa6jk0WbFholbMH3PlYg8wSAxGQCLcB/s1600/banana-fruit-icons_www.fruitsname.com_256x256-3.png" alt="fruit rating" width=15%>
+              <% end %>
+            </td>
+            <td><%= review.text_review %></td>
+          </tr>
           <% end %>
         </tbody>
       </table>
