@@ -53,6 +53,8 @@ class OrderItemsController < ApplicationController
   #   @user = User.find_by(id: params[:user_id])
   # end
 
+  private
+
   def order_item_paid
     paid_items = []
     @order_items.each do |item|
@@ -83,7 +85,6 @@ class OrderItemsController < ApplicationController
     return cancelled_items
   end
 
-  private
   def order_item_params
     return params.require(:order_item).permit(:order, :user_id, :status)
   end
