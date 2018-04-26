@@ -17,7 +17,7 @@
     <p class='tagline'>for all your syrup-less fruit salad needs</p>
     <nav>
       <%= link_to "FruEtsy", root_path, class: "button large" %>
-      <% if session[:user_id] != 1 %>
+      <% if session[:user_id] != nil %>
 
       <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
       <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
