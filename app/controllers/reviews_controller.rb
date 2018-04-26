@@ -2,10 +2,7 @@ class ReviewsController < ApplicationController
 
   def new
     @product = Product.find(params[:product_id].to_i)
-<<<<<<< HEAD
 
-=======
->>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
     @review = Review.new
   end
 
