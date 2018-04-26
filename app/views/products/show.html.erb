@@ -22,7 +22,7 @@
       <%= label_tag 'quantity' %>
       <%= number_field_tag 'quantity' %>
       <%= hidden_field_tag 'product_id', @product.id %>
-      <%= submit_tag "Add to Order", class: "button" %>
+      <%= submit_tag "Add to Basket", class: "button" %>
     <% end %>
   </section>
 
@@ -56,7 +56,7 @@
         </tbody>
       </table>
     <% else %>
-      <p>There are no reviews. Please add one!</p>
+      <p>There are no reviews.</p>
     <% end %>
   </section>
 
