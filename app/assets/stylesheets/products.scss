@@ -2,5 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
  .frontpage li {
-   
+
  }
+
+.product-name {
+  font-size: 1.5em;
+}
+
+.product-price {
+  font-size: 1.25em;
+}
+
+.product-description {
+  max-width: 80%;
+}
+
+.merchant-buttons {
+  margin-top: 1em;
+}

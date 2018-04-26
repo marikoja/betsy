@@ -30,7 +30,8 @@ header{
 header h1 {
   font-family: 'Monoton', cursive;
   color: purple;
-   text-shadow: 2px 2px white;
+  text-shadow: 2px 2px white;
+  font-size: 3.4rem;
 }
 
 header .tagline {
