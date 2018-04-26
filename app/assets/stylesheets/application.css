@@ -83,7 +83,7 @@ h1 {
 }
 
 .button:hover{
-  background-color: rgb(126, 15, 126, .5);
+  background-color: rgba(126, 15, 126, .5);
   /* background: rgba(0, 0, 0, 0); */
 }
 
