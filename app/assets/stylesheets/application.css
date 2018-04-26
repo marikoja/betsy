@@ -77,7 +77,7 @@ h1 {
 .button {
   border-radius: 2rem;
   background: none;
-  border: solid 3px purple;
+  border: solid 1px purple;
   color: rgb(136, 33, 128);
   font-family: 'Didact Gothic', sans-serif;
 }
