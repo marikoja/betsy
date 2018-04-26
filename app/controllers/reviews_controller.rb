@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
 
   def new
     @product = Product.find(params[:product_id].to_i)
-    # why does this only work with @product is defined first?
     @review = Review.new
   end
 

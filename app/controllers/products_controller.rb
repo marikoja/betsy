@@ -7,9 +7,9 @@ class ProductsController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
 
-    if @user.nil? # if the user does not exist
+    if @user.nil?
       @products = Product.all
-    else # the user exists
+    else
       @products = @user.products
     end
 
@@ -54,10 +54,6 @@ class ProductsController < ApplicationController
       flash[:status] = :alert
       flash[:result_text] = "You must be logged in to edit"
       redirect_to root_path
-    # else @user.id != @product.user.id
-    #   flash[:status] = :alert
-    #   flash[:result_text] = "You can only edit your own product"
-    #   redirect_to root_path
     end
 
   end
@@ -110,9 +106,7 @@ class ProductsController < ApplicationController
       flash[:result_text] = "Product does not exist"
       redirect_to products_path
     end
-
   end
-
 
   private
 
