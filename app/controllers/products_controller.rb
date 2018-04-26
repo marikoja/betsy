@@ -110,8 +110,8 @@ class ProductsController < ApplicationController
       flash[:result_text] = "Product does not exist"
       redirect_to products_path
     end
-
   end
+
   private
 
   def product_params

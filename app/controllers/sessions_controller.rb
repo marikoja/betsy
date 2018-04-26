@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def index
   end
 
+<<<<<<< HEAD
   def show
   end
 
@@ -9,6 +10,8 @@ class SessionsController < ApplicationController
 
   end
 
+=======
+>>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
   def create
     quantity = params[:quantity]
     product_id = params[:product_id]
@@ -36,10 +39,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def edit
-
-  end
-
   def update
     product_id = params[:id].to_i
     old_quantity = session[:order][product_id.to_s]
@@ -53,7 +52,7 @@ class SessionsController < ApplicationController
       flash[:status] = :success
       flash[:result_text] = "Item removed from Order"
       redirect_to order_path
-    elsif new_quantity < 0 # invalid entry
+    elsif new_quantity < 0
       flash[:status] = :alert
       flash.now[:result_text] = "Invalid input. Only positive integers."
       render :index
@@ -72,12 +71,18 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
     session[:order].each do |key, val|
       product = Product.find_by(id: key.to_i)
       product.update(quantity: product.quantity + val)
     end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0df4ac0cc986f9c10c545c5a008b1d46912d8d9b
     session[:order] = {}
     flash[:status] = :success
     flash[:result_text] = "Order cleared successfully"

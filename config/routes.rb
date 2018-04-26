@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
   delete '/logout', to: "users#destroy", as: "logout"
 
-  # resources :sessions
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'
   patch '/order' , to: 'sessions#update', as: 'update_order'
@@ -16,10 +15,7 @@ Rails.application.routes.draw do
 
   post '/orderitem' , to: 'order_items#create', as: 'create_order'
 
-  # Orders
-
   resources :orders, only: [:index, :show, :new, :create]
-
 
   resources :products do
     resources :reviews, only: [:create, :new]
