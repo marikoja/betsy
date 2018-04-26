@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :reviews
 
-  accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['category_name'].blank?} 
 
   validates :name, {
     presence: true,
@@ -15,13 +15,13 @@ class Product < ApplicationRecord
     numericality: { greater_than: 0 }
   }
 
-  def categories_attributes=(category_attributes)
-    if !category_attributes.nil?
-      category_attributes.values.each do |category_attribute|
-        category = Category.find_or_create_by(category_attribute)
-        self.categories << category
-      end
-    end
-  end
+  # def categories_attributes=(category_attributes)
+  #   if !category_attributes.nil?
+  #     category_attributes.values.each do |category_attribute|
+  #       category = Category.find_or_create_by(category_attribute)
+  #       self.categories << category
+  #     end
+  #   end
+  # end
 
 end
