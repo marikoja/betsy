@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    # @user = User.new
+
   end
 
   def create
@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
     new_quantity = params[:quantity].to_i
     diff = old_quantity - new_quantity
     product = Product.find_by(id: product_id)
-    if new_quantity == 0 # remove item from order
+    if new_quantity == 0
       update_quantity = product.quantity + old_quantity
       product.update(quantity: update_quantity)
       session[:order].delete(product_id.to_s)
@@ -72,12 +72,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # restore stock on all items currently in the order
+
     session[:order].each do |key, val|
       product = Product.find_by(id: key.to_i)
       product.update(quantity: product.quantity + val)
     end
-    # clear session
+
     session[:order] = {}
     flash[:status] = :success
     flash[:result_text] = "Order cleared successfully"
@@ -88,21 +88,17 @@ class SessionsController < ApplicationController
 
   def add_products_to_session (product, quantity)
     if !product.quantity.nil? && product.quantity >= quantity.to_i
-      # decrement product.quantity in db
       new_quantity = product.quantity - quantity.to_i
       product.update(quantity: new_quantity)
-      # add to sessions
       if session[:order].nil?
         session[:order] = { product.id => quantity.to_i }
       else
         session[:order].merge!(product.id => quantity.to_i)
       end
-      # flash and redirect
       flash[:status] = :success
       flash[:result_text] = "Product added to order"
       redirect_to order_path
     else
-      # flash message that the quantity is too high
       flash[:status] = :alert
       flash[:result_text] = "The quantity entered is too high"
       redirect_to product_path(product.id)

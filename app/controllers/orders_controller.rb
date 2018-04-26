@@ -17,17 +17,14 @@ class OrdersController < ApplicationController
       end
     end
 
-    # here we are making sure session updates its user_id in it
+
     session[:user_id] = @user.id
 
     @order = Order.new(user_id: @user.id)
   end
 
   def show
-    # I am unsure where this info coming from: params vs session vs order_params
-    # params: end of the url ???
-    # session: has to be defined in the code directly?
-    # order_params : pulled from params, but I think there is something wrong with my order params below. Is it pulled from order or or just params??
+
     @order = Order.find_by(id: params[:id])
     @user = User.find_by(uid: session['uid'])
 
@@ -45,8 +42,6 @@ class OrdersController < ApplicationController
       end
 
     end
-
-    # what about if the order doesn't exist? or cant be found?
   end
 
   def create
@@ -63,7 +58,6 @@ class OrdersController < ApplicationController
 
     if @order.save
 
-      # This order_id defined in sessions is called in marke_order_items
       session[:order_id] = @order.id
 
       flash[:status] = :success
@@ -84,8 +78,6 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    # this is not right. Where is this really stored in sessions?
-    # Is the params the same as sessions? No It is stored in params hash with order as the hash with all the order info.
     params.require(:order).permit(:user_id, :status, :email, :street, :city, :state, :zip, :card_number, :date_year, :date_month, :date_day, :cvv, :name)
   end
 end
