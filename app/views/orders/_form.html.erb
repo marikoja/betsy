@@ -1,31 +1,30 @@
 <%= form_for @order, url: '/orders' do |f| %>
-  <%= f.label :name %>
+  <%= f.label :name, :class => "label"%>
   <%= f.text_field :name %>
 
-  <%= f.label :email %>
+  <%= f.label :email, :class => "label"%>
   <%= f.text_field :email %>
 
-  <%= f.label :card_number %>
+  <%= f.label :card_number, :class => "label" %>
   <%= f.text_field :card_number %>
 
-  <%= f.label :cvv %>
+  <%= f.label :cvv, :class => "label" %>
   <%= f.text_field :cvv %>
 
-<%#maybe refactor with method to use a single date field and separate with logic %>
-  <%= f.label :expiration_date %>
+  <%= f.label :expiration_date, :class => "label" %>
   <%= f.month_field :date_month,
       min: Date.today.beginning_of_month %>
 
-  <%= f.label :street %>
+  <%= f.label :street, :class => "label" %>
   <%= f.text_field :street %>
 
-  <%= f.label :city %>
+  <%= f.label :city, :class => "label" %>
   <%= f.text_field :city %>
 
-  <%= f.label :state %>
+  <%= f.label :state, :class => "label" %>
   <%= f.text_field :state %>
 
-  <%= f.label :zip %>
+  <%= f.label :zip, :class => "label" %>
   <%= f.text_field :zip %>
 
   <%= f.submit :class => "button"%>

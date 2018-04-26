@@ -15,7 +15,7 @@
     <% products.each do |product|%>
     <li>
     <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
-
+    
     <%= link_to product.name, product_path(product[:id]) %>
 
     $<%= sprintf('%.2f', product.price) %>

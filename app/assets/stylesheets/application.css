@@ -30,6 +30,7 @@ header{
 header h1 {
   font-family: 'Monoton', cursive;
   color: purple;
+   text-shadow: 2px 2px white;
 }
 
 header .tagline {
@@ -113,4 +114,8 @@ footer p {
   transform: rotate(180deg);
   color: purple;
   padding-bottom: 75px;
+}
+
+a {
+  color: purple;
 }

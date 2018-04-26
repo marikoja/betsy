@@ -1,12 +1,14 @@
+<div class='user-form'>
 <h2>Edit Profile</h2>
 
 <%= form_for @user do |f| %>
 
-  <%= f.label :name %>
+  <%= f.label :name, :class => "label"%>
   <%= f.text_field :name %>
 
-  <%= f.label :email %>
+  <%= f.label :email, :class => "label" %>
   <%= f.text_field :email %>
 
   <%= f.submit :class => "button"%>
 <% end %>
+</div>

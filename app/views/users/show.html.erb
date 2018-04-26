@@ -1,12 +1,17 @@
-<h1>Merchant Profile</h1>
+<div class='merchant-profile'>
+<h2>Merchant Profile</h2>
+
 
 <section>
   <p>Name: <%= @user.name %></p>
   <p>Email: <%= @user.email %></p>
 </section>
+<section class='profile-buttons'>
   <%= link_to "Edit Profile", edit_user_path(@user.id), class: "button" %>
 
 
   <%= link_to "My Orders", user_order_items_path(@user.id), class: "button" %>
 
   <%= link_to "My Products", user_products_path(@user.id), class: "button" %>
+</section>
+</div>
