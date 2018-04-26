@@ -45,7 +45,7 @@
         </li>
       </ul>
 
-      <% if session[:user_id] != nil %>
+      <% if session[:user_id] != nil && session[:user_id] != 1 %>
 
       <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
       <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
