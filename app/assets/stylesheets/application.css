@@ -45,7 +45,11 @@ nav {
   padding-left: 2em;
   display: flex;
   justify-content: center;
+}
 
+nav .button, nav ul li .button {
+  display: flex;
+  justify-content: center;
 }
 
 nav .button.right {
@@ -58,6 +62,7 @@ nav .button.right {
   background: none;
   border: solid 3px purple;
   color: rgb(136, 33, 128);
+
 }
 
 .button:hover{
