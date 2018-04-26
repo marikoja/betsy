@@ -3,7 +3,7 @@
 # I am unsure of what to call the status
 fruit_salad:
   order: cart1
-  product: cherry
+  product: cherries
   quantity: 3
   status: paid
 

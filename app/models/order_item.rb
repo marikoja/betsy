@@ -9,15 +9,8 @@ class OrderItem < ApplicationRecord
     numericality: true
   }
 
-  # validates_uniqueness_of :order_item, :scope => [:order_id, :product_id]
-
-  # creates many order_item instances
-  # requires order_id and hash of product_id:quantity
-  # called in OrdersController
-  # to get an array you have to do a .where on the order item instance
 
   def self.make_order_items(id, hash)
-    order_items = []
 
     hash.each do |key, value|
 
