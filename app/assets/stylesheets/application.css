@@ -53,6 +53,12 @@ nav .button.right {
   margin: 1em;
 }
 
+
+h1 {
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+
 .button {
   border-radius: 2rem;
   background: none;
