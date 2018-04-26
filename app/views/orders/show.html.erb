@@ -23,7 +23,6 @@
 
     <% subtotal = sprintf('%.2f', (order_item.quantity.to_i * product.price)).to_f %>
 
-
     <% if order_item.status == nil || order_item.status == "pending" %>
       <% @status = order_item.status %>
     <% end %>
@@ -41,6 +40,18 @@
 </table>
 
 <ul>
+
+  <li>Name: <%= @order.name %></li>
+  <li>Email: <%= @order.email %></li>
+  <li>
+    Address: <%= @order.street %>,
+             <%= @order.city %>,
+             <%= @order.state %>
+             <%= @order.zip %>
+  </li>
+  <li>Card: ************<%= @order.card_number.to_s.last(4).to_i %></li>
+  <li>Exp: <%= @order.cvv %></li>
+  <br>
   <li>Order Total: $<%= sprintf('%.2f', total) %></li>
   <li>Purchased On: <%= render_date(@order.created_at) %></li>
   <% order_status = Order.order_status(@order) %>

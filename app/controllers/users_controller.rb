@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         successful_save = @user.save
         if successful_save
           flash[:status] = :success
-          flash[:result_text] = "Logged in successfully"
+          flash[:result_text] = "#{@user.name} logged in successfully"
           session[:uid] = @user.uid
           session[:user_id] = @user.id
           redirect_to root_path
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         end
       else
         flash[:status] = :success
-        flash[:result_text] = "Logged in successfully"
+        flash[:result_text] = "#{@user.name} logged in successfully"
         session[:uid] = @user.uid
         session[:user_id] = @user.id
         redirect_to root_path
