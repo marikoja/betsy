@@ -56,7 +56,7 @@ describe ProductsController do
   end
 
   describe 'create' do
-    it "creates a work with valid data for a real category" do
+    it "creates a product with valid data for a real category" do
       user = users(:beyonce)
       login(user)
 
