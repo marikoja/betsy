@@ -19,7 +19,7 @@
       <%= link_to "FruEtsy", root_path, class: "button large" %>
       <% if session[:user_id] != 1 %>
 
-      <%= link_to "Logout #{User.find_by(id: session[:user_id]).name}", logout_path, method: :delete, class: "button right" %>
+      <%= link_to "Logout", logout_path, method: :delete, class: "button right" %>
       <%= link_to "My Profile",  user_path(session[:user_id]), class: "button right" %>
 
 
