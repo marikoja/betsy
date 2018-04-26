@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
     if quantity.to_i <= 0
       flash[:status] = :alert
-      flash[:result_text] = "Please add at least one product to the order"
+      flash[:result_text] = "Please add at least one product to the basket"
       redirect_to product_path(@product.id)
       return
     end
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
 
       if order_product_ids.include? product_id
         flash[:status] = :alert
-        flash[:result_text] = "That product is already in your Order"
+        flash[:result_text] = "That product is already in your Basket"
         redirect_to order_path
       else
         add_products_to_session(@product, params[:quantity])
@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
       product.update(quantity: update_quantity)
       session[:order].delete(product_id.to_s)
       flash[:status] = :success
-      flash[:result_text] = "Item removed from Order"
+      flash[:result_text] = "Item removed from Basket"
       redirect_to order_path
     elsif new_quantity < 0
       flash[:status] = :alert
@@ -77,7 +77,7 @@ class SessionsController < ApplicationController
 
     session[:order] = {}
     flash[:status] = :success
-    flash[:result_text] = "Order cleared successfully"
+    flash[:result_text] = "Basket emptied successfully"
     redirect_to order_path
   end
 
@@ -93,7 +93,7 @@ class SessionsController < ApplicationController
         session[:order].merge!(product.id => quantity.to_i)
       end
       flash[:status] = :success
-      flash[:result_text] = "Product added to order"
+      flash[:result_text] = "Product added to basket"
       redirect_to order_path
     else
       flash[:status] = :alert

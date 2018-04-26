@@ -1,8 +1,8 @@
-<h1>Shopping Cart</h1>
+<h1>Fruit Basket</h1>
 
 <% if session[:order].nil? || session[:order] == {} %>
-  <p>No Items in the Order</p>
-  <p><%= link_to "Add to Order", products_path, class: "button" %></p>
+  <p>No Items in Basket</p>
+  <p><%= link_to "Add to Basket", products_path, class: "button" %></p>
 <% else %>
   <table>
     <thead>
@@ -34,6 +34,6 @@
   </table>
   <p>Total: $<%= calculate_total %></p>
   <span><%= link_to "Checkout", new_order_path, class: "button" %></span>
-  <span><%= link_to "Clear Order", delete_order_path, method: :delete, data: { confirm: "Are you sure?" }, class: "button" %></span>
+  <span><%= link_to "Clear Basket", delete_order_path, method: :delete, data: { confirm: "Are you sure?" }, class: "button" %></span>
   <span><%= link_to "Continue Shopping", products_path, class: "button" %></span>
 <% end %>
