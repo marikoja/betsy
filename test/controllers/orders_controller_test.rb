@@ -5,7 +5,6 @@ describe OrdersController do
     @test_user = users(:beyonce)
     @test_order = orders(:cart1)
     @test_product = products(:cherries)
-    # @test_order_item = order_items(:fruit_salad)
   end
 
   describe "index" do
@@ -15,17 +14,22 @@ describe OrdersController do
     end
   end
 
-  # describe "new" do
-  #   it "should get new" do
-  #     get new_order_path
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should assign user to guest when session user_id is nil" do
-  #     session[:user_id] = nil
-  #     get new_order_path
-  #   end
-  # end
+  describe "new" do
+    it "should get new order for logged in user" do
+      user = users(:beyonce)
+      login(user)
+      get new_order_path
+      value(response).must_be :success?
+    end
+
+    it "should get new order for not logged in guest" do
+      user = users(:beyonce)
+      login(user)
+      delete logout_path
+      get new_order_path
+      value(response).must_be :success?
+    end
+  end
 
   describe "create" do
     it "should get create" do
@@ -175,28 +179,6 @@ describe OrdersController do
       value(response).must_be :success?
     end
 
-    it "should get show order confirmation page for guest user" do
-
-      test_user_hash =
-      {
-        :name => @test_user.name,
-        :email => @test_user.email,
-        :uid => nil,
-        :provider => @test_user.provider
-      }
-      user = User.new(test_user_hash)
-      user.save
-
-      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
-      get auth_callback_path(:github)
-
-      post add_to_order_path, params: { :product_id => products(:cherries).id,
-        :quantity => 2}
-
-      get order_details_path(@test_order.id), params: { :id => @test_order.id }
-      value(response).must_be :success?
-    end
-
     it "should show order page with no order_items if no order_items in order to show" do
       test_user_hash =
       {
@@ -213,18 +195,6 @@ describe OrdersController do
       get order_details_path(@test_order.id)
       value(response).must_be :success?
     end
-
-    # describe "uid nil and guest users should be able to see thier order confirmation page" do
-    #   before do
-    #     post add_to_order_path, params: { :product_id => products(:cherries).id,
-    #       :quantity => 2}
-    #   end
-    #
-    #   it "should show order page with order_items if userid is nil" do
-    #     get order_details_path(@test_order.id)
-    #     value(response).must_be :success?
-    #   end
-    # end
   end
 
   describe "merchant_order_show" do
@@ -243,12 +213,5 @@ describe OrdersController do
       get sold_order_path(@test_order.id), params: { :id => @test_user.id}
       value(response).must_be :success?
     end
-
-    it "valid data returns an array of order_items of products made by merchant" do
-    end
-
-    it "invalid data returns an empty array" do
-    end
-
   end
 end
