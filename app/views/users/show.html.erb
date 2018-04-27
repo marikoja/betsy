@@ -2,11 +2,13 @@
 <h2>Merchant Profile</h2>
 
 
-<section>
+<section class="merchant">
   <p>Name: <%= @user.name %></p>
+</section>
+<section class="merchant">
   <p>Email: <%= @user.email %></p>
 </section>
-<section class='profile-buttons'>
+<section class='profile-buttons merchant'>
   <%= link_to "Edit Profile", edit_user_path(@user.id), class: "button" %>
 
 
@@ -15,7 +17,7 @@
   <%= link_to "My Products", user_products_path(@user.id), class: "button" %>
 </section>
 
-<section>
-  <%= imgage_tag(MERCHANT_PICS.sample(1), alt="Merchant profile picture")%>
+<section class="merchant-pic merchant">
+  <%= image_tag(User::MERCHANT_PICS.sample, :alt => "Merchant profile picture", :size => "260x180")%>
 </section>
 </div>
