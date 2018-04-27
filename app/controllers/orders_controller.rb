@@ -24,16 +24,19 @@ class OrdersController < ApplicationController
   end
 
   def show
-
     @order = Order.find_by(id: params[:id])
     @user = User.find_by(uid: session['uid'])
 
+    if @order.user_id != @user
+
+      flash[:status] = :failure
+      flash[:result_text] = "This is not your order. Merchants please access your sold oders through your orders page"
+      flash[:messages] = @order.errors.messages
+      redirect_to :root
+    end
+
     if @user
       @order_items = OrderItem.where(order_id: @order.id)
-      if @order_items == []
-        flash[:status] = :failure
-        flash[:result_text] = "No order items in your order"
-      end
     else
       product_ids = @user.products.map{ |i| i.id }
       @order_items = []
@@ -43,7 +46,6 @@ class OrdersController < ApplicationController
           @order_items << item
         end
       end
-
     end
   end
 
@@ -68,14 +70,14 @@ class OrdersController < ApplicationController
       OrderItem.make_order_items(@order.id, session[:order])
 
       redirect_to order_details_path(@order.id)
+
+      session[:order] = {}
     else
-      flash[:status] = :failure
+      flash[:status] = :alert
       flash[:result_text] = "Could not make order"
       flash[:messages] = @order.errors.messages
       render :new, status: :bad_request
     end
-
-    session[:order] = {}
   end
 
   def merchant_order_show
