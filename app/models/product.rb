@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   has_many :reviews
   has_many :order_items
 
+
   accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['category_name'].blank?}
 
   validates :name, {

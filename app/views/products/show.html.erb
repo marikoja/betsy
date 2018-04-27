@@ -12,9 +12,11 @@
     <br>
     <span>
       Categories:
+
       <% @product.categories.each do |category| %>
-        <%= category.name %>
+        <span><%= category.name %>,</span>
       <% end %>
+
     </span>
    <br>
 

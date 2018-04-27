@@ -29,6 +29,13 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+
+    new_category = product_params[:categories_attributes]["0"]["name"]
+    if new_category != ""
+      category = Category.create(name: new_category)
+      @product.categories << category
+    end
+    
     @user = User.find_by(id: session[:user_id])
     @product.user = @user
     @action = user_products_path(@product.user.id)
