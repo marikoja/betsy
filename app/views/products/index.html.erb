@@ -15,12 +15,11 @@
     <% products.each do |product|%>
     <li>
      <img src="product.image" alt="fruit!" class ="thumbnail">
-
     <span class='product-name'><%= link_to product.name.capitalize, product_path(product[:id]) %></span>
 
-    <span class='product-price'>$<%= sprintf('%.2f', product.price) %></span>
+    <span class='product-price color'>$<%= sprintf('%.2f', product.price) %></span>
 
-    <section class='product-description'><%= product.description %></section>
+    <section class='product-description color'><%= product.description %></section>
 
     <% if @user && @user.id == session[:user_id]%>
 

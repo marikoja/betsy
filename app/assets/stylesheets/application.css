@@ -151,6 +151,14 @@ a {
   color: purple;
 }
 
+span a {
+  margin-right: 1.1em;
+}
+
+.frontpage li .color {
+  color: #6d747f;
+}
+
 .merchant p {
   display: flex;
   flex-direction: column;
@@ -160,4 +168,9 @@ a {
   /* flex-direction: column; */
   justify-content: center;
   align-items: flex-end;
+}
+
+h1 {
+  text-align: center;
+  color: gray;
 }
