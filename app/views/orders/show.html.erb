@@ -50,7 +50,7 @@
              <%= @order.zip %>
   </li>
   <li>Card: ************<%= @order.card_number.to_s.last(4).to_i %></li>
-  <li>Exp: <%= @order.cvv %></li>
+  <li>Exp: <%= @order.date_month %></li>
   <br>
   <li>Order Total: $<%= sprintf('%.2f', total) %></li>
   <li>Purchased On: <%= render_date(@order.created_at) %></li>
