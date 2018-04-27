@@ -2,18 +2,21 @@
 <section class="product_show">
 
   <section class="product_show_item">
+
     <img src="@product.image"  alt="fruit!" class="thumbnail">
+
     <br>
-    <span>Price: $<%= sprintf('%.2f', @product.price) %></span>
+    <div class='product-show'>
+    <span class='product-price color'>Price: $<%= sprintf('%.2f', @product.price) %></span>
     <br>
-    <span>Quantity Available: <%= @product.quantity %></span>
+    <span class='color'>Quantity Available: <%= @product.quantity %></span>
     <br>
-    <span>Description: <%= @product.description %></span>
+    <span class='color'>Description: <%= @product.description %></span>
     <br>
-    <span>
+    <span class='color'>
       Categories:
       <% @product.categories.each do |category| %>
-        <%= category.name %>
+        <span class='color'><%= category.name %>,</span>
       <% end %>
     </span>
    <br>
@@ -25,6 +28,7 @@
       <%= submit_tag "Add to Basket", class: "button" %>
     <% end %>
   </section>
+</div>
 
   <section class="product_show_item">
     <% if @product.user_id == session[:user_id] %>
@@ -47,8 +51,7 @@
 
             <td>
               <% review.rating.times do %>
-                <img src="https://4.bp.blogspot.com/-xMWFXKu-oRE/WThKE4gVoWI/AAAAAAAACg4/1V6fMZoa6jk0WbFholbMH3PlYg8wSAxGQCLcB/s1600/banana-fruit-icons_www.fruitsname.com_256x256-3.png" alt="fruit rating" width=15%>
-
+                <img src="https://4.bp.blogspot.com/-xMWFXKu-oRE/WThKE4gVoWI/AAAAAAAACg4/1V6fMZoa6jk0WbFholbMH3PlYg8wSAxGQCLcB/s1600/banana-fruit-icons_www.fruitsname.com_256x256-3.png" alt="fruit rating" width=55 >
               <% end %>
             </td>
             <td><%= review.text_review %></td>
