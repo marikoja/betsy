@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
       category = Category.create(name: new_category)
       @product.categories << category
     end
-    binding.pry
+    
     @user = User.find_by(id: session[:user_id])
     @product.user = @user
     @action = user_products_path(@product.user.id)
