@@ -14,7 +14,7 @@
   <ul class="frontpage">
     <% products.each do |product|%>
     <li>
-    <%= image_tag(product.image,  :alt => "fruit!", :class => "thumbnail") %>
+     <img src="product.image" alt="fruit!" class ="thumbnail">
 
     <span class='product-name'><%= link_to product.name.capitalize, product_path(product[:id]) %></span>
 
