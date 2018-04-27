@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :account_views, only: [:edit]
+  before_action :account_views, only: [:edit]
 
   def index
     @orders = Order.all
@@ -79,25 +79,19 @@ before_action :account_views, only: [:edit]
     @order = Order.find_by(id: params[:id])
     @user = User.find_by(uid: session['uid'])
 
-    if @user
+    if @user.id != nil && @user.id != 1
       @order_items = OrderItem.where(order_id: @order.id)
 
     else
-      product_ids = @user.products.map{ |i| i.id }
-      @order_items = []
-      array = OrderItem.where(order_id: @order.id)
-
-      array.each do |item|
-        if product_ids.include?(item.product.id)
-          @order_items << item
-        end
-      end
-
+      flash[:status] = :failure
+      flash[:result_text] = "You are not a merchant for this order"
+      redirect_to :root
     end
   end
 
-  private
-  def order_params
-    params.require(:order).permit(:user_id, :status, :email, :street, :city, :state, :zip, :card_number, :date_year, :date_month, :date_day, :cvv, :name)
-  end
+
+private
+def order_params
+  params.require(:order).permit(:user_id, :status, :email, :street, :city, :state, :zip, :card_number, :date_year, :date_month, :date_day, :cvv, :name)
+end
 end
