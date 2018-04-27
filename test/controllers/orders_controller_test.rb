@@ -149,6 +149,19 @@ describe OrdersController do
 
   describe "show" do
     it "should get show" do
+
+      test_user_hash =
+      {
+        :name => @test_user.name,
+        :email => @test_user.email,
+        :uid => @test_user.uid,
+        :provider => @test_user.provider
+      }
+      user = User.new(test_user_hash)
+      user.save
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+      get auth_callback_path(:github)
+
       post add_to_order_path, params: { :product_id => products(:cherries).id,
         :quantity => 2}
       get order_details_path(@test_order.id)
