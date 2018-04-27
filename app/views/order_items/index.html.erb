@@ -37,7 +37,7 @@
           <tbody>
             <td><%= item.product.name %></td>
             <td><%= item.quantity %></td>
-            <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
+            <td><%= link_to "Order \# #{item.order.id}", sold_order_path(item.order.id) %></td>
             <td>$<%= sprintf('%.2f', (item.product.price) * item.quantity) %></td>
             <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button'%></td>
           </tbody>
@@ -65,7 +65,7 @@
         <tbody>
           <td><%= item.product.name %></td>
           <td><%= item.quantity %></td>
-          <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
+          <td><%= link_to "Order \# #{item.order.id}", sold_order_path(item.order.id) %></td>
           <td><%= sprintf('%.2f', (item.product.price) * item.quantity) %></td>
           <td> <%= link_to "Change Status", edit_order_item_path(item.id), class: 'button' %></td>
         </tbody>
@@ -90,7 +90,7 @@
         <tbody>
           <td><%= item.product.name %></td>
           <td><%= item.quantity %></td>
-          <td><%= link_to "Order \# #{item.order.id}", order_details_path(item.order.id) %></td>
+          <td><%= link_to "Order \# #{item.order.id}", sold_order_path(item.order.id) %></td>
         </tbody>
         <% end %>
       <% end %>

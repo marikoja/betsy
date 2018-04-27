@@ -1,0 +1,62 @@
+<h1>Thank you for shopping on Fruetsy!</h1>
+<h3>Order Confirmation #: <%= @order.id %> </h3>
+
+<table>
+  <caption>Order Confirmation page</caption>
+  <thead>
+    <tr>
+      <th scope="column">Product</th>
+      <th scope="column">Price</th>
+      <th scope="column">Quantity</th>
+      <th scope="column">Subtotal</th>
+      <th scope="column">Order Item Status</th>
+    </tr>
+  </thead>
+
+  <% total = 0 %>
+  <% @order_items.each do |order_item| %>
+    <% @status = "paid" %>
+
+    <% product = Product.find_by(id: order_item.product_id) %>
+    <% subtotal = (order_item.quantity.to_i * product.price) %>
+    <% subtotal = sprintf('%.2f', (order_item.quantity.to_i * product.price)).to_f %>
+
+    <% if order_item.status == nil || order_item.status == "pending" %>
+      <% @status = order_item.status %>
+    <% end %>
+
+    <tbody>
+      <tr>
+        <% if product.user_id == session[:user_id] %>
+            <td><%= link_to product.name, product_path(product.id) %></td>
+            <td>$<%= sprintf('%.2f', order_item.product.price) %></td>
+            <td><%= order_item.quantity %></td>
+            <td>$<%= sprintf('%.2f', subtotal) %></td>
+            <td><%= order_item.status %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<ul>
+
+  <li>Name: <%= @order.name %></li>
+  <li>Email: <%= @order.email %></li>
+  <li>
+    Address: <%= @order.street %>,
+             <%= @order.city %>,
+             <%= @order.state %>
+             <%= @order.zip %>
+  </li>
+  <li>Card: ************<%= @order.card_number.to_s.last(4).to_i %></li>
+  <li>Exp: <%= "#{@order.date_month}" %></li>
+  <li>CVV: <%= @order.cvv %></li>
+  <br>
+  <li>Purchased On: <%= render_date(@order.created_at) %></li>
+  <% order_status = Order.order_status(@order) %>
+  <% if order_status == "complete" %>
+    <% @order.status = "complete" %>
+  <% end %>
+  <li>Order Status: <%= order_status %></li>
+</ul>

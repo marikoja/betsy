@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
   delete '/logout', to: "users#destroy", as: "logout"
 
+  # this is a new route to limit view of order details for merchant
+  get '/sold_order/:id' , to: 'orders#merchant_order_show', as: 'sold_order'
+
   get '/order' , to: 'sessions#index', as: 'order'
   post '/order' , to: 'sessions#create', as: 'add_to_order'
   patch '/order' , to: 'sessions#update', as: 'update_order'
