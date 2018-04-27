@@ -30,7 +30,10 @@ class OrdersController < ApplicationController
 
     if @user
       @order_items = OrderItem.where(order_id: @order.id)
-
+      if @order_items == []
+        flash[:status] = :failure
+        flash[:result_text] = "No order items in your order"
+      end
     else
       product_ids = @user.products.map{ |i| i.id }
       @order_items = []

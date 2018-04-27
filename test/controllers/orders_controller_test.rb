@@ -167,6 +167,26 @@ describe OrdersController do
       get order_details_path(@test_order.id)
       value(response).must_be :success?
     end
+
+    it "should show order page with no order_items if no order_items in order to show and flash no order_items" do
+      test_user_hash =
+      {
+        :name => @test_user.name,
+        :email => @test_user.email,
+        :uid => @test_user.uid,
+        :provider => @test_user.provider
+      }
+      user = User.new(test_user_hash)
+      user.save
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+      get auth_callback_path(:github)
+
+      get order_details_path(@test_order.id)
+      value(response).must_be :success?
+
+
+    end
+
   end
 
   describe "merchant_order_show" do
