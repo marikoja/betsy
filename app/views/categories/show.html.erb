@@ -3,10 +3,17 @@
   <ul class="frontpage">
     <% @category.products.each do |product| %>
       <li>
+<<<<<<< HEAD
         <%= image_tag(product.image,  :alt => "fruit!") %>
         <span class='product-name'><%= link_to product.name, product_path(product.id) %></span>
         <span class='product-price color'>$<%= sprintf('%.2f', product.price) %></span>
         <p class='color'><%= product.description %></p>
+=======
+        <img src="product.image" alt="fruit!">
+        <%= link_to product.name, product_path(product.id) %>
+        $<%= sprintf('%.2f', product.price) %>
+        <%= product.description %>
+>>>>>>> dda08ed37097c79a4e1f24f4c6e17658cc171778
       </li>
     <% end %>
   </ul>
