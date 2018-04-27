@@ -25,7 +25,7 @@ describe OrdersController do
     it "should get new order for not logged in guest" do
       user = users(:beyonce)
       login(user)
-      logout(user)
+      delete logout_path
       get new_order_path
       value(response).must_be :success?
     end

@@ -19,9 +19,10 @@ describe OrderItemsController do
 
   describe "edit" do
     it "succeeds with a valid order_item" do
-      get edit_order_item_path(order_items(:fruit_salad).id), params: {
+      login(users(:beyonce))
+      get edit_order_item_path(order_items(:fruit_salad), params: {
         :id => order_items(:fruit_salad).id
-      }
+      })
       must_respond_with :success
     end
 
