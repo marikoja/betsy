@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   MERCHANT_PICS = ['https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-4.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-26.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-27.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-28.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-29.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-30.jpg']
 
+
 end

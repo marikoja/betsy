@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+before_action :account_views, only: [:edit]
 
   def index
     @orders = Order.all
@@ -72,6 +73,27 @@ class OrdersController < ApplicationController
     end
 
     session[:order] = {}
+  end
+
+  def merchant_order_show
+    @order = Order.find_by(id: params[:id])
+    @user = User.find_by(uid: session['uid'])
+
+    if @user
+      @order_items = OrderItem.where(order_id: @order.id)
+
+    else
+      product_ids = @user.products.map{ |i| i.id }
+      @order_items = []
+      array = OrderItem.where(order_id: @order.id)
+
+      array.each do |item|
+        if product_ids.include?(item.product.id)
+          @order_items << item
+        end
+      end
+
+    end
   end
 
   private

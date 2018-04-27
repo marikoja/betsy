@@ -8,7 +8,8 @@ class Product < ApplicationRecord
 
   validates :name, {
     presence: true,
-    length: { minimum: 1 }
+    length: { minimum: 1 },
+    uniquness: true
   }
 
   validates :price, {
