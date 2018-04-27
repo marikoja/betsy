@@ -175,28 +175,6 @@ describe OrdersController do
       value(response).must_be :success?
     end
 
-    it "should get show order confirmation page for guest user" do
-
-      test_user_hash =
-      {
-        :name => @test_user.name,
-        :email => @test_user.email,
-        :uid => nil,
-        :provider => @test_user.provider
-      }
-      user = User.new(test_user_hash)
-      user.save
-
-      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
-      get auth_callback_path(:github)
-
-      post add_to_order_path, params: { :product_id => products(:cherries).id,
-        :quantity => 2}
-
-      get order_details_path(@test_order.id), params: { :id => @test_order.id }
-      value(response).must_be :success?
-    end
-
     it "should show order page with no order_items if no order_items in order to show" do
       test_user_hash =
       {
@@ -213,18 +191,6 @@ describe OrdersController do
       get order_details_path(@test_order.id)
       value(response).must_be :success?
     end
-
-    # describe "uid nil and guest users should be able to see thier order confirmation page" do
-    #   before do
-    #     post add_to_order_path, params: { :product_id => products(:cherries).id,
-    #       :quantity => 2}
-    #   end
-    #
-    #   it "should show order page with order_items if userid is nil" do
-    #     get order_details_path(@test_order.id)
-    #     value(response).must_be :success?
-    #   end
-    # end
   end
 
   describe "merchant_order_show" do
@@ -243,12 +209,5 @@ describe OrdersController do
       get sold_order_path(@test_order.id), params: { :id => @test_user.id}
       value(response).must_be :success?
     end
-
-    it "valid data returns an array of order_items of products made by merchant" do
-    end
-
-    it "invalid data returns an empty array" do
-    end
-
   end
 end
