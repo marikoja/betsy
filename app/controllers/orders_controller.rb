@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+before_action :account_views, only: [:edit]
 
   def index
     @orders = Order.all
