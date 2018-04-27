@@ -27,8 +27,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
     @user = User.find_by(uid: session['uid'])
 
-    if @order.user_id != @user
-
+    if @order.user_id != @user.id
       flash[:status] = :failure
       flash[:result_text] = "This is not your order. Merchants please access your sold oders through your orders page"
       flash[:messages] = @order.errors.messages
