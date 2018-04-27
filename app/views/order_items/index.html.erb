@@ -14,7 +14,7 @@
     <h3>Order Revenue</h3>
     <p>Paid: $<%= sprintf('%.2f', @paid_items.map { |i| i.product.price * i.quantity }.sum) %></p>
     <p>Complete: $<%= sprintf('%.2f', @completed_items.map { |i| i.product.price * i.quantity }.sum) %></p>
-    <p>Total: $<%= sprintf('%.2f', @paid_items.map { |i| i.product.price * i.quantity }.sum + @completed_items.map { |i| i.product.price * i.quantity }.sum + @cancelled_items.map { |i| i.product.price * i.quantity }.sum) %></p>
+    <p>Total: $<%= sprintf('%.2f', @paid_items.map { |i| i.product.price * i.quantity }.sum + @completed_items.map { |i| i.product.price * i.quantity }.sum) %></p>
   </div>
 </section>
 
