@@ -174,3 +174,8 @@ h1 {
   text-align: center;
   color: gray;
 }
+
+.empty_basket {
+  margin-left: auto;
+  margin-right: auto;
+}

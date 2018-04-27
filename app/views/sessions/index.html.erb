@@ -1,8 +1,15 @@
 <h1>Fruit Basket</h1>
 
 <% if session[:order].nil? || session[:order] == {} %>
-  <p>No Items in Basket</p>
+<span class="empty_basket">
+  <p>Your basket is empty</p>
   <p><%= link_to "Add to Basket", products_path, class: "button" %></p>
+</span>
+
+<span class="empty_basket">
+<img src="https://images.unsplash.com/photo-1488815812041-73ab30a49bb9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=04bb4d0a4cce246d48a2d722ce69969a&auto=format&fit=crop&w=800&q=60" alt="People walk through an Asian produce market with baskets" class="thumbnail"  width="300" height="auto">
+</span>
+
 <% else %>
   <table>
     <thead>
