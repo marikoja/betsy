@@ -162,11 +162,27 @@ describe OrdersController do
 
   end
 
-  # describe "show" do
-  #   it "should get show" do
-  #     get order_details_path(@test_order.id)
-  #     value(response).must_be :success?
-  #   end
-  # end
+  describe "show" do
+    it "should get show" do
+      get order_details_path(@test_order.id)
+      value(response).must_be :success?
+    end
+  end
+
+  describe "merchant_order_show" do
+    it "should get order show page for merchants order_items and their order details" do
+      get sold_order_path(@test_order.id)
+      value(response).must_be :success?
+    end
+
+    it "valid data returns an array of order_items of products made by merchant" do
+
+    end
+
+
+    it "invalid data returns an empty array" do
+
+    end
+  end
 
 end

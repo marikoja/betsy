@@ -19,10 +19,18 @@ class OrderItemsController < ApplicationController
 
   def edit
     @order_item = OrderItem.find_by(id: params[:id])
+    @order = Order.find_by(id: params[:id])
+    @user = User.find_by(uid: session['uid'])
+
     if @order_item.nil?
       flash[:status] = :alert
       flash[:result_text] = "That order_item does not exist"
       redirect_to root_path
+
+    elsif @user.id == nil || @user.id == 1
+      flash[:status] = :failure
+      flash[:result_text] = "You are not a merchant for this product"
+      redirect_to :root
     end
   end
 
