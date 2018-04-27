@@ -21,7 +21,7 @@ class Order < ApplicationRecord
     status = "complete"
 
     order_items.each do |item|
-      if item.status == "paid"
+      if item.status == "paid" || item.status = "cancelled"
         status = "pending"
       end
     end
