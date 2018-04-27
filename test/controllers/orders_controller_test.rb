@@ -5,7 +5,6 @@ describe OrdersController do
     @test_user = users(:beyonce)
     @test_order = orders(:cart1)
     @test_product = products(:cherries)
-    # @test_order_item = order_items(:fruit_salad)
   end
 
   describe "index" do
@@ -15,17 +14,22 @@ describe OrdersController do
     end
   end
 
-  # describe "new" do
-  #   it "should get new" do
-  #     get new_order_path
-  #     value(response).must_be :success?
-  #   end
-  #
-  #   it "should assign user to guest when session user_id is nil" do
-  #     session[:user_id] = nil
-  #     get new_order_path
-  #   end
-  # end
+  describe "new" do
+    it "should get new order for logged in user" do
+      user = users(:beyonce)
+      login(user)
+      get new_order_path
+      value(response).must_be :success?
+    end
+
+    it "should get new order for not logged in guest" do
+      user = users(:beyonce)
+      login(user)
+      logout(user)
+      get new_order_path
+      value(response).must_be :success?
+    end
+  end
 
   describe "create" do
     it "should get create" do
