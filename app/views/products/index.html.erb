@@ -14,7 +14,7 @@
   <ul class="frontpage">
     <% products.each do |product|%>
     <li>
-     <img src="product.image" alt="fruit!" class ="thumbnail">
+     <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
     <span class='product-name'><%= link_to product.name.capitalize, product_path(product[:id]) %></span>
 
     <span class='product-price color'>$<%= sprintf('%.2f', product.price) %></span>
