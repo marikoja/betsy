@@ -17,6 +17,12 @@ describe Order do
     order.valid?.must_equal false
   end
 
+  it "must have a name with a length < 50" do
+    order.name = "jdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjdjd"
+
+    order.valid?.must_equal false
+  end
+
   it "must have a card number" do
     order.card_number = nil
     order.valid?.must_equal false
@@ -36,25 +42,8 @@ describe Order do
     order.valid?.must_equal false
   end
 
-  it "must have an integer date day" do
-    order.date_day = 5.8
-    order.valid?.must_equal false
-    order.date_day = "ahfkj"
-    order.valid?.must_equal false
-
-  end
-
-  it "must have an integer date month" do
-    order.date_month = 5.8
-    order.valid?.must_equal false
-    order.date_month = "ahfkj"
-    order.valid?.must_equal false
-  end
-
-  it "must have an integer date year" do
-    order.date_year = 5.8
-    order.valid?.must_equal false
-    order.date_year = "ahfkj"
+  it "must have a date month" do
+    order.date_month = nil
     order.valid?.must_equal false
   end
 
@@ -102,18 +91,51 @@ describe Order do
     order.valid?.must_equal false
   end
 
-  it "must have at least one order item" do
-    order.order_items = []
-    order.valid?.must_equal false
-  end
-
   it "can have many order items" do
-
     order.order_items.count.must_equal 2
   end
 
   it "must have a user" do
     order.user = nil
     order.valid?.must_equal false
+  end
+
+  describe 'order_status' do
+
+    it 'returns a status' do
+      statuses = ['complete', 'paid', 'pending']
+
+      order = orders(:cart2)
+      status = Order.order_status(order)
+
+      statuses.include?(status).must_equal true
+    end
+
+    it 'returns pending status if all order items are paid' do
+
+      order = orders(:cart2)
+      status = Order.order_status(order)
+
+      status.must_equal 'pending'
+    end
+
+    it 'returns pending status if some order items are paid and some are complete' do
+
+      order = orders(:cart2)
+
+      order_items(:watermelon_salad).status = 'complete'
+      status = Order.order_status(order)
+
+      status.must_equal 'pending'
+    end
+
+    it 'returns complete status if all order items are complete' do
+
+      order = orders(:cart2)
+      order.order_items.each do |i|
+        i.status = 'complete'
+      end
+      Order.order_status(order).must_equal 'complete'
+    end
   end
 end
