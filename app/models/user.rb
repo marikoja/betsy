@@ -10,6 +10,7 @@ class User < ApplicationRecord
     return User.new(uid: auth_hash[:uid], provider: auth_hash[:provider], email: auth_hash[:info][:email], name: auth_hash[:info][:nickname])
   end
 
-MERCHANT_PICS = ['https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-4.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-26.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-27.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-28.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-29.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-30.jpg']
+  MERCHANT_PICS = ['https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-4.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-26.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-27.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-28.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-29.jpg', 'https://www.icreativeideas.com/wp-content/uploads/2014/08/Creative-Animals-Made-of-Fruits-And-Vegetables-30.jpg']
+
 
 end

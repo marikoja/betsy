@@ -7,13 +7,11 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['category_name'].blank?}
 
-# I removed this validation because it messed with my duplicate orders.
-# I think this validation has to be checked for in products create method
-  # validates :name, {
-  #   presence: true,
-  #   length: { minimum: 1 },
-  #   uniquness: true
-  # }
+  validates :name, {
+    presence: true,
+    length: { minimum: 1 },
+    uniqueness: true
+  }
 
   validates :price, {
     presence: true,

@@ -131,11 +131,7 @@ main {
 }
 
 footer {
-  /* background-image: url("https://spindriftfresh.com/wp-content/uploads/2017/12/fruit-header-1.jpg"); */
-  /* background-size: cover; */
-  /* transform: rotate(180deg); */
-  /* text-align: center; */
-  /* position: fixed; */
+
   left: 0;
   bottom: 0;
   width: 100%;
@@ -153,4 +149,15 @@ footer p {
 
 a {
   color: purple;
+}
+
+.merchant p {
+  display: flex;
+  flex-direction: column;
+}
+.merchant {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: flex-end;
 }
