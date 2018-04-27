@@ -29,11 +29,12 @@
   <%= f.label :categories, :class => "label" %>
   <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
 
-
+  <div>
   <%= f.label :new_category, :class => "label" %>
   <%= f.fields_for :categories, @product.categories.build do |categories_fields| %>
   <%= categories_fields.text_field :name %>
   <% end %>
+</div>
 </div>
 
 <%= f.submit :class => "button" %>
