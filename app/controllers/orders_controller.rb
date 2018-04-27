@@ -83,18 +83,6 @@ class OrdersController < ApplicationController
       @order_items = OrderItem.where(order_id: @order.id)
 
     else
-      # i want to remove this code because it should raise an error if the user is not the same as the visitor
-
-      # product_ids = @user.products.map{ |i| i.id }
-      # @order_items = []
-      # array = OrderItem.where(order_id: @order.id)
-      #
-      # array.each do |item|
-      #   if product_ids.include?(item.product.id)
-      #     @order_items << item
-      #   end
-      # end
-
       flash[:status] = :failure
       flash[:result_text] = "You are not a merchant for this order"
       redirect_to :root
