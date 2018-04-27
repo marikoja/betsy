@@ -5,11 +5,11 @@
     <li>
       <img class="thumbnail" src="<%= product.image %>" alt="fruit!">
 
-      <%= link_to product.name, product_path(product[:id]) %>
+      <span class='product-name'><%= link_to product.name.capitalize, product_path(product[:id]) %></span>
 
-      $<%= sprintf('%.2f', product.price) %>
+      <span class='product-price color'>$<%= sprintf('%.2f', product.price) %></span>
 
-      <p><%= product.description %></p>
+      <p class='color'><%= product.description %></p>
     </li>
 
     <% end %>

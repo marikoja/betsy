@@ -7,10 +7,10 @@
     <%= image_tag(User::MERCHANT_PICS.sample, :alt => "Merchant profile picture", :size => "260x180")%>
   </section>
   <section class="merchant-info">
-  <p class='color'>Name: <%= @user.name %></p>
+  <p class="color">Name: <%= @user.name %></p>
 
 
-  <p class='color'>Email: <%= @user.email %></p>
+  <p class="color">Email: <%= @user.email %></p>
   <section class='profile-buttons'>
     <%= link_to "Edit Profile", edit_user_path(@user.id), class: "button" %>
 

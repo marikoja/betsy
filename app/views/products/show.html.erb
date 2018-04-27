@@ -4,17 +4,18 @@
   <section class="product_show_item">
     <%= image_tag(@product.image,  :alt => "fruit!", :class => "thumbnail") %>
     <br>
-    <span>Price: $<%= sprintf('%.2f', @product.price) %></span>
+    <div class='product-show'>
+    <span class='product-price color'>Price: $<%= sprintf('%.2f', @product.price) %></span>
     <br>
-    <span>Quantity Available: <%= @product.quantity %></span>
+    <span class='color'>Quantity Available: <%= @product.quantity %></span>
     <br>
-    <span>Description: <%= @product.description %></span>
+    <span class='color'>Description: <%= @product.description %></span>
     <br>
-    <span>
+    <span class='color'>
       Categories:
 
       <% @product.categories.each do |category| %>
-        <span><%= category.name %>,</span>
+        <span class='color'><%= category.name %>,</span>
       <% end %>
 
     </span>
@@ -27,6 +28,7 @@
       <%= submit_tag "Add to Basket", class: "button" %>
     <% end %>
   </section>
+</div>
 
   <section class="product_show_item">
     <% if @product.user_id == session[:user_id] %>

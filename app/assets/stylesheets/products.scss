@@ -1,9 +1,6 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
- .frontpage li {
-
- }
 
 .product-name {
   font-size: 1.5em;
@@ -19,4 +16,16 @@
 
 .merchant-buttons {
   margin-top: 1em;
+}
+
+.product_show {
+  line-height: 2.4em;
+}
+
+.product-show > * {
+  margin-left: 1.3em;
+}
+
+.product-show .color {
+  color: #6d747f;
 }
