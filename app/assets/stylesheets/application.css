@@ -111,6 +111,13 @@ ul li {
   height: fit-content;
 }
 
+.category_show {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* height: fit-content; */
+}
+
 .frontpage {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

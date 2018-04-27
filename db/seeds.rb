@@ -28,7 +28,7 @@ CSV.foreach(USER_FILE, :headers => true) do |row|
   end
 end
 
-PRODUCT_FILE = Rails.root.join('db', 'ProductSeed.csv')
+PRODUCT_FILE = Rails.root.join('db', 'ProductSeed2.csv')
 puts "Loading product data from #{PRODUCT_FILE}"
 
 product_failures = []
@@ -39,8 +39,21 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.description = row['description']
   product.image = row['image']
   product.user_id = row['user_id']
-  # product.quantity = row['quantity']
   product.quantity = rand(1..50)
+
+  # add category to product
+  if row['category'] != "-"
+    category = Category.find_by(name: row['category'])
+    if category
+      product.categories << category
+    else
+      category = Category.new
+      category.name = row['category']
+      category.save
+      puts "Category created: #{category.inspect}"
+      product.categories << category
+    end
+  end
 
   successful = product.save
   if !successful
@@ -50,6 +63,23 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
     puts "Created product: #{product.inspect}"
   end
 end
+
+# CATEGORY_FILE = Rails.root.join('db', 'Categoryseed.csv')
+# puts "Loading category data from #{CATEGORY_FILE}"
+#
+# category_failures = []
+# CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
+#   category = Category.new
+#   category.name = row['Category']
+#
+#   successful = category.save
+#   if !successful
+#     category_failures << category
+#     puts "Failed to save category: #{category.inspect}"
+#   else
+#     puts "Created category: #{category.inspect}"
+#   end
+# end
 
 REVIEW_FILE = Rails.root.join('db', 'ReviewsSeed.csv')
 puts "Loading review data from #{REVIEW_FILE}"
@@ -68,23 +98,6 @@ CSV.foreach(REVIEW_FILE, :headers => true) do |row|
     puts "Failed to save review: #{review.inspect}"
   else
     puts "Created review: #{review.inspect}"
-  end
-end
-
-CATEGORY_FILE = Rails.root.join('db', 'Categoryseed.csv')
-puts "Loading category data from #{CATEGORY_FILE}"
-
-category_failures = []
-CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
-  category = Category.new
-  category.name = row['Category']
-
-  successful = category.save
-  if !successful
-    category_failures << category
-    puts "Failed to save category: #{category.inspect}"
-  else
-    puts "Created category: #{category.inspect}"
   end
 end
 
