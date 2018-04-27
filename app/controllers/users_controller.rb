@@ -10,10 +10,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
-  # def new
-  #   @user = User.new
-  # end
-
   def create
     auth_hash = request.env['omniauth.auth']
     if auth_hash['uid']

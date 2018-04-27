@@ -133,13 +133,13 @@ describe ProductsController do
   describe "update" do
     it "succeeds for valid data and a logged on user with permissions" do
       user = users(:beyonce)
-      product = products(:cherries)
-
       login(user)
+
+      product = products(:cherries)
 
       patch product_path(product.id), params: {
         product: {
-          name: 'yellow cherries',
+          name: "yellow cherries",
           price: 3.0,
           description: '1kg ranier cherries',
           image: 'image_url',
@@ -148,7 +148,7 @@ describe ProductsController do
         }
       }
 
-      product.name.must_equal 'yellow cherries'
+      product.name.must_equal "yellow cherries"
       must_respond_with :redirect
       must_redirect_to product_path(product.id)
     end
