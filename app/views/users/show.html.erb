@@ -1,23 +1,26 @@
 <div class='merchant-profile'>
 <h2>Merchant Profile</h2>
 
+<div class='merchant-show'>
 
-<section class="merchant">
-  <p>Name: <%= @user.name %></p>
+  <section class="merchant-pic merchant">
+    <%= image_tag(User::MERCHANT_PICS.sample, :alt => "Merchant profile picture", :size => "260x180")%>
+  </section>
+  <section class="merchant-info">
+  <p class='color'>Name: <%= @user.name %></p>
+
+
+  <p class='color'>Email: <%= @user.email %></p>
+  <section class='profile-buttons'>
+    <%= link_to "Edit Profile", edit_user_path(@user.id), class: "button" %>
+
+
+    <%= link_to "My Orders", user_order_items_path(@user.id), class: "button" %>
+
+    <%= link_to "My Products", user_products_path(@user.id), class: "button" %>
+  </section>
 </section>
-<section class="merchant">
-  <p>Email: <%= @user.email %></p>
-</section>
-<section class='profile-buttons merchant'>
-  <%= link_to "Edit Profile", edit_user_path(@user.id), class: "button" %>
 
+</div>
 
-  <%= link_to "My Orders", user_order_items_path(@user.id), class: "button" %>
-
-  <%= link_to "My Products", user_products_path(@user.id), class: "button" %>
-</section>
-
-<section class="merchant-pic merchant">
-  <%= image_tag(User::MERCHANT_PICS.sample, :alt => "Merchant profile picture", :size => "260x180")%>
-</section>
 </div>

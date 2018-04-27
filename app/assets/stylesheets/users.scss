@@ -3,8 +3,35 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .merchant-profile h2 {
+  text-align: center;
+  color: gray;
+}
+
+.merchant-show {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.merchant-pic {
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+.merchant-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.merchat-info p .color {
+  margin-left: 2em;
+  color: gray;
+}
+
+.merchant-profile h2 {
   margin-bottom: .8em;
 }
+
 .merchant-profile section p {
   font-size: 1.4rem;
 }
@@ -14,7 +41,7 @@
 }
 
 .label {
-  background-color: white;
+  background: rgba(245,243,244,0.1);
   color: purple;
   font-weight: bold;
   font-size: 1.1rem;
