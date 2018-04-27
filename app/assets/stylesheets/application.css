@@ -150,3 +150,14 @@ footer p {
 a {
   color: purple;
 }
+
+.merchant p {
+  display: flex;
+  flex-direction: column;
+}
+.merchant {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: flex-end;
+}
