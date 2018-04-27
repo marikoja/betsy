@@ -148,7 +148,7 @@ describe OrdersController do
   end
 
   describe "show" do
-    it "should get show" do
+    it "should get show order confirmation page for logged in users" do
 
       test_user_hash =
       {
@@ -160,37 +160,59 @@ describe OrdersController do
       user = User.new(test_user_hash)
       user.save
 
-      product = products(:cherries)
+
+      product = products(:watermelon)
       product.user_id = user.id
       product.save
 
       OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
       get auth_callback_path(:github)
 
-# this should add the stuff in cart to sessions
       post add_to_order_path, params: { :product_id => products(:cherries).id,
         :quantity => 2}
 
       get order_details_path(@test_order.id), params: { :id => @test_order.id }
-      # value(response).must_be :success?
+      value(response).must_be :success?
     end
 
-    # it "should show order page with no order_items if no order_items in order to show and flash no order_items and user is a merchant" do
-    #   test_user_hash =
-    #   {
-    #     :name => @test_user.name,
-    #     :email => @test_user.email,
-    #     :uid => @test_user.uid,
-    #     :provider => @test_user.provider
-    #   }
-    #   user = User.new(test_user_hash)
-    #   user.save
-    #   OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
-    #   get auth_callback_path(:github)
-    #
-    #   get order_details_path(@test_order.id)
-    #   value(response).must_be :success?
-    # end
+    it "should get show order confirmation page for guest user" do
+
+      test_user_hash =
+      {
+        :name => @test_user.name,
+        :email => @test_user.email,
+        :uid => nil,
+        :provider => @test_user.provider
+      }
+      user = User.new(test_user_hash)
+      user.save
+
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+      get auth_callback_path(:github)
+
+      post add_to_order_path, params: { :product_id => products(:cherries).id,
+        :quantity => 2}
+
+      get order_details_path(@test_order.id), params: { :id => @test_order.id }
+      value(response).must_be :success?
+    end
+
+    it "should show order page with no order_items if no order_items in order to show" do
+      test_user_hash =
+      {
+        :name => @test_user.name,
+        :email => @test_user.email,
+        :uid => @test_user.uid,
+        :provider => @test_user.provider
+      }
+      user = User.new(test_user_hash)
+      user.save
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+      get auth_callback_path(:github)
+
+      get order_details_path(@test_order.id)
+      value(response).must_be :success?
+    end
 
     # describe "uid nil and guest users should be able to see thier order confirmation page" do
     #   before do
