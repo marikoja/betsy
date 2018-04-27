@@ -2,7 +2,8 @@ class OrderItemsController < ApplicationController
   def index
     @user = User.find_by(uid: session[:uid])
     if @user == nil || @user.id == 1
-      #flash message
+      flash[:status] = :failure
+      flash[:result_text] = "Guest accounts dont have access to individual order items"
       redirect_to root_path
     else
       @order_items = OrderItem.user_order_items(@user.id)
@@ -12,28 +13,27 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  # is this needed? meaning is this an actual page
-  # def create
-  #   @order_item = OrderItem.new
-  # end
-
   def edit
     @order_item = OrderItem.find_by(id: params[:id])
+    @order = Order.find_by(id: params[:id])
+    @user = User.find_by(uid: session['uid'])
+
     if @order_item.nil?
       flash[:status] = :alert
       flash[:result_text] = "That order_item does not exist"
       redirect_to root_path
+
+    elsif @user.id == nil || @user.id == 1
+      flash[:status] = :failure
+      flash[:result_text] = "You are not a merchant for this product"
+      redirect_to :root
     end
   end
 
   def update
     @order_item = OrderItem.find_by(id: params[:id])
     @user = User.find_by(id: session[:user_id])
-    # if session[:user_id] == 1
-    #   flash[:status] = :failure
-    #   flash[:result_text] = "You must be a merchant to update products"
-    #   redirect_to root_path
-    # end
+
     if @order_item
       if @order_item.update(order_item_params)
         flash[:status] = :success
