@@ -3,8 +3,7 @@
   <ul class='frontpage'>
     <% @products.sample(9).each do |product|%>
     <li>
-      <%= image_tag(product.image,  :alt => "fruit!", :class => "thumbnail") %>
-
+      <img src="product.image" alt="fruit!" class="thumbnail">
 
       <%= link_to product.name, product_path(product[:id]) %>
 

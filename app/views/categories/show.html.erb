@@ -3,7 +3,7 @@
   <ul class="frontpage">
     <% @category.products.each do |product| %>
       <li>
-        <%= image_tag(product.image,  :alt => "fruit!") %>
+        <img src="product.image" alt="fruit!">
         <%= link_to product.name, product_path(product.id) %>
         $<%= sprintf('%.2f', product.price) %>
         <%= product.description %>
